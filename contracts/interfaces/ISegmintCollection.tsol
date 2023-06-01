@@ -1,0 +1,22 @@
+pragma ever-solidity >= 0.64.0;
+
+import "../structures/ITile.tsol";
+
+
+interface ISegmintCollection is ITile {
+    event MintDisabledChanged(bool newValue);
+    event TileColorify(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, TileColors tileColors);
+    event NftMinted(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
+
+
+    function disableMint() external responsible returns(bool);
+    function enableMint() external responsible returns(bool);
+    function getMintDisabled() external responsible returns (bool);
+
+    function claimTiles(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url) external;
+    function colorifyTile(uint32 nftId, TileColors tileColors, uint10 tilePixelX, uint10 tilePixelY, address sendGasBack) external;
+
+
+    function getTile(uint10 tilePixelX, uint10 tilePixelY) external responsible returns (uint8[], uint32) ;
+    function convertTileColorsToPixels(TileColors tileColors) external  responsible returns(uint8[] pixels);
+}

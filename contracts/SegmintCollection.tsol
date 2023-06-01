@@ -1,0 +1,258 @@
+pragma ever-solidity >= 0.64.0;
+
+import '@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol';
+import '@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol';
+
+import "./structures/ITile.tsol";
+import "./interfaces/ISegmintCollection.tsol";
+
+import "./libraries/MsgFlag.tsol";
+import "./libraries/ErrorCodes.tsol";
+import './SegmintNft.tsol';
+
+
+contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmintCollection {
+    address private static owner_;
+    uint16 private static nonce_;
+    bool private mintDisabled_;
+
+    // id of nft minted
+    uint32 private nftCounter;
+
+    // x = 0..100, y = 0.100 (100 pieces by 10 pixes - 1000x1000)
+    // uint7 - 128 - x coord << 7
+    // uint7 - 128 - y coord
+    mapping (uint14 => Tile) tiles;
+
+    // Small mapping index -> nftId;
+    mapping (uint14 => uint32) tileOwnerNftId;
+
+    uint128 remainOnNft_ = 0.3 ever;
+
+    event MintDisabledChanged(bool newValue);
+    event TileColorify(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, TileColors tileColors);
+    event NftMinted(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
+
+    constructor(
+        TvmCell codeNft,
+        TvmCell codeIndex,
+        TvmCell codeIndexBasis,
+        string jsonMetadata
+    ) TIP4_1Collection (
+        codeNft
+    ) TIP4_2Collection (
+        jsonMetadata
+    ) TIP4_3Collection (
+        codeIndex,
+        codeIndexBasis
+    ) public {
+        require(msg.sender == owner_, ErrorCodes.NOT_OWNER);
+        require(tvm.pubkey() == 0, ErrorCodes.PUBKEY_MUST_BE_NOT_SET);
+        tvm.rawReserve(1 ever, 0);
+        mintDisabled_ = true;
+        msg.sender.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner_, ErrorCodes.NOT_OWNER);
+        _;
+    }
+
+    modifier onlyMintEnabled() {
+        require(mintDisabled_ == false, ErrorCodes.MINT_DISABLED);
+        _;
+    }
+
+    function disableMint() external override responsible onlyOwner returns(bool) {
+        mintDisabled_ = true;
+        emit MintDisabledChanged(mintDisabled_);
+        return { value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false } mintDisabled_;
+    }
+
+    function enableMint() external override responsible onlyOwner returns(bool) {
+        mintDisabled_ = false;
+        emit MintDisabledChanged(mintDisabled_);
+        return { value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false } mintDisabled_;
+    }
+
+    function getMintDisabled() external override responsible returns (bool){
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false } mintDisabled_;
+    }
+
+    function _buildNftState(
+        TvmCell code,
+        uint256 id
+    ) internal virtual override(TIP4_2Collection, TIP4_3Collection) pure returns (TvmCell) {
+        return tvm.buildStateInit({
+            contr: SegmintNft,
+            varInit: {_id: id},
+            code: code
+        });
+    }
+
+    function _validateClaim(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify) private inline returns (bool, uint7, uint7, uint7, uint7) {
+        if (pixelStartX % 10 != 0 || pixelStartY % 10 != 0 || pixelEndX % 10 != 0 || pixelEndY % 10 != 0 || pixelStartX >= pixelEndX || pixelStartY >= pixelEndY || pixelEndX > 1000 || pixelEndY > 1000) {
+            return (true, 0, 0, 0, 0);
+        }
+
+        // 0 - 100
+        uint7 tilesWidthCount = uint7((pixelEndX - pixelStartX) / 10);
+        uint7 tilesHeightCount = uint7((pixelEndY - pixelStartY) / 10);
+
+        if (tilesWidthCount * tilesHeightCount != tilesToColorify.length) {
+            return (true, 0, 0, 0, 0);
+        }
+
+        // 0 - 99
+        uint7 tilesStartX = uint7(pixelStartX / 10);
+        uint7 tilesStartY = uint7(pixelStartY / 10);
+
+        // Check the tiles is not claimed
+        bool shouldCancel = false;
+        for (uint7 tileX = tilesStartX; tileX < tilesWidthCount; tileX++) {
+            for (uint7 tileY = tilesStartY; tileY < tilesHeightCount; tileY++) {
+                uint14 index = uint14(tileX) << 7 | uint14(tileY);
+                if (tileOwnerNftId.exists(index)) {
+                    shouldCancel = true;
+                }
+            }
+        }
+
+        return (shouldCancel, tilesStartX, tilesStartY, tilesWidthCount, tilesHeightCount);
+    }
+
+    function claimTiles(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url) external override onlyMintEnabled {
+        tvm.rawReserve(0, 4);
+        (bool shouldCancel, uint7 tilesStartX, uint7 tilesStartY, uint7 tilesWidthCount, uint7 tilesHeightCount) = _validateClaim(pixelStartX, pixelStartY, pixelEndX, pixelEndY, tilesToColorify);
+
+        // Todo send tokens back
+        require(shouldCancel == false, ErrorCodes.WRONG_TILE_COORDS);
+
+        uint32 nftId = nftCounter;
+        nftCounter += 1;
+
+        for (uint7 tileX = tilesStartX; tileX < tilesStartX + tilesWidthCount; tileX++) {
+            uint14 shiftedX = uint14(tileX) << 7;
+            for (uint7 tileY = tilesStartY; tileY < tilesStartY + tilesHeightCount; tileY++) {
+                uint14 index = shiftedX | uint14(tileY);
+                // set this tile index to be owned by nft
+                // we already checked is this index free in _validateClaim
+                tileOwnerNftId[index] = nftId;
+            }
+        }
+
+        emit NftMinted(nftId, pixelStartX, pixelStartY, pixelEndX, pixelEndY);
+
+        TvmBuilder salt;
+        salt.store(address(this));
+        TvmCell codeNft = tvm.setCodeSalt(_codeNft, salt.toCell());
+        TvmCell stateNft = _buildNftState(codeNft, uint256(nftId));
+
+        address nftAddr = new SegmintNft{
+                stateInit: stateNft,
+                value: 1 ever,
+                flag: 1
+        } (
+            msg.sender,
+            msg.sender,
+            remainOnNft_,
+            _indexDeployValue,
+            _indexDestroyValue,
+            _codeIndex,
+            pixelStartX,
+            pixelStartY,
+            pixelEndX,
+            pixelEndY,
+            description,
+            url
+        );
+
+        SegmintNft(nftAddr).colorify{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}({tilesToColorify: tilesToColorify, sendGasBack: msg.sender});
+    }
+
+    function colorifyTile(uint32 nftId, TileColors tileColors, uint10 tilePixelX, uint10 tilePixelY, address sendGasBack) external override {
+        //security check
+        require(msg.sender == _resolveNft(nftId), ErrorCodes.WRONG_NFT);
+        tvm.rawReserve(0, 4);
+
+        uint14 index = (uint14(tilePixelX/10) << 7) | uint14(tilePixelY/10);
+        optional(uint32) tileOwner = tileOwnerNftId.fetch(index);
+        if (tileOwner.hasValue()) {
+            uint32 tileOwnedByNftId = tileOwner.get();
+            // unnecessary check, but why not.
+            require(tileOwnedByNftId == nftId, ErrorCodes.NFT_NOT_OWNER);
+
+
+            // We iterate via tile color arrays
+            // because i'm not really sure how solidity operate with arrays
+            // and big structs. Due to TvmCell structure I think solidity doesn't
+            // really check how many elements are packed into array.
+            // So any bad gay can try to insert really big array to Increase contract storage
+            // payments.
+            uint80[] emptyColors = new uint80[](10);
+            TileColors newColors = TileColors(emptyColors, emptyColors, emptyColors);
+            for (uint y = 0; y < 10; y++) {
+                newColors.r[y] = tileColors.r[y];
+                newColors.g[y] = tileColors.g[y];
+                newColors.b[y] = tileColors.b[y];
+            }
+            tiles[index] = Tile(nftId, newColors);
+            emit TileColorify(nftId, tilePixelX, tilePixelY, newColors);
+        } else {
+            require(false, ErrorCodes.NFT_NOT_OWNER);
+        }
+        sendGasBack.transfer( 0,  false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+    }
+
+    // To call offchain to get tile info and pixels
+    function getTile(uint10 tilePixelX, uint10 tilePixelY) external override responsible returns (uint8[] pixels, uint32 nftId) {
+        // 2 ** 32
+        nftId = uint32(4294967295);
+        uint14 index = (uint14(tilePixelX/10) << 7) | uint14(tilePixelY/10);
+        optional(Tile) oTile = tiles.fetch(index);
+        if (oTile.hasValue()) {
+            Tile tile = oTile.get();
+            nftId = tile.nftId;
+            pixels = _convertTileToPixels(tile.colors);
+        } else {
+            optional(uint32) oNftId = tileOwnerNftId.fetch(index);
+            if (oNftId.hasValue()) {
+                // nft claimed but not colored
+                nftId = oNftId.get();
+            }
+            for (uint y = 0; y < 10; y++)  {
+                for (uint x = 0; x < 10; x++)  {
+                    pixels.push(uint8(0));
+                    pixels.push(uint8(0));
+                    pixels.push(uint8(0));
+                }
+            }
+        }
+
+        return{value: 0, bounce: false, flag: 64} (pixels, nftId);
+    }
+
+    // To call offchain to convert raw colors to pixels
+    function convertTileColorsToPixels(TileColors tileColors) external override responsible returns(uint8[] pixels) {
+        return{value: 0, bounce: false, flag: 64} _convertTileToPixels(tileColors);
+    }
+
+    function getTiles() external responsible returns(mapping (uint14 => Tile)) {
+        return{value: 0, bounce: false, flag: 64} tiles;
+    }
+
+    function getNftCount() external responsible returns(uint32) {
+        return{value: 0, bounce: false, flag: 64} nftCounter;
+    }
+
+    function _convertTileToPixels(TileColors tileColors) private inline returns (uint8[] pixels)  {
+        for (uint y = 0; y < 10; y++)  {
+            for (uint x = 0; x < 10; x++)  {
+                pixels.push(uint8( (tileColors.r[y] >> ((9 - x) * 8)) & 0xff ));
+                pixels.push(uint8( (tileColors.g[y] >> ((9 - x) * 8)) & 0xff ));
+                pixels.push(uint8( (tileColors.b[y] >> ((9 - x) * 8)) & 0xff ));
+            }
+        }
+        return pixels;
+    }
+}

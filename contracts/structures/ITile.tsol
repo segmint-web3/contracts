@@ -1,0 +1,22 @@
+pragma ever-solidity >= 0.64.0;
+
+interface ITile {
+    // 10x10
+    // uint80 - 10 pixels
+    // uint80[10] - 100 pixels
+    struct TileColors {
+        uint80[10] r;
+        uint80[10] g;
+        uint80[10] b;
+    }
+
+    // One tile, 10 lines
+    // So we have 10 lines
+    // by 10 width and 1 height
+    // pixels
+    struct Tile {
+        uint32 nftId;
+        TileColors colors;
+    }
+
+}

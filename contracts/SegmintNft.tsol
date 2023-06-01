@@ -1,0 +1,138 @@
+pragma ever-solidity >= 0.64.0;
+
+import "./interfaces/ISegmintCollection.tsol";
+import "./libraries/MsgFlag.tsol";
+import "./libraries/ErrorCodes.tsol";
+import "./structures/ITile.tsol";
+
+import '@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol';
+import '@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Nft.sol';
+import '@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Nft.sol';
+
+contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
+    uint10 tilePixelsStartX_;
+    uint10 tilePixelsStartY_;
+    uint10 tilePixelsEndX_;
+    uint10 tilePixelsEndY_;
+    uint128 remainOnNft_;
+
+    string description_;
+    string url_;
+
+    modifier onlyOwnerOrCollection() {
+        require(msg.sender == _owner || msg.sender == _collection, ErrorCodes.NOT_OWNER);
+        _;
+    }
+
+    constructor(
+        address owner,
+        address sendGasTo,
+        uint128 remainOnNft,
+        uint128 indexDeployValue,
+        uint128 indexDestroyValue,
+        TvmCell codeIndex,
+        uint10 tilePixelsStartX,
+        uint10 tilePixelsStartY,
+        uint10 tilePixelsEndX,
+        uint10 tilePixelsEndY,
+        string description,
+        string url
+    ) TIP4_1Nft(
+        owner,
+        sendGasTo,
+        remainOnNft
+    ) TIP4_3Nft (
+        indexDeployValue,
+        indexDestroyValue,
+        codeIndex
+    ) public {
+        tilePixelsStartX_ = tilePixelsStartX;
+        tilePixelsStartY_ = tilePixelsStartY;
+        tilePixelsEndX_ = tilePixelsEndX;
+        tilePixelsEndY_ = tilePixelsEndY;
+        remainOnNft_ = remainOnNft;
+        description_ = description;
+        url_ = url;
+        // We support ITIP4_2JSON_Metadata.getJson
+        // But not would like to inherit TIP4_2Nft
+        // Just implemented getJson() method below
+        _supportedInterfaces[
+            bytes4(tvm.functionId(ITIP4_2JSON_Metadata.getJson))
+        ] = true;
+
+    }
+
+    function getJson() external view responsible returns (string json) {
+        string name = format("SegMint Nft {}", _id);
+        string description = format("Piece of canvas x from {} to {}, y from {} to {} pixels", tilePixelsStartX_, tilePixelsStartY_, tilePixelsEndX_, tilePixelsEndY_);
+        string source = format("https://segmint/image/{}.png", _id);
+        string external_url = "https://segmint/";
+
+        json = format(
+            "{\"type\":\"Basic NFT\",\"name\":\"{}\",\"description\":\"{}\",\"preview\":{\"source\":\"{}\",\"mimetype\":\"image/png\"},\"files\":[],\"external_url\":\"{}\"}",
+            name,
+            description,
+            source,
+            external_url
+        );
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} json;
+    }
+
+    function getNftCustomData() external responsible returns (string, string) {
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (description_, url_);
+    }
+
+    function colorify(TileColors[] tilesToColorify, address sendGasBack) public onlyOwnerOrCollection {
+        tvm.rawReserve(remainOnNft_, 0);
+
+        uint32 counter = 0;
+        uint10 tilePixelsStartX = tilePixelsStartX_;
+        uint10 tilePixelsStartY = tilePixelsStartY_;
+
+        // up to 255 tiles. We have limit, one nft could own only 225 tiles
+        for (TileColors colors : tilesToColorify) {
+            ISegmintCollection(_collection).colorifyTile{flag: MsgFlag.SENDER_PAYS_FEES, bounce: false, value: 0.3 ever}(uint32(_id), colors, tilePixelsStartX, tilePixelsStartY, sendGasBack);
+            tilePixelsStartX += 10;
+            if (tilePixelsStartX >= tilePixelsEndX_) {
+                tilePixelsStartX = tilePixelsStartX_;
+                tilePixelsStartY += 10;
+            }
+        }
+        sendGasBack.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+    }
+
+    function _beforeTransfer(
+        address to,
+        address sendGasTo,
+        mapping(address => CallbackParams) callbacks
+    ) internal virtual override(TIP4_1Nft, TIP4_3Nft) {
+        TIP4_3Nft._beforeTransfer(to, sendGasTo, callbacks);
+    }
+
+    function _afterTransfer(
+        address to,
+        address sendGasTo,
+        mapping(address => CallbackParams) callbacks
+    ) internal virtual override(TIP4_1Nft, TIP4_3Nft) {
+        TIP4_3Nft._afterTransfer(to, sendGasTo, callbacks);
+    }
+
+
+    function _beforeChangeOwner(
+        address oldOwner,
+        address newOwner,
+        address sendGasTo,
+        mapping(address => CallbackParams) callbacks
+    ) internal virtual override(TIP4_1Nft, TIP4_3Nft) {
+        TIP4_3Nft._beforeChangeOwner(oldOwner, newOwner, sendGasTo, callbacks);
+    }
+
+    function _afterChangeOwner(
+        address oldOwner,
+        address newOwner,
+        address sendGasTo,
+        mapping(address => CallbackParams) callbacks
+    ) internal virtual override(TIP4_1Nft, TIP4_3Nft) {
+        TIP4_3Nft._afterChangeOwner(oldOwner, newOwner, sendGasTo, callbacks);
+    }
+}

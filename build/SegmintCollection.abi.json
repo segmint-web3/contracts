@@ -1,0 +1,293 @@
+{
+	"ABI version": 2,
+	"version": "2.3",
+	"header": ["time"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"codeNft","type":"cell"},
+				{"name":"codeIndex","type":"cell"},
+				{"name":"codeIndexBasis","type":"cell"},
+				{"name":"jsonMetadata","type":"string"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "disableMint",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"bool"}
+			]
+		},
+		{
+			"name": "enableMint",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"bool"}
+			]
+		},
+		{
+			"name": "getMintDisabled",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"bool"}
+			]
+		},
+		{
+			"name": "claimTiles",
+			"inputs": [
+				{"name":"pixelStartX","type":"uint10"},
+				{"name":"pixelStartY","type":"uint10"},
+				{"name":"pixelEndX","type":"uint10"},
+				{"name":"pixelEndY","type":"uint10"},
+				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tilesToColorify","type":"tuple[]"},
+				{"name":"description","type":"string"},
+				{"name":"url","type":"string"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "colorifyTile",
+			"inputs": [
+				{"name":"nftId","type":"uint32"},
+				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tileColors","type":"tuple"},
+				{"name":"tilePixelX","type":"uint10"},
+				{"name":"tilePixelY","type":"uint10"},
+				{"name":"sendGasBack","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getTile",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"tilePixelX","type":"uint10"},
+				{"name":"tilePixelY","type":"uint10"}
+			],
+			"outputs": [
+				{"name":"pixels","type":"uint8[]"},
+				{"name":"nftId","type":"uint32"}
+			]
+		},
+		{
+			"name": "convertTileColorsToPixels",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tileColors","type":"tuple"}
+			],
+			"outputs": [
+				{"name":"pixels","type":"uint8[]"}
+			]
+		},
+		{
+			"name": "getTiles",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"components":[{"name":"nftId","type":"uint32"},{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"colors","type":"tuple"}],"name":"value0","type":"map(uint14,tuple)"}
+			]
+		},
+		{
+			"name": "getNftCount",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"uint32"}
+			]
+		},
+		{
+			"name": "indexBasisCode",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"code","type":"cell"}
+			]
+		},
+		{
+			"name": "indexBasisCodeHash",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"hash","type":"uint256"}
+			]
+		},
+		{
+			"name": "resolveIndexBasis",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"indexBasis","type":"address"}
+			]
+		},
+		{
+			"name": "indexCode",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"code","type":"cell"}
+			]
+		},
+		{
+			"name": "indexCodeHash",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"hash","type":"uint256"}
+			]
+		},
+		{
+			"name": "getJson",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"json","type":"string"}
+			]
+		},
+		{
+			"name": "totalSupply",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"count","type":"uint128"}
+			]
+		},
+		{
+			"name": "nftCode",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"code","type":"cell"}
+			]
+		},
+		{
+			"name": "nftCodeHash",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"codeHash","type":"uint256"}
+			]
+		},
+		{
+			"name": "nftAddress",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"id","type":"uint256"}
+			],
+			"outputs": [
+				{"name":"nft","type":"address"}
+			]
+		},
+		{
+			"name": "supportsInterface",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"interfaceID","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"bool"}
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"owner_","type":"address"},
+		{"key":2,"name":"nonce_","type":"uint16"}
+	],
+	"events": [
+		{
+			"name": "MintDisabledChanged",
+			"inputs": [
+				{"name":"newValue","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "TileColorify",
+			"inputs": [
+				{"name":"nftId","type":"uint32"},
+				{"name":"pixelStartX","type":"uint10"},
+				{"name":"pixelStartY","type":"uint10"},
+				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tileColors","type":"tuple"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "NftMinted",
+			"inputs": [
+				{"name":"nftId","type":"uint32"},
+				{"name":"pixelStartX","type":"uint10"},
+				{"name":"pixelStartY","type":"uint10"},
+				{"name":"pixelEndX","type":"uint10"},
+				{"name":"pixelEndY","type":"uint10"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "NftCreated",
+			"inputs": [
+				{"name":"id","type":"uint256"},
+				{"name":"nft","type":"address"},
+				{"name":"owner","type":"address"},
+				{"name":"manager","type":"address"},
+				{"name":"creator","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "NftBurned",
+			"inputs": [
+				{"name":"id","type":"uint256"},
+				{"name":"nft","type":"address"},
+				{"name":"owner","type":"address"},
+				{"name":"manager","type":"address"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_supportedInterfaces","type":"optional(cell)"},
+		{"name":"_codeNft","type":"cell"},
+		{"name":"_totalSupply","type":"uint128"},
+		{"name":"_json","type":"string"},
+		{"name":"_codeIndex","type":"cell"},
+		{"name":"_codeIndexBasis","type":"cell"},
+		{"name":"_indexDeployValue","type":"uint128"},
+		{"name":"_indexDestroyValue","type":"uint128"},
+		{"name":"_deployIndexBasisValue","type":"uint128"},
+		{"name":"owner_","type":"address"},
+		{"name":"nonce_","type":"uint16"},
+		{"name":"mintDisabled_","type":"bool"},
+		{"name":"nftCounter","type":"uint32"},
+		{"components":[{"name":"nftId","type":"uint32"},{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"colors","type":"tuple"}],"name":"tiles","type":"map(uint14,tuple)"},
+		{"name":"tileOwnerNftId","type":"map(uint14,uint32)"},
+		{"name":"remainOnNft_","type":"uint128"}
+	]
+}
