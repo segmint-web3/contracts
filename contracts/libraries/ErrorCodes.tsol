@@ -3,7 +3,7 @@ pragma ever-solidity >= 0.64.0;
 library ErrorCodes {
     uint16 constant NOT_OWNER                     = 1000;
     uint16 constant PUBKEY_MUST_BE_NOT_SET        = 1001;
-
+    uint16 constant BAD_NEW_OWNER                 = 1002;
 
     uint16 constant MINT_DISABLED                 = 1010;
     uint16 constant WRONG_TILE_COORDS             = 1011;

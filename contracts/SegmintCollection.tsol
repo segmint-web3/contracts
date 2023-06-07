@@ -13,6 +13,8 @@ import './SegmintNft.tsol';
 
 contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmintCollection {
     address private static owner_;
+    address private newOwner_;
+
     uint16 private static nonce_;
     bool private mintDisabled_;
 
@@ -31,7 +33,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
 
     event MintDisabledChanged(bool newValue);
     event TileColorify(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, TileColors tileColors);
-    event NftMinted(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
+    event NftMinted(uint32 nftId, address owner, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
 
     constructor(
         TvmCell codeNft,
@@ -61,6 +63,21 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
     modifier onlyMintEnabled() {
         require(mintDisabled_ == false, ErrorCodes.MINT_DISABLED);
         _;
+    }
+
+    function changeOwner(address newOwner) external onlyOwner {
+        require(newOwner.value != 0, ErrorCodes.BAD_NEW_OWNER);
+        newOwner_ = newOwner;
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
+    }
+
+    function acceptOwnership() external {
+        require(newOwner_.value != 0, ErrorCodes.BAD_NEW_OWNER);
+        require(msg.sender == newOwner_, ErrorCodes.BAD_NEW_OWNER);
+
+        owner_ = newOwner_;
+        newOwner_ = address(0);
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
     }
 
     function disableMint() external override responsible onlyOwner returns(bool) {
@@ -141,7 +158,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
             }
         }
 
-        emit NftMinted(nftId, pixelStartX, pixelStartY, pixelEndX, pixelEndY);
+        emit NftMinted(nftId, msg.sender, pixelStartX, pixelStartY, pixelEndX, pixelEndY);
 
         TvmBuilder salt;
         salt.store(address(this));
@@ -167,7 +184,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
             url
         );
 
-        SegmintNft(nftAddr).colorify{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}({tilesToColorify: tilesToColorify, sendGasBack: msg.sender});
+        SegmintNft(nftAddr).colorify{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}({tilesToColorify: tilesToColorify, description: description, url: url, sendGasBack: msg.sender});
     }
 
     function colorifyTile(uint32 nftId, TileColors tileColors, uint10 tilePixelX, uint10 tilePixelY, address sendGasBack) external override {
@@ -241,8 +258,23 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         return{value: 0, bounce: false, flag: 64} tiles;
     }
 
+    function nftCodeWithoutSalt() external view responsible returns (TvmCell nftCode) {
+        return {value: 0, flag: 64, bounce: false} (_codeNft);
+    }
+
     function getNftCount() external responsible returns(uint32) {
         return{value: 0, bounce: false, flag: 64} nftCounter;
+    }
+
+    function getNftIndexCodeHash(
+        address _owner
+    ) external view responsible returns (string codeHash) {
+        TvmBuilder salt;
+        salt.store("nft");
+        salt.store(address(this));
+        salt.store(_owner);
+        TvmCell code = tvm.setCodeSalt(_codeIndex, salt.toCell());
+        return{value: 0, bounce: false, flag: 64} format("{:064x}", tvm.hash(code));
     }
 
     function _convertTileToPixels(TileColors tileColors) private inline returns (uint8[] pixels)  {

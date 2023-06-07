@@ -15,7 +15,6 @@ async function main() {
     }
   })
 
-
   const collection = new locklift.provider.Contract(collectionArtifacts.abi, collectionAddress);
   const {state: cachedState} = await collection.getFullState();
   if (!cachedState) {

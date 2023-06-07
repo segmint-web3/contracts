@@ -78,12 +78,15 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} json;
     }
 
-    function getNftCustomData() external responsible returns (string, string) {
-        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (description_, url_);
+    function getNftCustomData() external responsible returns (uint256 id, address owner, address collection, string description, string url, uint10 tilePixelsStartX, uint10 tilePixelsStartY, uint10 tilePixelsEndX, uint10 tilePixelsEndY) {
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (_id, _owner, _collection, description_, url_, tilePixelsStartX_, tilePixelsStartY_, tilePixelsEndX_, tilePixelsEndY_);
     }
 
-    function colorify(TileColors[] tilesToColorify, address sendGasBack) public onlyOwnerOrCollection {
+    function colorify(TileColors[] tilesToColorify, string description, string url, address sendGasBack) public onlyOwnerOrCollection {
         tvm.rawReserve(remainOnNft_, 0);
+
+        description_ = description;
+        url_ = url;
 
         uint32 counter = 0;
         uint10 tilePixelsStartX = tilePixelsStartX_;

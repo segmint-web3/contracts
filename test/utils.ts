@@ -3,6 +3,10 @@ import {FactorySource} from "../build/factorySource";
 import { BN } from "bn.js";
 import { EverWalletAccount } from "everscale-standalone-client";
 
+const collectionMetadata = {test: true};
+export function metadata() {
+    return collectionMetadata;
+}
 export async function deployCollectionForOwner(ownerEverWallet: EverWalletAccount, nonce: number, enableMint: bool) : Promise<Contract<FactorySource["SegmintCollection"]>> {
   const collectionArtifacts = await locklift.factory.getContractArtifacts("SegmintCollection");
   const nftArtifacts = await locklift.factory.getContractArtifacts("SegmintNft");
@@ -25,7 +29,7 @@ export async function deployCollectionForOwner(ownerEverWallet: EverWalletAccoun
       codeNft: nftArtifacts.code,
       codeIndex: Index.code,
       codeIndexBasis: IndexBasis.code,
-      jsonMetadata: JSON.stringify({})
+      jsonMetadata: JSON.stringify(collectionMetadata)
     }).send({
       from: ownerEverWallet.address,
       amount: locklift.utils.toNano(3),

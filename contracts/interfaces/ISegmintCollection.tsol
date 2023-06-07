@@ -6,7 +6,7 @@ import "../structures/ITile.tsol";
 interface ISegmintCollection is ITile {
     event MintDisabledChanged(bool newValue);
     event TileColorify(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, TileColors tileColors);
-    event NftMinted(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
+    event NftMinted(uint32 nftId, address owner, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
 
 
     function disableMint() external responsible returns(bool);

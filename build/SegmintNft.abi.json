@@ -37,14 +37,23 @@
 				{"name":"answerId","type":"uint32"}
 			],
 			"outputs": [
-				{"name":"value0","type":"string"},
-				{"name":"value1","type":"string"}
+				{"name":"id","type":"uint256"},
+				{"name":"owner","type":"address"},
+				{"name":"collection","type":"address"},
+				{"name":"description","type":"string"},
+				{"name":"url","type":"string"},
+				{"name":"tilePixelsStartX","type":"uint10"},
+				{"name":"tilePixelsStartY","type":"uint10"},
+				{"name":"tilePixelsEndX","type":"uint10"},
+				{"name":"tilePixelsEndY","type":"uint10"}
 			]
 		},
 		{
 			"name": "colorify",
 			"inputs": [
 				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tilesToColorify","type":"tuple[]"},
+				{"name":"description","type":"string"},
+				{"name":"url","type":"string"},
 				{"name":"sendGasBack","type":"address"}
 			],
 			"outputs": [

@@ -80,8 +80,8 @@ const config: LockliftConfig = {
       keys: {
         // Use everdev to generate your phrase
         // !!! Never commit it in your repos !!!
-        // phrase: "action inject penalty envelope rabbit element slim tornado dinner pizza off blood",
-        amount: 20,
+        phrase: PHRASE,
+        amount: 1,
       },
     },
     venom_devnet: {

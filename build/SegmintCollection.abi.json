@@ -15,6 +15,21 @@
 			]
 		},
 		{
+			"name": "changeOwner",
+			"inputs": [
+				{"name":"newOwner","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "acceptOwnership",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "disableMint",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
@@ -99,12 +114,31 @@
 			]
 		},
 		{
+			"name": "nftCodeWithoutSalt",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"nftCode","type":"cell"}
+			]
+		},
+		{
 			"name": "getNftCount",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
 			],
 			"outputs": [
 				{"name":"value0","type":"uint32"}
+			]
+		},
+		{
+			"name": "getNftIndexCodeHash",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"_owner","type":"address"}
+			],
+			"outputs": [
+				{"name":"codeHash","type":"string"}
 			]
 		},
 		{
@@ -237,6 +271,7 @@
 			"name": "NftMinted",
 			"inputs": [
 				{"name":"nftId","type":"uint32"},
+				{"name":"owner","type":"address"},
 				{"name":"pixelStartX","type":"uint10"},
 				{"name":"pixelStartY","type":"uint10"},
 				{"name":"pixelEndX","type":"uint10"},
@@ -283,6 +318,7 @@
 		{"name":"_indexDestroyValue","type":"uint128"},
 		{"name":"_deployIndexBasisValue","type":"uint128"},
 		{"name":"owner_","type":"address"},
+		{"name":"newOwner_","type":"address"},
 		{"name":"nonce_","type":"uint16"},
 		{"name":"mintDisabled_","type":"bool"},
 		{"name":"nftCounter","type":"uint32"},

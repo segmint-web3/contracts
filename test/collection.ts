@@ -1,9 +1,10 @@
-import { expect } from "chai";
-import {Contract, Signer, WalletTypes} from "locklift";
-import { FactorySource } from "../build/factorySource";
-import {EverWalletAccount, HighloadWalletV2, SimpleKeystore} from "everscale-standalone-client";
-import exp from "constants";
-import { deployCollectionForOwner, getRandomTileColors } from "./utils";
+import chai, { expect } from "chai";
+import { lockliftChai } from "locklift";
+chai.use(lockliftChai);
+
+import { Signer } from "locklift";
+import { EverWalletAccount, SimpleKeystore } from "everscale-standalone-client";
+import { deployCollectionForOwner, getRandomTileColors, metadata } from "./utils";
 
 let signer: Signer;
 let ownerEverWallet: EverWalletAccount;
@@ -66,7 +67,7 @@ describe("Test collection", async function () {
     it("Mint must be successfull", async function () {
       const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
 
-      let successfull_mint_tracing = await locklift.tracing.trace(
+      await locklift.tracing.trace(
           collection.methods.claimTiles({
             "pixelStartX": 0,
             "pixelStartY": 0,
@@ -89,7 +90,6 @@ describe("Test collection", async function () {
       }).call({responsible: true});
       expect(claimed_tile.nftId).to.be.equal('0');
 
-
       claimed_tile = await collection.methods.getTile({
         answerId: 0,
         tilePixelX: 0,
@@ -103,7 +103,7 @@ describe("Test collection", async function () {
 
       // expect(Number(response._state)).to.be.equal(NEW_STATE, "Wrong state");
 
-      let successfull_mint_tracing = await locklift.tracing.trace(
+      await locklift.tracing.trace(
         collection.methods.claimTiles({
           "pixelStartX": 0,
           "pixelStartY": 0,
@@ -118,7 +118,7 @@ describe("Test collection", async function () {
         })
       )
 
-      let fail_mint_tracing = await locklift.tracing.trace(
+      await locklift.tracing.trace(
         collection.methods.claimTiles({
           "pixelStartX": 0,
           "pixelStartY": 0,
@@ -159,7 +159,7 @@ describe("Test collection", async function () {
     });
 
     it("Full collection mint SKIPPED UNCOMMENT TO RUN", async function () {
-      // for gas testing suppose. can take a hour.
+      // for gas testing suppose. can take an hour.
       return;
 
       const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
@@ -203,5 +203,107 @@ describe("Test collection", async function () {
         }
       }
     }).timeout(2000000000);
+
+    it("onlyOwner functions must throw error if called from non owner address", async function () {
+      const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), false);
+      let nonOwnerKeypair = SimpleKeystore.generateKeyPair();
+      await locklift.keystore.addKeyPair(nonOwnerKeypair);
+      const nonOwnerEverWallet = await EverWalletAccount.fromPubkey({publicKey: nonOwnerKeypair.publicKey});
+      await locklift.factory.accounts.storage.addAccount(nonOwnerEverWallet);
+      await locklift.giver.sendTo(nonOwnerEverWallet.address, locklift.utils.toNano(10))
+
+      let methods = [
+        {name: 'changeOwner', params: {newOwner: ownerEverWallet.address.toString()}},
+        {name: 'disableMint', params: {answerId: '0'}},
+        {name: 'enableMint',  params: {answerId: '0'}},
+      ];
+
+      for (let method of methods) {
+        let tracing = await locklift.tracing.trace(
+          // @ts-ignore
+          collection.methods[method.name](method.params).send({
+            from: nonOwnerEverWallet.address,
+            amount: locklift.utils.toNano(1),
+          }),
+          {
+            allowedCodes: {
+              contracts: {
+                [collection.address.toString()]: {
+                  compute: [1000],
+                },
+              },
+            },
+          }
+        )
+        expect(tracing.traceTree).to.have.error(1000);
+      }
+    });
+
+    it("Change owner must work correctly", async function () {
+      const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), false);
+      const newOwnerKeypair = SimpleKeystore.generateKeyPair();
+      await locklift.keystore.addKeyPair(newOwnerKeypair);
+      const newOwnerEverWallet = await EverWalletAccount.fromPubkey({publicKey: newOwnerKeypair.publicKey});
+      await locklift.factory.accounts.storage.addAccount(newOwnerEverWallet);
+      await locklift.giver.sendTo(newOwnerEverWallet.address, locklift.utils.toNano(10))
+
+      await locklift.tracing.trace(
+        collection.methods.changeOwner({
+          newOwner: newOwnerEverWallet.address
+        }).send({
+          from: ownerEverWallet.address,
+          amount: locklift.utils.toNano(1),
+        })
+      )
+
+      await locklift.tracing.trace(
+        collection.methods.acceptOwnership({}).send({
+          from: newOwnerEverWallet.address,
+          amount: locklift.utils.toNano(1),
+        })
+      )
+
+      await locklift.tracing.trace(
+        collection.methods.enableMint({answerId: 0}).send({
+          from: newOwnerEverWallet.address,
+          amount: locklift.utils.toNano(1),
+        })
+      )
+    });
+
+    it("Nft code test", async function () {
+      const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), false);
+      const nftArtifacts = await locklift.factory.getContractArtifacts("SegmintNft");
+      const response = await collection.methods.nftCodeWithoutSalt({answerId: 0}).call();
+      expect(response.nftCode).to.be.equal(nftArtifacts.code);
+    });
+
+    it("TIP6 test", async function () {
+      //TODO verify
+      const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), false);
+
+      // ITIP6
+      let response = await collection.methods.supportsInterface({answerId: 0, interfaceID: "0x3204EC29"}).call();
+      expect(response.value0).to.be.equal(true);
+
+      //TIP4-1
+      response = await collection.methods.supportsInterface({answerId: 0, interfaceID: "0x1217AAAB"}).call();
+      expect(response.value0).to.be.equal(true);
+
+      //TIP4-2
+      response = await collection.methods.supportsInterface({answerId: 0, interfaceID: "0x24D7D5F5"}).call();
+      expect(response.value0).to.be.equal(true);
+
+      //TIP-4-3
+      response = await collection.methods.supportsInterface({answerId: 0, interfaceID: "0x4387BBFB"}).call();
+      expect(response.value0).to.be.equal(true);
+    });
+
+    it("Collection JSON metadata test", async function () {
+      const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), false);
+
+      let response = await collection.methods.getJson({answerId: 0}).call({responsible: true});
+      expect(response.json).to.be.equal(JSON.stringify(metadata()));
+    });
   });
 });
