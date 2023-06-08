@@ -4,7 +4,12 @@ chai.use(lockliftChai);
 
 import { Signer } from "locklift";
 import { EverWalletAccount, SimpleKeystore } from "everscale-standalone-client";
-import { deployCollectionForOwner, getRandomTileColors, metadata } from "./utils";
+import {
+  deployCollectionAndTokenForOwner,
+  encodeMintPayload,
+  getRandomTileColors,
+  metadata
+} from "./utils";
 import { FactorySource } from "../build/factorySource";
 
 let signer: Signer;
@@ -34,23 +39,31 @@ describe("Test nft", async function () {
     });
 
     it("Deploy collection & nft", async function () {
-      collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
-      // expect(Number(response._state)).to.be.equal(NEW_STATE, "Wrong state");
-      const tracing = await locklift.tracing.trace(
-        collection.methods.claimTiles({
-          "pixelStartX": 0,
-          "pixelStartY": 0,
-          "pixelEndX": 10,
-          "pixelEndY": 10,
-          "tilesToColorify": [getRandomTileColors()],
-          "description": "no",
-          "url": "no",
-          "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
+      const {collection: collection_, tokenRoot, tokenWallet} = await deployCollectionAndTokenForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true, 100);
+
+      collection = collection_;
+      await locklift.tracing.trace(
+        tokenWallet.methods.transfer({
+          amount: 100_000_000_000,
+          recipient: collection.address,
+          deployWalletValue: '0',
+          remainingGasTo: ownerEverWallet.address,
+          notify: true,
+          payload: await encodeMintPayload({
+            "pixelStartX": 0,
+            "pixelStartY": 0,
+            "pixelEndX": 10,
+            "pixelEndY": 10,
+            "tilesToColorify": [getRandomTileColors()],
+            "description": "no",
+            "url": "no",
+            "coinsToRedrawOneTile" : locklift.utils.toNano(0.35)
+          })
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(10),
         })
-      );
+      )
 
       let {nft: nftAddress} = await collection.methods.nftAddress({answerId: 0, id: "0"}).call({responsible: true});
       nft = locklift.factory.getDeployedContract('SegmintNft', nftAddress);
@@ -83,8 +96,8 @@ describe("Test nft", async function () {
     });
 
     it ("Get nft json", async function() {
-      // const json = await nft.methods.getJson({answerId: 0}).call({responsible: true});
-      // console.log(json);
+      const {json} = await nft.methods.getJson({answerId: 0}).call({responsible: true});
+      expect(json).to.be.equal('{"type":"Basic NFT","name":"Segmint Nft 0","description":"Piece of canvas x from 0 to 0, y from 10 to 10 pixels","preview":{"source":"https://segmint-web3.github.io/frontend/collection_logo.png","mimetype":"image/png"},"files":[],"external_url":"https://segmint-web3.github.io/frontend/"}');
     })
 
     it("Only manager must be able to transfer nft", async function () {

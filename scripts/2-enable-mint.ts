@@ -4,6 +4,7 @@ async function main() {
   const signer = (await locklift.keystore.getSigner("0"))!;
 
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});
+  locklift.factory.accounts.storage.addAccount(ownerWallet);
 
   const collectionArtifacts = await locklift.factory.getContractArtifacts("SegmintCollection");
   const nftArtifacts = await locklift.factory.getContractArtifacts("SegmintNft");
@@ -12,7 +13,7 @@ async function main() {
     tvc: collectionArtifacts.tvc,
     initParams: {
       owner_: ownerWallet.address,
-      nonce_: 0
+      nonce_: 1
     }
   })
 

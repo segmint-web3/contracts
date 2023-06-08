@@ -25,7 +25,8 @@ const config: LockliftConfig = {
   compiler: {
     version: "0.64.0",
     externalContracts: {
-      "precompiled": ['Index', 'IndexBasis']
+      "precompiled": ['Index', 'IndexBasis'],
+      "node_modules/broxus-ton-tokens-contracts/build": ['TokenRootUpgradeable', 'TokenWalletUpgradeable', 'TokenWalletPlatform']
     }
   },
   linker: {
@@ -54,7 +55,7 @@ const config: LockliftConfig = {
         endpoint: LOCAL_NETWORK_ENDPOINT,
       },
       keys: {
-        // Use everdev to generate your phrase
+        phrase: PHRASE,
         amount: 20,
       },
     },

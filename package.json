@@ -22,6 +22,7 @@
     "dotenv": "^16.0.3"
   },
   "dependencies": {
-    "@itgold/everscale-tip": "^1.1.4"
+    "@itgold/everscale-tip": "^1.1.4",
+    "broxus-ton-tokens-contracts": "github:broxus/tip3#480c1b4481d1dddb028b408b20ba8c19abd1a4a4"
   }
 }

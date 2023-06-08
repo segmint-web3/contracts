@@ -1,6 +1,13 @@
 import {EverWalletAccount} from "everscale-standalone-client";
+import { Address } from "locklift";
+import BigNumber from "bignumber.js";
 
 async function main() {
+  const TokenRootAddress = new Address("0:431f19f8b5c48fba2368e995bd18772e20055900ae1872093fd4c7d563db1919");
+  const TokenRoot = locklift.factory.getDeployedContract("TokenRootUpgradeable", TokenRootAddress);
+
+  const { value0: tokenRootDecimals } = await TokenRoot.methods.decimals({answerId: 0}).call({responsible: true})
+
   const signer = (await locklift.keystore.getSigner("0"))!;
 
   const collectionMetadata = {
@@ -11,25 +18,26 @@ async function main() {
       "history"
     ],
     "preview": {
-      "source": "https://segmint/preview.png",
+      "source": "https://segmint-web3.github.io/frontend/collection_logo.png",
       "mimetype": "image/png"
     },
     "banner": {
-      "source": "https://segmint/banner.png",
+      "source": "https://segmint-web3.github.io/frontend/collection_logo.png",
       "mimetype": "image/png"
     },
     "files": [
       {
-        "source": "https://segmint/main.png",
+        "source": "https://segmint-web3.github.io/frontend/collection_logo.png",
         "mimetype": "image/png"
       }
     ],
-    "external_url": "",
+    "external_url": "https://segmint-web3.github.io/frontend/",
     "links": ["https://t.me/"]
   }
 
 
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});
+  locklift.factory.accounts.storage.addAccount(ownerWallet);
 
   const collectionArtifacts = await locklift.factory.getContractArtifacts("SegmintCollection");
   const nftArtifacts = await locklift.factory.getContractArtifacts("SegmintNft");
@@ -38,7 +46,7 @@ async function main() {
     tvc: collectionArtifacts.tvc,
     initParams: {
       owner_: ownerWallet.address,
-      nonce_: 0
+      nonce_: 1
     }
   })
 
@@ -46,12 +54,14 @@ async function main() {
   const Index = await locklift.factory.getContractArtifacts("Index");
   const IndexBasis = await locklift.factory.getContractArtifacts("IndexBasis");
 
-  const tracing = await locklift.tracing.trace(
+  await locklift.tracing.trace(
     collection.methods.constructor({
       codeNft: nftArtifacts.code,
       codeIndex: Index.code,
       codeIndexBasis: IndexBasis.code,
-      jsonMetadata: JSON.stringify(collectionMetadata)
+      jsonMetadata: JSON.stringify(collectionMetadata),
+      tokenRoot: TokenRootAddress,
+      onePixelTokenPrice: new BigNumber(1).shiftedBy(parseInt(tokenRootDecimals)).toString(10)
     }).send({
       from: ownerWallet.address,
       amount: locklift.utils.toNano(3),
