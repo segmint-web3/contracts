@@ -43,7 +43,8 @@ async function main() {
           }
         ],
         "description": `Test mint ${x},${y}`,
-        "url": "https://google.com/"
+        "url": "https://google.com/",
+        "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
       }).send({
         from: ownerWallet.address,
         amount: locklift.utils.toNano(5),

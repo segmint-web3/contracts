@@ -65,7 +65,8 @@
 				{"name":"pixelEndY","type":"uint10"},
 				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tilesToColorify","type":"tuple[]"},
 				{"name":"description","type":"string"},
-				{"name":"url","type":"string"}
+				{"name":"url","type":"string"},
+				{"name":"coinsToRedrawOneTile","type":"uint128"}
 			],
 			"outputs": [
 			]

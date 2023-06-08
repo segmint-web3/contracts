@@ -5,7 +5,7 @@ async function main() {
 
   const collectionMetadata = {
     "type": "Basic Collection",
-    "name": "SegMint collection",
+    "name": "Segmint collection",
     "description": "Image 1000x1000 pixels. 1 000 000 pixels, 1$ per pixel. Own a piece of web3 history!",
     "tags": [
       "history"

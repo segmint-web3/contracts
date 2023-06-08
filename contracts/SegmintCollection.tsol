@@ -10,7 +10,6 @@ import "./libraries/MsgFlag.tsol";
 import "./libraries/ErrorCodes.tsol";
 import './SegmintNft.tsol';
 
-
 contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmintCollection {
     address private static owner_;
     address private newOwner_;
@@ -138,8 +137,9 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         return (shouldCancel, tilesStartX, tilesStartY, tilesWidthCount, tilesHeightCount);
     }
 
-    function claimTiles(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url) external override onlyMintEnabled {
-        tvm.rawReserve(0, 4);
+    function claimTiles(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url, uint128 coinsToRedrawOneTile) external override onlyMintEnabled {
+        // we always store balance + 1 venom from incoming message for storage payments
+        tvm.rawReserve(1 ever, 4);
         (bool shouldCancel, uint7 tilesStartX, uint7 tilesStartY, uint7 tilesWidthCount, uint7 tilesHeightCount) = _validateClaim(pixelStartX, pixelStartY, pixelEndX, pixelEndY, tilesToColorify);
 
         // Todo send tokens back
@@ -168,7 +168,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         address nftAddr = new SegmintNft{
                 stateInit: stateNft,
                 value: 1 ever,
-                flag: 1
+                flag: MsgFlag.SENDER_PAYS_FEES
         } (
             msg.sender,
             msg.sender,
@@ -184,13 +184,14 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
             url
         );
 
-        SegmintNft(nftAddr).colorify{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}({tilesToColorify: tilesToColorify, description: description, url: url, sendGasBack: msg.sender});
+        SegmintNft(nftAddr).colorify{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}({tilesToColorify: tilesToColorify, description: description, url: url, coinsToRedrawOneTile: coinsToRedrawOneTile, sendGasBack: msg.sender});
     }
 
     function colorifyTile(uint32 nftId, TileColors tileColors, uint10 tilePixelX, uint10 tilePixelY, address sendGasBack) external override {
-        //security check
+        // we always store balance + 0.001 venom from incoming message for storage payments
         require(msg.sender == _resolveNft(nftId), ErrorCodes.WRONG_NFT);
-        tvm.rawReserve(0, 4);
+        // we always store 0.001 venom from incomig message for storage payments
+        tvm.rawReserve(0.001 ever, 4);
 
         uint14 index = (uint14(tilePixelX/10) << 7) | uint14(tilePixelY/10);
         optional(uint32) tileOwner = tileOwnerNftId.fetch(index);

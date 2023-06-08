@@ -23,7 +23,6 @@ export async function deployCollectionForOwner(ownerEverWallet: EverWalletAccoun
   const Index = await locklift.factory.getContractArtifacts("Index");
   const IndexBasis = await locklift.factory.getContractArtifacts("IndexBasis");
 
-
   const tracing = await locklift.tracing.trace(
     collection.methods.constructor({
       codeNft: nftArtifacts.code,

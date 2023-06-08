@@ -44,7 +44,8 @@ describe("Test nft", async function () {
           "pixelEndY": 10,
           "tilesToColorify": [getRandomTileColors()],
           "description": "no",
-          "url": "no"
+          "url": "no",
+          "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(10),
@@ -80,6 +81,11 @@ describe("Test nft", async function () {
       response = await nft.methods.supportsInterface({answerId: 0, interfaceID: "0x4DF6250B"}).call();
       expect(response.value0).to.be.equal(true);
     });
+
+    it ("Get nft json", async function() {
+      // const json = await nft.methods.getJson({answerId: 0}).call({responsible: true});
+      // console.log(json);
+    })
 
     it("Only manager must be able to transfer nft", async function () {
       const newOwnerKeypair = SimpleKeystore.generateKeyPair();

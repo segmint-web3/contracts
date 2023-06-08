@@ -9,6 +9,9 @@ import { deployCollectionForOwner, getRandomTileColors, metadata } from "./utils
 let signer: Signer;
 let ownerEverWallet: EverWalletAccount;
 
+// must be x/10 for venom
+let colorifyOneTilePrice = locklift.utils.toNano(0.4)
+
 describe("Test collection", async function () {
   before(async () => {
     let randKeypair = SimpleKeystore.generateKeyPair();
@@ -46,7 +49,8 @@ describe("Test collection", async function () {
           "pixelEndY": 10,
           "tilesToColorify": [getRandomTileColors()],
           "description": "no",
-          "url": "no"
+          "url": "no",
+          "coinsToRedrawOneTile" : colorifyOneTilePrice
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(10),
@@ -75,7 +79,8 @@ describe("Test collection", async function () {
             "pixelEndY": 10,
             "tilesToColorify": [getRandomTileColors()],
             "description": `Test mint 0x0`,
-            "url": "https://google.com/"
+            "url": "https://google.com/",
+            "coinsToRedrawOneTile" : colorifyOneTilePrice
           }).send({
             from: ownerEverWallet.address,
             amount: locklift.utils.toNano( 5),
@@ -111,7 +116,8 @@ describe("Test collection", async function () {
           "pixelEndY": 10,
           "tilesToColorify": [getRandomTileColors()],
           "description": `Test mint 0x0`,
-          "url": "https://google.com/"
+          "url": "https://google.com/",
+          "coinsToRedrawOneTile" : colorifyOneTilePrice
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano( 5),
@@ -126,7 +132,8 @@ describe("Test collection", async function () {
           "pixelEndY": 20,
           "tilesToColorify": [getRandomTileColors(),getRandomTileColors(),getRandomTileColors(),getRandomTileColors()],
           "description": `Test mint 0x0`,
-          "url": "https://google.com/"
+          "url": "https://google.com/",
+          "coinsToRedrawOneTile" : colorifyOneTilePrice
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(20),
@@ -161,10 +168,10 @@ describe("Test collection", async function () {
     it("Full collection mint SKIPPED UNCOMMENT TO RUN", async function () {
       // for gas testing suppose. can take an hour.
       return;
-
+      await locklift.giver.sendTo(ownerEverWallet.address, locklift.utils.toNano(4000))
       const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
 
-      let successfull_mint_tracing
+      let successfull_mint_tracing;
       for (let y = 0; y < 100; y++) {
         console.log('mint line', y);
 
@@ -180,16 +187,16 @@ describe("Test collection", async function () {
             "pixelEndY": y * 10 + 10,
             "tilesToColorify": pixels,
             "description": `Test mint 0-1000,${y}-${y+10}`,
-            "url": "https://google.com/"
+            "url": "https://google.com/",
+            "coinsToRedrawOneTile" : colorifyOneTilePrice
           }).send({
             from: ownerEverWallet.address,
-            amount: locklift.utils.toNano(100 * 0.3 + 5),
+            amount: locklift.utils.toNano(100 * parseInt(colorifyOneTilePrice) / 1_000_000_000 + 10),
           })
         )
       }
 
       await successfull_mint_tracing?.traceTree?.beautyPrint();
-
       const {state} = await collection.getFullState();
 
       for (let x = 0; x < 1000; x += 10) {

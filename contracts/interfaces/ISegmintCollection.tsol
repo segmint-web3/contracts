@@ -13,7 +13,7 @@ interface ISegmintCollection is ITile {
     function enableMint() external responsible returns(bool);
     function getMintDisabled() external responsible returns (bool);
 
-    function claimTiles(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url) external;
+    function claimTiles(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url, uint128 coinsToRedrawOneTile) external;
     function colorifyTile(uint32 nftId, TileColors tileColors, uint10 tilePixelX, uint10 tilePixelY, address sendGasBack) external;
 
 

@@ -63,7 +63,7 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
     }
 
     function getJson() external view responsible returns (string json) {
-        string name = format("SegMint Nft {}", _id);
+        string name = format("Segmint Nft {}", _id);
         string description = format("Piece of canvas x from {} to {}, y from {} to {} pixels", tilePixelsStartX_, tilePixelsStartY_, tilePixelsEndX_, tilePixelsEndY_);
         string source = format("https://segmint/image/{}.png", _id);
         string external_url = "https://segmint/";
@@ -82,7 +82,7 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (_id, _owner, _collection, description_, url_, tilePixelsStartX_, tilePixelsStartY_, tilePixelsEndX_, tilePixelsEndY_);
     }
 
-    function colorify(TileColors[] tilesToColorify, string description, string url, address sendGasBack) public onlyOwnerOrCollection {
+    function colorify(TileColors[] tilesToColorify, string description, string url, uint128 coinsToRedrawOneTile, address sendGasBack) public onlyOwnerOrCollection {
         tvm.rawReserve(remainOnNft_, 0);
 
         description_ = description;
@@ -93,8 +93,10 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         uint10 tilePixelsStartY = tilePixelsStartY_;
 
         // up to 255 tiles. We have limit, one nft could own only 225 tiles
+        // We take coinsToRedrawOneTile from input because it can not lead to any ownership lose
+        // But can be useful in case significant gas price changes
         for (TileColors colors : tilesToColorify) {
-            ISegmintCollection(_collection).colorifyTile{flag: MsgFlag.SENDER_PAYS_FEES, bounce: false, value: 0.3 ever}(uint32(_id), colors, tilePixelsStartX, tilePixelsStartY, sendGasBack);
+            ISegmintCollection(_collection).colorifyTile{flag: 0, bounce: false, value: coinsToRedrawOneTile}(uint32(_id), colors, tilePixelsStartX, tilePixelsStartY, sendGasBack);
             tilePixelsStartX += 10;
             if (tilePixelsStartX >= tilePixelsEndX_) {
                 tilePixelsStartX = tilePixelsStartX_;

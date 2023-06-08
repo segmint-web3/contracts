@@ -343,7 +343,7 @@ THROW 0
 .loc ../contracts/SegmintNft.tsol, 66
 TUPLE 0
 NEWC
-PUSHSLICE x5365674d696e74204e667420
+PUSHSLICE x5365676d696e74204e667420
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
@@ -625,6 +625,7 @@ PUSHCONT {
 	SWAP
 	LDREF
 	LDREF
+	LDU 128
 	LDREF
 	ENDS
 	CTOS
@@ -637,24 +638,25 @@ PUSHCONT {
 	SWAP
 	LDREF
 	LDREF
+	LDU 128
 }
 IFELSE
 LDMSGADDR
 ENDS
 .loc ../contracts/SegmintNft.tsol, 0
 CALLREF {
-	CALL $colorify_1d5e784a_internal_macro$
+	CALL $colorify_8249f09d_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.globl	colorify_1d5e784a_internal
-.type	colorify_1d5e784a_internal, @function
-CALL $colorify_1d5e784a_internal_macro$
+.globl	colorify_8249f09d_internal
+.type	colorify_8249f09d_internal, @function
+CALL $colorify_8249f09d_internal_macro$
 
-.macro colorify_1d5e784a_internal_macro
+.macro colorify_8249f09d_internal_macro
 .loc ../contracts/SegmintNft.tsol, 23
 GETGLOB 9
 GETGLOB 13
@@ -669,17 +671,17 @@ GETGLOB 22
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/SegmintNft.tsol, 88
-ROT
+ROLL 3
 SETGLOB 23
 .loc ../contracts/SegmintNft.tsol, 89
-SWAP
+ROT
 SETGLOB 24
 .loc ../contracts/SegmintNft.tsol, 92
 GETGLOB 18
 .loc ../contracts/SegmintNft.tsol, 93
 GETGLOB 19
-.loc ../contracts/SegmintNft.tsol, 96
-ROLL 3
+.loc ../contracts/SegmintNft.tsol, 98
+ROLL 4
 SECOND
 PUSHINT 0
 NULL
@@ -713,11 +715,12 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../contracts/SegmintNft.tsol, 97
+	.loc ../contracts/SegmintNft.tsol, 99
 	PUSH3 S5, S3, S4
 	PUSH S3
 	GETGLOB 11
 	UFITS 32
+	PUSH S11
 	GETGLOB 12
 	FALSE
 	NEWC
@@ -725,8 +728,10 @@ PUSHCONT {
 	STI 1
 	STSLICECONST x1_
 	STSLICE
-	PUSHINT 2836270932865091901709438187167483588247553
-	STUR 143
+	SWAP
+	STGRAMS
+	PUSHINT 1
+	STUR 107
 	ROLLREV 5
 	NEWC
 	STSLICECONST x2a8c9462
@@ -754,22 +759,22 @@ PUSHCONT {
 	STSLICE
 	STBREFR
 	ENDC
-	PUSHINT 1
+	PUSHINT 0
 	SENDRAWMSG
-	.loc ../contracts/SegmintNft.tsol, 98
+	.loc ../contracts/SegmintNft.tsol, 100
 	PUSH S4
 	ADDCONST 10
 	UFITS 10
 	POP S5
-	.loc ../contracts/SegmintNft.tsol, 99
+	.loc ../contracts/SegmintNft.tsol, 101
 	PUSH S4
 	GETGLOB 20
 	GEQ
 	PUSHCONT {
-		.loc ../contracts/SegmintNft.tsol, 100
+		.loc ../contracts/SegmintNft.tsol, 102
 		GETGLOB 18
 		POP S5
-		.loc ../contracts/SegmintNft.tsol, 101
+		.loc ../contracts/SegmintNft.tsol, 103
 		PUSH S3
 		ADDCONST 10
 		UFITS 10
@@ -784,7 +789,7 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 5
-.loc ../contracts/SegmintNft.tsol, 104
+.loc ../contracts/SegmintNft.tsol, 106
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -796,13 +801,14 @@ ADDCONST 2
 UFITS 8
 SENDRAWMSG
 .loc ../contracts/SegmintNft.tsol, 0
+DROP
 
 .globl	_beforeTransfer_63506687_internal
 .type	_beforeTransfer_63506687_internal, @function
 CALL $_beforeTransfer_63506687_internal_macro$
 
 .macro _beforeTransfer_63506687_internal_macro
-.loc ../contracts/SegmintNft.tsol, 112
+.loc ../contracts/SegmintNft.tsol, 114
 CALLREF {
 	CALL $TIP4_3Nft__beforeTransfer_63506687_macro$
 }
@@ -813,7 +819,7 @@ CALLREF {
 CALL $_afterTransfer_324f3fbc_internal_macro$
 
 .macro _afterTransfer_324f3fbc_internal_macro
-.loc ../contracts/SegmintNft.tsol, 120
+.loc ../contracts/SegmintNft.tsol, 122
 CALLREF {
 	CALL $TIP4_3Nft__afterTransfer_324f3fbc_macro$
 }
@@ -824,7 +830,7 @@ CALLREF {
 CALL $_beforeChangeOwner_181183e6_internal_macro$
 
 .macro _beforeChangeOwner_181183e6_internal_macro
-.loc ../contracts/SegmintNft.tsol, 130
+.loc ../contracts/SegmintNft.tsol, 132
 CALLREF {
 	CALL $TIP4_3Nft__beforeChangeOwner_181183e6_macro$
 }
@@ -835,7 +841,7 @@ CALLREF {
 CALL $_afterChangeOwner_25282549_internal_macro$
 
 .macro _afterChangeOwner_25282549_internal_macro
-.loc ../contracts/SegmintNft.tsol, 139
+.loc ../contracts/SegmintNft.tsol, 141
 CALLREF {
 	CALL $TIP4_3Nft__afterChangeOwner_25282549_macro$
 }
@@ -2793,16 +2799,16 @@ IFJMPREF {
 		CALL $supportsInterface$
 	}
 	DUP
-	PUSHINT 960679582
-	EQUAL
-	IFJMPREF {
-		CALL $colorify$
-	}
-	DUP
 	PUSHINT 1525619880
 	EQUAL
 	IFJMPREF {
 		CALL $resolveIndex$
+	}
+	DUP
+	PUSHINT 1579470916
+	EQUAL
+	IFJMPREF {
+		CALL $colorify$
 	}
 	DUP
 	PUSHINT 1904151404
