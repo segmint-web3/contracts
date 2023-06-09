@@ -193,7 +193,7 @@ describe("Test collection", async function () {
 
     it("Full collection mint SKIPPED UNCOMMENT TO RUN", async function () {
       // for gas testing suppose. can take an hour.
-      // return;
+      return;
       await locklift.giver.sendTo(ownerEverWallet.address, locklift.utils.toNano(3000))
       const {collection, tokenRoot, tokenWallet} = await deployCollectionAndTokenForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true, 1_000_000);
 

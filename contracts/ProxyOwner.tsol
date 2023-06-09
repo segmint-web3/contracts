@@ -10,7 +10,7 @@ import "./libraries/MsgFlag.tsol";
 contract ProxyOwner {
 
   address static tokenRoot_;
-
+  
   constructor() public {
     tvm.rawReserve(0.1 ever, 0);
     tvm.accept();

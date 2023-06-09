@@ -406,6 +406,10 @@ CALLREF {
 CALLREF {
 	CALL $assembleList_macro$
 }
+.loc ../contracts/SegmintNft.tsol, 68
+PUSHREF {
+	.blob x68747470733a2f2f7365676d696e742d776562332e6769746875622e696f2f66726f6e74656e642f636f6c6c656374696f6e5f6c6f676f2e706e67
+}
 .loc ../contracts/SegmintNft.tsol, 71
 TUPLE 0
 NEWC
@@ -413,7 +417,7 @@ PUSHSLICE x7b2274797065223a224261736963204e4654222c226e616d65223a22
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
-ROLL 3
+ROLL 4
 CTOS
 CALLREF {
 	CALL $storeStringInBuilders_macro$
@@ -422,7 +426,7 @@ PUSHSLICE x222c226465736372697074696f6e223a22
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
-ROT
+ROLL 3
 CTOS
 CALLREF {
 	CALL $storeStringInBuilders_macro$
@@ -431,14 +435,21 @@ PUSHSLICE x222c2270726576696577223a7b22736f75726365223a22
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
-PUSHREF {
-	.blob x68747470733a2f2f7365676d696e742d776562332e6769746875622e696f2f66726f6e74656e642f636f6c6c656374696f6e5f6c6f676f2e706e67
-}
+PUSH S2
 CTOS
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
-PUSHSLICE x222c226d696d6574797065223a22696d6167652f706e67227d2c2266696c6573223a5b5d2c2265787465726e616c5f75726c223a22
+PUSHSLICE x222c226d696d6574797065223a22696d6167652f706e67227d2c2266696c6573223a5b7b22736f75726365223a22
+CALLREF {
+	CALL $storeStringInBuilders_macro$
+}
+ROT
+CTOS
+CALLREF {
+	CALL $storeStringInBuilders_macro$
+}
+PUSHSLICE x222c226d696d6574797065223a22696d6167652f706e67227d5d2c2265787465726e616c5f75726c223a22
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
@@ -456,7 +467,7 @@ CALLREF {
 CALLREF {
 	CALL $assembleList_macro$
 }
-.loc ../contracts/SegmintNft.tsol, 78
+.loc ../contracts/SegmintNft.tsol, 79
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -476,7 +487,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintNft.tsol, 81
+.loc ../contracts/SegmintNft.tsol, 82
 LDU 32
 GETGLOB 4
 ROT
@@ -568,7 +579,7 @@ CALLREF {
 THROW 0
 
 .macro getNftCustomData_6e6ac7f3_internal_macro
-.loc ../contracts/SegmintNft.tsol, 82
+.loc ../contracts/SegmintNft.tsol, 83
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -597,7 +608,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintNft.tsol, 85
+.loc ../contracts/SegmintNft.tsol, 86
 OVER
 PUSHCONT {
 	LDU 32
@@ -648,21 +659,21 @@ GETGLOB 12
 SDEQ
 OR
 THROWIFNOT 1000
-.loc ../contracts/SegmintNft.tsol, 86
+.loc ../contracts/SegmintNft.tsol, 87
 GETGLOB 22
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/SegmintNft.tsol, 88
+.loc ../contracts/SegmintNft.tsol, 89
 ROLL 3
 SETGLOB 23
-.loc ../contracts/SegmintNft.tsol, 89
+.loc ../contracts/SegmintNft.tsol, 90
 ROT
 SETGLOB 24
-.loc ../contracts/SegmintNft.tsol, 92
-GETGLOB 18
 .loc ../contracts/SegmintNft.tsol, 93
+GETGLOB 18
+.loc ../contracts/SegmintNft.tsol, 94
 GETGLOB 19
-.loc ../contracts/SegmintNft.tsol, 98
+.loc ../contracts/SegmintNft.tsol, 99
 ROLL 4
 SECOND
 PUSHINT 0
@@ -697,7 +708,7 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../contracts/SegmintNft.tsol, 99
+	.loc ../contracts/SegmintNft.tsol, 100
 	PUSH3 S5, S3, S4
 	PUSH S3
 	GETGLOB 11
@@ -743,20 +754,20 @@ PUSHCONT {
 	ENDC
 	PUSHINT 0
 	SENDRAWMSG
-	.loc ../contracts/SegmintNft.tsol, 100
+	.loc ../contracts/SegmintNft.tsol, 101
 	PUSH S4
 	ADDCONST 10
 	UFITS 10
 	POP S5
-	.loc ../contracts/SegmintNft.tsol, 101
+	.loc ../contracts/SegmintNft.tsol, 102
 	PUSH S4
 	GETGLOB 20
 	GEQ
 	PUSHCONT {
-		.loc ../contracts/SegmintNft.tsol, 102
+		.loc ../contracts/SegmintNft.tsol, 103
 		GETGLOB 18
 		POP S5
-		.loc ../contracts/SegmintNft.tsol, 103
+		.loc ../contracts/SegmintNft.tsol, 104
 		PUSH S3
 		ADDCONST 10
 		UFITS 10
@@ -771,7 +782,7 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 5
-.loc ../contracts/SegmintNft.tsol, 106
+.loc ../contracts/SegmintNft.tsol, 107
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -790,7 +801,7 @@ DROP
 CALL $_beforeTransfer_63506687_internal_macro$
 
 .macro _beforeTransfer_63506687_internal_macro
-.loc ../contracts/SegmintNft.tsol, 114
+.loc ../contracts/SegmintNft.tsol, 115
 CALLREF {
 	CALL $TIP4_3Nft__beforeTransfer_63506687_macro$
 }
@@ -801,7 +812,7 @@ CALLREF {
 CALL $_afterTransfer_324f3fbc_internal_macro$
 
 .macro _afterTransfer_324f3fbc_internal_macro
-.loc ../contracts/SegmintNft.tsol, 122
+.loc ../contracts/SegmintNft.tsol, 123
 CALLREF {
 	CALL $TIP4_3Nft__afterTransfer_324f3fbc_macro$
 }
@@ -812,7 +823,7 @@ CALLREF {
 CALL $_beforeChangeOwner_181183e6_internal_macro$
 
 .macro _beforeChangeOwner_181183e6_internal_macro
-.loc ../contracts/SegmintNft.tsol, 132
+.loc ../contracts/SegmintNft.tsol, 133
 CALLREF {
 	CALL $TIP4_3Nft__beforeChangeOwner_181183e6_macro$
 }
@@ -823,7 +834,7 @@ CALLREF {
 CALL $_afterChangeOwner_25282549_internal_macro$
 
 .macro _afterChangeOwner_25282549_internal_macro
-.loc ../contracts/SegmintNft.tsol, 141
+.loc ../contracts/SegmintNft.tsol, 142
 CALLREF {
 	CALL $TIP4_3Nft__afterChangeOwner_25282549_macro$
 }

@@ -69,9 +69,10 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         string external_url = "https://segmint-web3.github.io/frontend/";
 
         json = format(
-            "{\"type\":\"Basic NFT\",\"name\":\"{}\",\"description\":\"{}\",\"preview\":{\"source\":\"{}\",\"mimetype\":\"image/png\"},\"files\":[],\"external_url\":\"{}\"}",
+            "{\"type\":\"Basic NFT\",\"name\":\"{}\",\"description\":\"{}\",\"preview\":{\"source\":\"{}\",\"mimetype\":\"image/png\"},\"files\":[{\"source\":\"{}\",\"mimetype\":\"image/png\"}],\"external_url\":\"{}\"}",
             name,
             description,
+            source,
             source,
             external_url
         );

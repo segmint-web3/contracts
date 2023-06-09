@@ -1,4 +1,4 @@
-import {EverWalletAccount} from "everscale-standalone-client";
+import {EverWalletAccount} from "everscale-standalone-client/nodejs";
 
 async function main() {
   const signer = (await locklift.keystore.getSigner("0"))!;
@@ -13,7 +13,7 @@ async function main() {
     tvc: collectionArtifacts.tvc,
     initParams: {
       owner_: ownerWallet.address,
-      nonce_: 1
+      nonce_: 0
     }
   })
 

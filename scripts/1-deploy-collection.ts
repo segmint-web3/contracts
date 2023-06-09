@@ -1,4 +1,4 @@
-import {EverWalletAccount} from "everscale-standalone-client";
+import {EverWalletAccount} from "everscale-standalone-client/nodejs";
 import { Address } from "locklift";
 import BigNumber from "bignumber.js";
 
@@ -32,7 +32,7 @@ async function main() {
       }
     ],
     "external_url": "https://segmint-web3.github.io/frontend/",
-    "links": ["https://t.me/"]
+    "links": ["https://segmint-web3.github.io/frontend/"]
   }
 
 
@@ -46,7 +46,7 @@ async function main() {
     tvc: collectionArtifacts.tvc,
     initParams: {
       owner_: ownerWallet.address,
-      nonce_: 1
+      nonce_: 0
     }
   })
 
