@@ -12,8 +12,14 @@ let ownerEverWallet: EverWalletAccount;
 
 // must be x/10 for venom
 const colorifyOneTilePrice = 0.3;
+
+// can be x/10 for venom
+// wallet -> token 0.9, waltet -> wallet 0.5, wallet -> collection 0.5, collection -> nft(colorify) 0.5;
+const maximumFwdFeeForBigMint = 0.9 + 0.5 + 0.5 + 0.5 + 0.5;
+
 // 1 for deploy nft + indexes, 0.2 for fwd fee + 1 coin reserved on collection contract
 const oneNftMintingCost = 2.2;
+
 // whole block, 1 for se, 0.2 for venom.
 const maximumClaimGasPrice = 1;
 
@@ -187,8 +193,8 @@ describe("Test collection", async function () {
 
     it("Full collection mint SKIPPED UNCOMMENT TO RUN", async function () {
       // for gas testing suppose. can take an hour.
-      return;
-      await locklift.giver.sendTo(ownerEverWallet.address, locklift.utils.toNano(1000))
+      // return;
+      await locklift.giver.sendTo(ownerEverWallet.address, locklift.utils.toNano(3000))
       const {collection, tokenRoot, tokenWallet} = await deployCollectionAndTokenForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true, 1_000_000);
 
       let successfull_mint_tracing;
@@ -218,7 +224,7 @@ describe("Test collection", async function () {
             })
           }).send({
             from: ownerEverWallet.address,
-            amount: locklift.utils.toNano(100 * colorifyOneTilePrice + oneNftMintingCost + maximumClaimGasPrice),
+            amount: locklift.utils.toNano(100 * colorifyOneTilePrice + oneNftMintingCost + maximumClaimGasPrice + maximumFwdFeeForBigMint),
           })
         )
       }
