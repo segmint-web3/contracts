@@ -104,74 +104,6 @@
         "line": 641
       }
     },
-    "0944ca80f9b0671b3b208ea30de599e0b48dab732642ea42126299b458b543e2": {
-      "0": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "16": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "24": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "32": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "48": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "440": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "456": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "464": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      }
-    },
-    "0a8d390992316265e1317f4c4f42b8a71ceb222337ca6accf4ff10b38f2306f9": {
-      "0": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "16": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 75
-      },
-      "24": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "40": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "48": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "296": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "312": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "328": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      }
-    },
     "0bdfa124820a4895c1debe0070ee52e1adab28eb8cb93fd73e52c36f8a391ad4": {
       "0": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol",
@@ -966,6 +898,244 @@
         "line": 125
       }
     },
+    "156fe440f9402ec8f8e682aadba50391515d7569f7b79b0c130fbaf9356a7937": {
+      "0": {
+        "filename": "SegmintNft.code",
+        "line": 282
+      },
+      "8": {
+        "filename": "SegmintNft.code",
+        "line": 283
+      },
+      "24": {
+        "filename": "SegmintNft.code",
+        "line": 284
+      },
+      "48": {
+        "filename": "SegmintNft.code",
+        "line": 285
+      },
+      "64": {
+        "filename": "SegmintNft.code",
+        "line": 286
+      },
+      "72": {
+        "filename": "SegmintNft.code",
+        "line": 287
+      },
+      "88": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 72
+      },
+      "104": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 72
+      },
+      "120": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 72
+      },
+      "128": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 72
+      },
+      "144": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 72
+      },
+      "160": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 72
+      },
+      "168": {
+        "filename": "SegmintNft.code",
+        "line": 298
+      },
+      "184": {
+        "filename": "SegmintNft.code",
+        "line": 301
+      },
+      "192": {
+        "filename": "SegmintNft.code",
+        "line": 302
+      },
+      "208": {
+        "filename": "SegmintNft.code",
+        "line": 303
+      },
+      "216": {
+        "filename": "SegmintNft.code",
+        "line": 304
+      },
+      "224": {
+        "filename": "SegmintNft.code",
+        "line": 305
+      },
+      "240": {
+        "filename": "SegmintNft.code",
+        "line": 306
+      },
+      "256": {
+        "filename": "SegmintNft.code",
+        "line": 307
+      },
+      "264": {
+        "filename": "SegmintNft.code",
+        "line": 308
+      },
+      "272": {
+        "filename": "SegmintNft.code",
+        "line": 309
+      },
+      "280": {
+        "filename": "SegmintNft.code",
+        "line": 310
+      },
+      "304": {
+        "filename": "SegmintNft.code",
+        "line": 311
+      },
+      "312": {
+        "filename": "SegmintNft.code",
+        "line": 312
+      },
+      "360": {
+        "filename": "SegmintNft.code",
+        "line": 313
+      },
+      "384": {
+        "filename": "SegmintNft.code",
+        "line": 314
+      },
+      "392": {
+        "filename": "SegmintNft.code",
+        "line": 315
+      },
+      "400": {
+        "filename": "SegmintNft.code",
+        "line": 316
+      },
+      "408": {
+        "filename": "SegmintNft.code",
+        "line": 318
+      },
+      "424": {
+        "filename": "SegmintNft.code",
+        "line": 319
+      },
+      "440": {
+        "filename": "SegmintNft.code",
+        "line": 320
+      },
+      "448": {
+        "filename": "SegmintNft.code",
+        "line": 321
+      },
+      "464": {
+        "filename": "SegmintNft.code",
+        "line": 322
+      },
+      "472": {
+        "filename": "SegmintNft.code",
+        "line": 323
+      },
+      "488": {
+        "filename": "SegmintNft.code",
+        "line": 324
+      },
+      "504": {
+        "filename": "SegmintNft.code",
+        "line": 325
+      },
+      "520": {
+        "filename": "SegmintNft.code",
+        "line": 326
+      },
+      "536": {
+        "filename": "SegmintNft.code",
+        "line": 327
+      },
+      "544": {
+        "filename": "SegmintNft.code",
+        "line": 328
+      },
+      "568": {
+        "filename": "SegmintNft.code",
+        "line": 329
+      },
+      "584": {
+        "filename": "SegmintNft.code",
+        "line": 330
+      },
+      "608": {
+        "filename": "SegmintNft.code",
+        "line": 331
+      },
+      "616": {
+        "filename": "SegmintNft.code",
+        "line": 332
+      },
+      "624": {
+        "filename": "SegmintNft.code",
+        "line": 333
+      },
+      "640": {
+        "filename": "SegmintNft.code",
+        "line": 334
+      },
+      "656": {
+        "filename": "SegmintNft.code",
+        "line": 335
+      },
+      "672": {
+        "filename": "SegmintNft.code",
+        "line": 336
+      },
+      "688": {
+        "filename": "SegmintNft.code",
+        "line": 337
+      },
+      "704": {
+        "filename": "SegmintNft.code",
+        "line": 338
+      },
+      "720": {
+        "filename": "SegmintNft.code",
+        "line": 339
+      },
+      "744": {
+        "filename": "SegmintNft.code",
+        "line": 340
+      },
+      "752": {
+        "filename": "SegmintNft.code",
+        "line": 341
+      },
+      "760": {
+        "filename": "SegmintNft.code",
+        "line": 342
+      },
+      "776": {
+        "filename": "SegmintNft.code",
+        "line": 343
+      },
+      "792": {
+        "filename": "SegmintNft.code",
+        "line": 345
+      },
+      "800": {
+        "filename": "SegmintNft.code",
+        "line": 346
+      },
+      "816": {
+        "filename": "SegmintNft.code",
+        "line": 347
+      },
+      "832": {
+        "filename": "SegmintNft.code",
+        "line": 350
+      }
+    },
     "158489128f04942a804ddbbc89326eb68ac6149f6ece046b093f42d9abcac8eb": {
       "0": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol",
@@ -1520,142 +1690,40 @@
         "line": 2851
       }
     },
-    "1a5ec7f7313aa38425446cb1807f645048e9322394d88420ba7cb20bf8345962": {
+    "1a337bfd2db530f393d22b5c4abd191972d8840000e126b816c450380ed24b8f": {
       "0": {
-        "filename": "SegmintNft.code",
-        "line": 2870
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       },
       "16": {
-        "filename": "SegmintNft.code",
-        "line": 2871
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       },
-      "24": {
-        "filename": "SegmintNft.code",
-        "line": 2872
-      },
-      "40": {
-        "filename": "SegmintNft.code",
-        "line": 2873
-      },
-      "56": {
-        "filename": "SegmintNft.code",
-        "line": 2874
-      },
-      "72": {
-        "filename": "SegmintNft.code",
-        "line": 2875
-      },
-      "80": {
-        "filename": "SegmintNft.code",
-        "line": 2876
-      },
-      "88": {
-        "filename": "SegmintNft.code",
-        "line": 2877
-      },
-      "104": {
-        "filename": "SegmintNft.code",
-        "line": 2878
-      },
-      "120": {
-        "filename": "SegmintNft.code",
-        "line": 2879
-      },
-      "128": {
-        "filename": "SegmintNft.code",
-        "line": 2880
-      },
-      "144": {
-        "filename": "SegmintNft.code",
-        "line": 2881
-      },
-      "168": {
-        "filename": "SegmintNft.code",
-        "line": 2882
-      },
-      "184": {
-        "filename": "SegmintNft.code",
-        "line": 2883
+      "176": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       },
       "192": {
-        "filename": "SegmintNft.code",
-        "line": 2884
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       },
       "208": {
-        "filename": "SegmintNft.code",
-        "line": 2885
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       },
-      "248": {
-        "filename": "SegmintNft.code",
-        "line": 2886
+      "216": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       },
-      "264": {
-        "filename": "SegmintNft.code",
-        "line": 2887
-      },
-      "272": {
-        "filename": "SegmintNft.code",
-        "line": 2888
-      },
-      "288": {
-        "filename": "SegmintNft.code",
-        "line": 2889
-      },
-      "296": {
-        "filename": "SegmintNft.code",
-        "line": 2890
-      },
-      "312": {
-        "filename": "SegmintNft.code",
-        "line": 2891
-      },
-      "328": {
-        "filename": "SegmintNft.code",
-        "line": 2892
-      },
-      "344": {
-        "filename": "SegmintNft.code",
-        "line": 2898
-      },
-      "352": {
-        "filename": "SegmintNft.code",
-        "line": 2899
-      },
-      "368": {
-        "filename": "SegmintNft.code",
-        "line": 2900
-      },
-      "384": {
-        "filename": "SegmintNft.code",
-        "line": 2904
-      },
-      "392": {
-        "filename": "SegmintNft.code",
-        "line": 2905
-      },
-      "416": {
-        "filename": "SegmintNft.code",
-        "line": 2906
-      },
-      "432": {
-        "filename": "SegmintNft.code",
-        "line": 2907
-      },
-      "440": {
-        "filename": "SegmintNft.code",
-        "line": 2908
-      },
-      "456": {
-        "filename": "SegmintNft.code",
-        "line": 2912
-      },
-      "464": {
-        "filename": "SegmintNft.code",
-        "line": 2913
-      },
-      "480": {
-        "filename": "SegmintNft.code",
-        "line": 2916
+      "232": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      }
+    },
+    "1b9bf135f8d97304c10e5672cc1eef967279f6c1696daaa4c1617c8227804f14": {
+      "0": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       }
     },
     "1c358c128edfeea8814615b99d6fb9e62a0475a2b7dc32df7e609e9653a42988": {
@@ -1714,188 +1782,6 @@
       "136": {
         "filename": "stdlib.sol",
         "line": 132
-      }
-    },
-    "218f3320beb988ffeac4bca9f5e967cc2849c49423624f696abc1fdbc8aab56b": {
-      "0": {
-        "filename": "SegmintNft.code",
-        "line": 2920
-      },
-      "16": {
-        "filename": "SegmintNft.code",
-        "line": 2921
-      },
-      "24": {
-        "filename": "SegmintNft.code",
-        "line": 2922
-      },
-      "40": {
-        "filename": "SegmintNft.code",
-        "line": 2923
-      },
-      "56": {
-        "filename": "SegmintNft.code",
-        "line": 2924
-      },
-      "72": {
-        "filename": "SegmintNft.code",
-        "line": 2925
-      },
-      "80": {
-        "filename": "SegmintNft.code",
-        "line": 2928
-      },
-      "96": {
-        "filename": "SegmintNft.code",
-        "line": 2929
-      },
-      "104": {
-        "filename": "SegmintNft.code",
-        "line": 2930
-      },
-      "120": {
-        "filename": "SegmintNft.code",
-        "line": 2933
-      },
-      "136": {
-        "filename": "SegmintNft.code",
-        "line": 2934
-      },
-      "144": {
-        "filename": "SegmintNft.code",
-        "line": 2935
-      },
-      "160": {
-        "filename": "SegmintNft.code",
-        "line": 2936
-      },
-      "176": {
-        "filename": "SegmintNft.code",
-        "line": 2937
-      },
-      "192": {
-        "filename": "SegmintNft.code",
-        "line": 2938
-      },
-      "200": {
-        "filename": "SegmintNft.code",
-        "line": 2939
-      },
-      "216": {
-        "filename": "SegmintNft.code",
-        "line": 2940
-      },
-      "224": {
-        "filename": "SegmintNft.code",
-        "line": 2941
-      },
-      "232": {
-        "filename": "SegmintNft.code",
-        "line": 2942
-      },
-      "240": {
-        "filename": "SegmintNft.code",
-        "line": 2943
-      },
-      "248": {
-        "filename": "SegmintNft.code",
-        "line": 2944
-      },
-      "264": {
-        "filename": "SegmintNft.code",
-        "line": 2945
-      },
-      "272": {
-        "filename": "SegmintNft.code",
-        "line": 2946
-      },
-      "288": {
-        "filename": "SegmintNft.code",
-        "line": 2947
-      },
-      "304": {
-        "filename": "SegmintNft.code",
-        "line": 2948
-      },
-      "320": {
-        "filename": "SegmintNft.code",
-        "line": 2950
-      },
-      "328": {
-        "filename": "SegmintNft.code",
-        "line": 2951
-      },
-      "344": {
-        "filename": "SegmintNft.code",
-        "line": 2952
-      },
-      "352": {
-        "filename": "stdlib.sol",
-        "line": 61
-      },
-      "368": {
-        "filename": "stdlib.sol",
-        "line": 61
-      },
-      "376": {
-        "filename": "stdlib.sol",
-        "line": 61
-      },
-      "384": {
-        "filename": "stdlib.sol",
-        "line": 61
-      },
-      "400": {
-        "filename": "stdlib.sol",
-        "line": 62
-      },
-      "408": {
-        "filename": "stdlib.sol",
-        "line": 62
-      },
-      "424": {
-        "filename": "stdlib.sol",
-        "line": 62
-      },
-      "448": {
-        "filename": "stdlib.sol",
-        "line": 62
-      },
-      "456": {
-        "filename": "stdlib.sol",
-        "line": 62
-      },
-      "496": {
-        "filename": "stdlib.sol",
-        "line": 62
-      },
-      "504": {
-        "filename": "stdlib.sol",
-        "line": 62
-      },
-      "512": {
-        "filename": "stdlib.sol",
-        "line": 62
-      },
-      "528": {
-        "filename": "stdlib.sol",
-        "line": 63
-      },
-      "544": {
-        "filename": "SegmintNft.code",
-        "line": 2954
-      },
-      "560": {
-        "filename": "SegmintNft.code",
-        "line": 2955
-      },
-      "568": {
-        "filename": "SegmintNft.code",
-        "line": 2956
-      },
-      "584": {
-        "filename": "SegmintNft.code",
-        "line": 2959
       }
     },
     "22a5562ff86f8e80dec0f62666dce5d4d6ee188732e2d1ecf2ec23a2ded26395": {
@@ -3060,6 +2946,144 @@
         "line": 99
       }
     },
+    "37fcc69137e86e309960bad0af6610dc443f51f1f23cd96f0886f2857c80490f": {
+      "0": {
+        "filename": "SegmintNft.code",
+        "line": 2870
+      },
+      "16": {
+        "filename": "SegmintNft.code",
+        "line": 2871
+      },
+      "24": {
+        "filename": "SegmintNft.code",
+        "line": 2872
+      },
+      "40": {
+        "filename": "SegmintNft.code",
+        "line": 2873
+      },
+      "56": {
+        "filename": "SegmintNft.code",
+        "line": 2874
+      },
+      "72": {
+        "filename": "SegmintNft.code",
+        "line": 2875
+      },
+      "80": {
+        "filename": "SegmintNft.code",
+        "line": 2876
+      },
+      "88": {
+        "filename": "SegmintNft.code",
+        "line": 2877
+      },
+      "104": {
+        "filename": "SegmintNft.code",
+        "line": 2878
+      },
+      "120": {
+        "filename": "SegmintNft.code",
+        "line": 2879
+      },
+      "128": {
+        "filename": "SegmintNft.code",
+        "line": 2880
+      },
+      "144": {
+        "filename": "SegmintNft.code",
+        "line": 2881
+      },
+      "168": {
+        "filename": "SegmintNft.code",
+        "line": 2882
+      },
+      "184": {
+        "filename": "SegmintNft.code",
+        "line": 2883
+      },
+      "192": {
+        "filename": "SegmintNft.code",
+        "line": 2884
+      },
+      "208": {
+        "filename": "SegmintNft.code",
+        "line": 2885
+      },
+      "248": {
+        "filename": "SegmintNft.code",
+        "line": 2886
+      },
+      "264": {
+        "filename": "SegmintNft.code",
+        "line": 2887
+      },
+      "272": {
+        "filename": "SegmintNft.code",
+        "line": 2888
+      },
+      "288": {
+        "filename": "SegmintNft.code",
+        "line": 2889
+      },
+      "296": {
+        "filename": "SegmintNft.code",
+        "line": 2890
+      },
+      "312": {
+        "filename": "SegmintNft.code",
+        "line": 2891
+      },
+      "328": {
+        "filename": "SegmintNft.code",
+        "line": 2892
+      },
+      "344": {
+        "filename": "SegmintNft.code",
+        "line": 2898
+      },
+      "352": {
+        "filename": "SegmintNft.code",
+        "line": 2899
+      },
+      "368": {
+        "filename": "SegmintNft.code",
+        "line": 2900
+      },
+      "384": {
+        "filename": "SegmintNft.code",
+        "line": 2904
+      },
+      "392": {
+        "filename": "SegmintNft.code",
+        "line": 2905
+      },
+      "416": {
+        "filename": "SegmintNft.code",
+        "line": 2906
+      },
+      "432": {
+        "filename": "SegmintNft.code",
+        "line": 2907
+      },
+      "440": {
+        "filename": "SegmintNft.code",
+        "line": 2908
+      },
+      "456": {
+        "filename": "SegmintNft.code",
+        "line": 2912
+      },
+      "464": {
+        "filename": "SegmintNft.code",
+        "line": 2913
+      },
+      "480": {
+        "filename": "SegmintNft.code",
+        "line": 2916
+      }
+    },
     "389c7260b9068b46cf42ca677d9eb0ade44640e044cb6e42b801583cfde8ad08": {
       "0": {
         "filename": "../contracts/SegmintNft.tsol",
@@ -3298,52 +3322,6 @@
         "line": 308
       }
     },
-    "3d6613341621bbabc04eafbfca5c5e1d9748daa2f7f3acb21f4d9e75015306c6": {
-      "0": {
-        "filename": "<entry-selector>",
-        "line": 1
-      },
-      "8": {
-        "filename": "<entry-selector>",
-        "line": 2
-      },
-      "24": {
-        "filename": "<entry-selector>",
-        "line": 3
-      },
-      "32": {
-        "filename": "<entry-selector>",
-        "line": 4
-      },
-      "48": {
-        "filename": "<entry-selector>",
-        "line": 5
-      },
-      "56": {
-        "filename": "<entry-selector>",
-        "line": 6
-      },
-      "72": {
-        "filename": "<entry-selector>",
-        "line": 7
-      },
-      "88": {
-        "filename": "<entry-selector>",
-        "line": 8
-      },
-      "96": {
-        "filename": "<entry-selector>",
-        "line": 9
-      },
-      "112": {
-        "filename": "<entry-selector>",
-        "line": 10
-      },
-      "128": {
-        "filename": "<entry-selector>",
-        "line": 11
-      }
-    },
     "40a6b31a95f70111961fe92f053dbb2b73b138e15a1b906858cf1c99d2e40a34": {
       "0": {
         "filename": "SegmintNft.code",
@@ -3514,70 +3492,54 @@
         "line": 2426
       }
     },
-    "41c8c11638c2572597f9c297f6dc355e5cfeedb3063be3c2df4fb5309b1a6874": {
+    "40b9c0e68b6a315d1ef686c756cbc22f8f0dd787b110efd83479dad4469b7c33": {
       "0": {
-        "filename": "SegmintNft.code",
-        "line": 3024
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
       },
-      "8": {
-        "filename": "SegmintNft.code",
-        "line": 3025
+      "16": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
       },
-      "56": {
-        "filename": "SegmintNft.code",
-        "line": 3026
-      },
-      "64": {
-        "filename": "SegmintNft.code",
-        "line": 3027
-      },
-      "80": {
-        "filename": "SegmintNft.code",
-        "line": 3030
-      },
-      "88": {
-        "filename": "SegmintNft.code",
-        "line": 3031
+      "24": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
       },
       "136": {
-        "filename": "SegmintNft.code",
-        "line": 3032
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
       },
-      "144": {
-        "filename": "SegmintNft.code",
-        "line": 3033
-      },
-      "160": {
-        "filename": "SegmintNft.code",
-        "line": 3036
+      "152": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
       },
       "168": {
-        "filename": "SegmintNft.code",
-        "line": 3037
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
       },
-      "216": {
-        "filename": "SegmintNft.code",
-        "line": 3038
+      "176": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
+      },
+      "192": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
+      },
+      "208": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 73
       },
       "224": {
-        "filename": "SegmintNft.code",
-        "line": 3039
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
       },
       "240": {
-        "filename": "SegmintNft.code",
-        "line": 3042
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
       },
       "248": {
-        "filename": "SegmintNft.code",
-        "line": 3043
-      },
-      "296": {
-        "filename": "SegmintNft.code",
-        "line": 3044
-      },
-      "304": {
-        "filename": "SegmintNft.code",
-        "line": 3045
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
       }
     },
     "42e5abd4544d0108c00caca7b12616dbe9b2856d101682bf8a419a1a31512565": {
@@ -3736,6 +3698,102 @@
         "line": 2987
       }
     },
+    "47f5907c92d66bad33b58834c707ccfa13b37344e73f78da9ee3120c03d6c5aa": {
+      "0": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "16": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "32": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "40": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "56": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "72": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "144": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      }
+    },
+    "4a969d8a9728d0b93ce6ca025f1c6230e3597dada43fb008141630967b96a735": {
+      "0": {
+        "filename": "SegmintNft.code",
+        "line": 2962
+      },
+      "8": {
+        "filename": "SegmintNft.code",
+        "line": 2963
+      },
+      "56": {
+        "filename": "SegmintNft.code",
+        "line": 2964
+      },
+      "64": {
+        "filename": "SegmintNft.code",
+        "line": 2965
+      },
+      "80": {
+        "filename": "SegmintNft.code",
+        "line": 2991
+      },
+      "88": {
+        "filename": "SegmintNft.code",
+        "line": 2992
+      },
+      "136": {
+        "filename": "SegmintNft.code",
+        "line": 2993
+      },
+      "144": {
+        "filename": "SegmintNft.code",
+        "line": 2994
+      },
+      "160": {
+        "filename": "SegmintNft.code",
+        "line": 3020
+      },
+      "168": {
+        "filename": "SegmintNft.code",
+        "line": 3021
+      },
+      "216": {
+        "filename": "SegmintNft.code",
+        "line": 3022
+      },
+      "224": {
+        "filename": "SegmintNft.code",
+        "line": 3023
+      },
+      "240": {
+        "filename": "SegmintNft.code",
+        "line": 3049
+      },
+      "248": {
+        "filename": "SegmintNft.code",
+        "line": 3050
+      },
+      "296": {
+        "filename": "SegmintNft.code",
+        "line": 3051
+      },
+      "304": {
+        "filename": "SegmintNft.code",
+        "line": 3052
+      }
+    },
     "4dcd5b500edd2ce69ce3a9b8aa233df8a2b52b5188c5f5bbb8afe03dedd5f39f": {
       "0": {
         "filename": "stdlib.sol",
@@ -3880,6 +3938,72 @@
       "24": {
         "filename": "SegmintNft.code",
         "line": 1104
+      }
+    },
+    "5776be569a2f4e997b076a7f665e3f36172410cbdb378f40d8eb1014750752b8": {
+      "0": {
+        "filename": "SegmintNft.code",
+        "line": 3024
+      },
+      "8": {
+        "filename": "SegmintNft.code",
+        "line": 3025
+      },
+      "56": {
+        "filename": "SegmintNft.code",
+        "line": 3026
+      },
+      "64": {
+        "filename": "SegmintNft.code",
+        "line": 3027
+      },
+      "80": {
+        "filename": "SegmintNft.code",
+        "line": 3030
+      },
+      "88": {
+        "filename": "SegmintNft.code",
+        "line": 3031
+      },
+      "136": {
+        "filename": "SegmintNft.code",
+        "line": 3032
+      },
+      "144": {
+        "filename": "SegmintNft.code",
+        "line": 3033
+      },
+      "160": {
+        "filename": "SegmintNft.code",
+        "line": 3036
+      },
+      "168": {
+        "filename": "SegmintNft.code",
+        "line": 3037
+      },
+      "216": {
+        "filename": "SegmintNft.code",
+        "line": 3038
+      },
+      "224": {
+        "filename": "SegmintNft.code",
+        "line": 3039
+      },
+      "240": {
+        "filename": "SegmintNft.code",
+        "line": 3042
+      },
+      "248": {
+        "filename": "SegmintNft.code",
+        "line": 3043
+      },
+      "296": {
+        "filename": "SegmintNft.code",
+        "line": 3044
+      },
+      "304": {
+        "filename": "SegmintNft.code",
+        "line": 3045
       }
     },
     "581d97433743889e2d33599c374e7872de9dcfc3e7b2531ed517858d9e4df7c2": {
@@ -4388,6 +4512,28 @@
       "208": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP6/TIP6.sol",
         "line": 14
+      }
+    },
+    "59c0e16b0b896d835b63e0ac057eab49130bac2947f34c3053873d9bad98c4af": {
+      "0": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "16": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "384": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "400": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "408": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       }
     },
     "5c6f8e87fbc94d7959ef76eda1eb8dea00f9b057d5115eb2279e8692008b4191": {
@@ -4998,6 +5144,48 @@
         "line": 107
       }
     },
+    "60abafcb485d637fdae4e45b8c7c9713dea00a9841d7974bf0b491057a26ea41": {
+      "0": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "16": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "32": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "40": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "56": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "72": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "120": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "136": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "152": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "160": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      }
+    },
     "61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c": {
       "0": {
         "filename": "SegmintNft.code",
@@ -5486,28 +5674,6 @@
         "line": 118
       }
     },
-    "6732bf5eef34300c2a0818e59e2368ab1092e6d51cdcbccbfc49727f194c97bd": {
-      "0": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "16": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "384": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "400": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "408": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      }
-    },
     "6d39ca0644d9d6d8c3f35828f23ba83dcf445678a42e2da6217e155c3d254f20": {
       "0": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol",
@@ -5520,310 +5686,6 @@
       "24": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol",
         "line": 56
-      }
-    },
-    "6fc9470a4dff32bc33f10ba9d584735d5a3a1063e366c54ce48e8aca7ca6772d": {
-      "0": {
-        "filename": "SegmintNft.code",
-        "line": 2962
-      },
-      "8": {
-        "filename": "SegmintNft.code",
-        "line": 2963
-      },
-      "56": {
-        "filename": "SegmintNft.code",
-        "line": 2964
-      },
-      "64": {
-        "filename": "SegmintNft.code",
-        "line": 2965
-      },
-      "80": {
-        "filename": "SegmintNft.code",
-        "line": 2991
-      },
-      "88": {
-        "filename": "SegmintNft.code",
-        "line": 2992
-      },
-      "136": {
-        "filename": "SegmintNft.code",
-        "line": 2993
-      },
-      "144": {
-        "filename": "SegmintNft.code",
-        "line": 2994
-      },
-      "160": {
-        "filename": "SegmintNft.code",
-        "line": 3020
-      },
-      "168": {
-        "filename": "SegmintNft.code",
-        "line": 3021
-      },
-      "216": {
-        "filename": "SegmintNft.code",
-        "line": 3022
-      },
-      "224": {
-        "filename": "SegmintNft.code",
-        "line": 3023
-      },
-      "240": {
-        "filename": "SegmintNft.code",
-        "line": 3049
-      },
-      "248": {
-        "filename": "SegmintNft.code",
-        "line": 3050
-      },
-      "296": {
-        "filename": "SegmintNft.code",
-        "line": 3051
-      },
-      "304": {
-        "filename": "SegmintNft.code",
-        "line": 3052
-      }
-    },
-    "753c5646a8dbbbff76eedff2d5053cff9bb305c95a45d3fab9b1e9cc1cd22b72": {
-      "0": {
-        "filename": "SegmintNft.code",
-        "line": 282
-      },
-      "8": {
-        "filename": "SegmintNft.code",
-        "line": 283
-      },
-      "24": {
-        "filename": "SegmintNft.code",
-        "line": 284
-      },
-      "48": {
-        "filename": "SegmintNft.code",
-        "line": 285
-      },
-      "64": {
-        "filename": "SegmintNft.code",
-        "line": 286
-      },
-      "72": {
-        "filename": "SegmintNft.code",
-        "line": 287
-      },
-      "88": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 72
-      },
-      "104": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 72
-      },
-      "120": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 72
-      },
-      "128": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 72
-      },
-      "144": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 72
-      },
-      "160": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 72
-      },
-      "168": {
-        "filename": "SegmintNft.code",
-        "line": 298
-      },
-      "184": {
-        "filename": "SegmintNft.code",
-        "line": 301
-      },
-      "192": {
-        "filename": "SegmintNft.code",
-        "line": 302
-      },
-      "208": {
-        "filename": "SegmintNft.code",
-        "line": 303
-      },
-      "216": {
-        "filename": "SegmintNft.code",
-        "line": 304
-      },
-      "224": {
-        "filename": "SegmintNft.code",
-        "line": 305
-      },
-      "240": {
-        "filename": "SegmintNft.code",
-        "line": 306
-      },
-      "256": {
-        "filename": "SegmintNft.code",
-        "line": 307
-      },
-      "264": {
-        "filename": "SegmintNft.code",
-        "line": 308
-      },
-      "272": {
-        "filename": "SegmintNft.code",
-        "line": 309
-      },
-      "280": {
-        "filename": "SegmintNft.code",
-        "line": 310
-      },
-      "304": {
-        "filename": "SegmintNft.code",
-        "line": 311
-      },
-      "312": {
-        "filename": "SegmintNft.code",
-        "line": 312
-      },
-      "360": {
-        "filename": "SegmintNft.code",
-        "line": 313
-      },
-      "384": {
-        "filename": "SegmintNft.code",
-        "line": 314
-      },
-      "392": {
-        "filename": "SegmintNft.code",
-        "line": 315
-      },
-      "400": {
-        "filename": "SegmintNft.code",
-        "line": 316
-      },
-      "408": {
-        "filename": "SegmintNft.code",
-        "line": 318
-      },
-      "424": {
-        "filename": "SegmintNft.code",
-        "line": 319
-      },
-      "440": {
-        "filename": "SegmintNft.code",
-        "line": 320
-      },
-      "448": {
-        "filename": "SegmintNft.code",
-        "line": 321
-      },
-      "464": {
-        "filename": "SegmintNft.code",
-        "line": 322
-      },
-      "472": {
-        "filename": "SegmintNft.code",
-        "line": 323
-      },
-      "488": {
-        "filename": "SegmintNft.code",
-        "line": 324
-      },
-      "504": {
-        "filename": "SegmintNft.code",
-        "line": 325
-      },
-      "520": {
-        "filename": "SegmintNft.code",
-        "line": 326
-      },
-      "536": {
-        "filename": "SegmintNft.code",
-        "line": 327
-      },
-      "544": {
-        "filename": "SegmintNft.code",
-        "line": 328
-      },
-      "568": {
-        "filename": "SegmintNft.code",
-        "line": 329
-      },
-      "584": {
-        "filename": "SegmintNft.code",
-        "line": 330
-      },
-      "608": {
-        "filename": "SegmintNft.code",
-        "line": 331
-      },
-      "616": {
-        "filename": "SegmintNft.code",
-        "line": 332
-      },
-      "624": {
-        "filename": "SegmintNft.code",
-        "line": 333
-      },
-      "640": {
-        "filename": "SegmintNft.code",
-        "line": 334
-      },
-      "656": {
-        "filename": "SegmintNft.code",
-        "line": 335
-      },
-      "672": {
-        "filename": "SegmintNft.code",
-        "line": 336
-      },
-      "688": {
-        "filename": "SegmintNft.code",
-        "line": 337
-      },
-      "704": {
-        "filename": "SegmintNft.code",
-        "line": 338
-      },
-      "720": {
-        "filename": "SegmintNft.code",
-        "line": 339
-      },
-      "744": {
-        "filename": "SegmintNft.code",
-        "line": 340
-      },
-      "752": {
-        "filename": "SegmintNft.code",
-        "line": 341
-      },
-      "760": {
-        "filename": "SegmintNft.code",
-        "line": 342
-      },
-      "776": {
-        "filename": "SegmintNft.code",
-        "line": 343
-      },
-      "792": {
-        "filename": "SegmintNft.code",
-        "line": 345
-      },
-      "800": {
-        "filename": "SegmintNft.code",
-        "line": 346
-      },
-      "816": {
-        "filename": "SegmintNft.code",
-        "line": 347
-      },
-      "832": {
-        "filename": "SegmintNft.code",
-        "line": 350
       }
     },
     "7767c11cb9b60152227ce76185ee34dfdeae11cbdec59d1199f22f9f7d529a5f": {
@@ -5870,48 +5732,6 @@
       "88": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Nft.sol",
         "line": 118
-      }
-    },
-    "7955bf1708046fd6be2ed3832394cb2f07e519faa7222a5b0c7e91da2b67bdd7": {
-      "0": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "16": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "32": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "40": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "56": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "72": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "120": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "136": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "152": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "160": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
       }
     },
     "797160c52c2677b1b1d932bee33eb101536fa45087eeaf2deda89a4abe51b927": {
@@ -6294,37 +6114,7 @@
         "line": 102
       }
     },
-    "84fddce4699d59619080970d3ffc0b0ccea6e777fd24ace4f0d673c097cb61da": {
-      "0": {
-        "filename": "stdlib.sol",
-        "line": 143
-      },
-      "16": {
-        "filename": "stdlib.sol",
-        "line": 143
-      },
-      "32": {
-        "filename": "stdlib.sol",
-        "line": 143
-      },
-      "40": {
-        "filename": "stdlib.sol",
-        "line": 144
-      },
-      "48": {
-        "filename": "stdlib.sol",
-        "line": 144
-      },
-      "56": {
-        "filename": "stdlib.sol",
-        "line": 145
-      },
-      "72": {
-        "filename": "stdlib.sol",
-        "line": 145
-      }
-    },
-    "88712725a79216633b17e5458d6e75bc2de52dc700df7e3033a9e29c8f8f3980": {
+    "833a7357175fac0a78546c0ab558119a02167b67c07def9f352f8f207e185b85": {
       "0": {
         "filename": "../contracts/SegmintNft.tsol",
         "line": 74
@@ -6356,6 +6146,36 @@
       "176": {
         "filename": "../contracts/SegmintNft.tsol",
         "line": 74
+      }
+    },
+    "84fddce4699d59619080970d3ffc0b0ccea6e777fd24ace4f0d673c097cb61da": {
+      "0": {
+        "filename": "stdlib.sol",
+        "line": 143
+      },
+      "16": {
+        "filename": "stdlib.sol",
+        "line": 143
+      },
+      "32": {
+        "filename": "stdlib.sol",
+        "line": 143
+      },
+      "40": {
+        "filename": "stdlib.sol",
+        "line": 144
+      },
+      "48": {
+        "filename": "stdlib.sol",
+        "line": 144
+      },
+      "56": {
+        "filename": "stdlib.sol",
+        "line": 145
+      },
+      "72": {
+        "filename": "stdlib.sol",
+        "line": 145
       }
     },
     "8dbca93162771b52a1d08109d83eebda01d30e87ba497b01a43583798ffd17b0": {
@@ -6660,37 +6480,41 @@
         "line": 177
       }
     },
-    "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7": {},
-    "9b73cd99567cc25693d544302864bd07e1ef379c78e178246f6ab0eac25b9cd7": {
+    "96683d50955faeda5298b0c6d3367154e1479cbef6fb924a9e00eddf49ca4a4c": {
       "0": {
         "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
+        "line": 78
       },
       "16": {
         "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
+        "line": 78
+      },
+      "24": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       },
       "32": {
         "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
+        "line": 78
       },
-      "40": {
+      "48": {
         "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
+        "line": 78
       },
-      "56": {
+      "440": {
         "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
+        "line": 78
       },
-      "72": {
+      "456": {
         "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
+        "line": 78
       },
-      "144": {
+      "464": {
         "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
+        "line": 78
       }
     },
+    "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7": {},
     "9ccdbf037ae1b7fb0ec65c82c7f8e8a78ad48ae2cf019c33100b2b69dcdb9af9": {
       "0": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Nft.sol",
@@ -7009,6 +6833,12 @@
       "624": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Nft.sol",
         "line": 84
+      }
+    },
+    "a5534ae6714b2e745bcbcf9a7c2d76655824b16a3934e292631f0fda83f96007": {
+      "0": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 75
       }
     },
     "a73e2df4d184a302d13ddea0b22ef7771e434a9b89cb695829f03b43a777f922": {
@@ -7425,36 +7255,6 @@
       "16": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Nft.sol",
         "line": 56
-      }
-    },
-    "b478d0dff033902c294f401a222bfc0320a96f705c0981766c3636c5c5e65d55": {
-      "0": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "16": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "176": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "192": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "208": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "216": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      },
-      "232": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
       }
     },
     "b84abb66a3f17646c361fe25d5c8e98d85717d1679ec1ddde59cf02458c4ce3b": {
@@ -8071,12 +7871,6 @@
         "line": 542
       }
     },
-    "cfea9322f5ee466aa1bfb8ef853e0840bb89047b3dadd5ba245494fbfa1da4a6": {
-      "0": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 78
-      }
-    },
     "d082360653755262835885e042ffb0365b56f18cdb074a101d3ea551406583e8": {
       "0": {
         "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol",
@@ -8251,56 +8045,6 @@
       "536": {
         "filename": "SegmintNft.code",
         "line": 2472
-      }
-    },
-    "d12bfeeda32fcea50159e87ee279be302e8541c75ad2b1b24472012016518861": {
-      "0": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "16": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "24": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "136": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "152": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "168": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "176": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "192": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "208": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 73
-      },
-      "224": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "240": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
-      },
-      "248": {
-        "filename": "../contracts/SegmintNft.tsol",
-        "line": 74
       }
     },
     "d26fceafaab96fb698cdd410546c45e2828c6478ece3c7622f81d6d2da022ef4": {
@@ -8687,6 +8431,52 @@
       "0": {
         "filename": "../contracts/SegmintNft.tsol",
         "line": 158
+      }
+    },
+    "d85857b8eef5997ae63ba47274d06f2d6848f70130eeb2f8322698940a3932ba": {
+      "0": {
+        "filename": "<entry-selector>",
+        "line": 1
+      },
+      "8": {
+        "filename": "<entry-selector>",
+        "line": 2
+      },
+      "24": {
+        "filename": "<entry-selector>",
+        "line": 3
+      },
+      "32": {
+        "filename": "<entry-selector>",
+        "line": 4
+      },
+      "48": {
+        "filename": "<entry-selector>",
+        "line": 5
+      },
+      "56": {
+        "filename": "<entry-selector>",
+        "line": 6
+      },
+      "72": {
+        "filename": "<entry-selector>",
+        "line": 7
+      },
+      "88": {
+        "filename": "<entry-selector>",
+        "line": 8
+      },
+      "96": {
+        "filename": "<entry-selector>",
+        "line": 9
+      },
+      "112": {
+        "filename": "<entry-selector>",
+        "line": 10
+      },
+      "128": {
+        "filename": "<entry-selector>",
+        "line": 11
       }
     },
     "db7eab8589c7b8a609c8f0f671e4000f527cac68789bdf3444f808b3987cf832": {
@@ -9361,6 +9151,188 @@
         "line": 807
       }
     },
+    "e02f654e1ce74b47c00eb3899985735c0b5ffd5ca0f4287dff758044048c9953": {
+      "0": {
+        "filename": "SegmintNft.code",
+        "line": 2920
+      },
+      "16": {
+        "filename": "SegmintNft.code",
+        "line": 2921
+      },
+      "24": {
+        "filename": "SegmintNft.code",
+        "line": 2922
+      },
+      "40": {
+        "filename": "SegmintNft.code",
+        "line": 2923
+      },
+      "56": {
+        "filename": "SegmintNft.code",
+        "line": 2924
+      },
+      "72": {
+        "filename": "SegmintNft.code",
+        "line": 2925
+      },
+      "80": {
+        "filename": "SegmintNft.code",
+        "line": 2928
+      },
+      "96": {
+        "filename": "SegmintNft.code",
+        "line": 2929
+      },
+      "104": {
+        "filename": "SegmintNft.code",
+        "line": 2930
+      },
+      "120": {
+        "filename": "SegmintNft.code",
+        "line": 2933
+      },
+      "136": {
+        "filename": "SegmintNft.code",
+        "line": 2934
+      },
+      "144": {
+        "filename": "SegmintNft.code",
+        "line": 2935
+      },
+      "160": {
+        "filename": "SegmintNft.code",
+        "line": 2936
+      },
+      "176": {
+        "filename": "SegmintNft.code",
+        "line": 2937
+      },
+      "192": {
+        "filename": "SegmintNft.code",
+        "line": 2938
+      },
+      "200": {
+        "filename": "SegmintNft.code",
+        "line": 2939
+      },
+      "216": {
+        "filename": "SegmintNft.code",
+        "line": 2940
+      },
+      "224": {
+        "filename": "SegmintNft.code",
+        "line": 2941
+      },
+      "232": {
+        "filename": "SegmintNft.code",
+        "line": 2942
+      },
+      "240": {
+        "filename": "SegmintNft.code",
+        "line": 2943
+      },
+      "248": {
+        "filename": "SegmintNft.code",
+        "line": 2944
+      },
+      "264": {
+        "filename": "SegmintNft.code",
+        "line": 2945
+      },
+      "272": {
+        "filename": "SegmintNft.code",
+        "line": 2946
+      },
+      "288": {
+        "filename": "SegmintNft.code",
+        "line": 2947
+      },
+      "304": {
+        "filename": "SegmintNft.code",
+        "line": 2948
+      },
+      "320": {
+        "filename": "SegmintNft.code",
+        "line": 2950
+      },
+      "328": {
+        "filename": "SegmintNft.code",
+        "line": 2951
+      },
+      "344": {
+        "filename": "SegmintNft.code",
+        "line": 2952
+      },
+      "352": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "368": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "376": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "384": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "400": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "408": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "424": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "448": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "456": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "496": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "504": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "512": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "528": {
+        "filename": "stdlib.sol",
+        "line": 63
+      },
+      "544": {
+        "filename": "SegmintNft.code",
+        "line": 2954
+      },
+      "560": {
+        "filename": "SegmintNft.code",
+        "line": 2955
+      },
+      "568": {
+        "filename": "SegmintNft.code",
+        "line": 2956
+      },
+      "584": {
+        "filename": "SegmintNft.code",
+        "line": 2959
+      }
+    },
     "e42616a972a7544599f1f88860ce01a2219fd3973d904bbb356f098b7a4ffbc0": {
       "0": {
         "filename": "SegmintNft.code",
@@ -9823,10 +9795,38 @@
         "line": 132
       }
     },
-    "fa27e07595c5f3a8dc6f73dbf073e554eb288d6ba58dd24ad7b98333ac52efdc": {
+    "f89475d7e15a353424fea1bcb575f508aca556c76e1adc99167986f8f55b9528": {
       "0": {
         "filename": "../contracts/SegmintNft.tsol",
+        "line": 74
+      },
+      "16": {
+        "filename": "../contracts/SegmintNft.tsol",
         "line": 75
+      },
+      "24": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "40": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "48": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "296": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "312": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
+      },
+      "328": {
+        "filename": "../contracts/SegmintNft.tsol",
+        "line": 78
       }
     },
     "ff6251682ac8f28ccace16692b91c85a74b63f24b8fbaebbd0a1e5602e9e23b2": {

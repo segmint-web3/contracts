@@ -11,8 +11,8 @@ import "./libraries/ErrorCodes.tsol";
 import './SegmintNft.tsol';
 
 contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmintCollection {
+
     address private static owner_;
-    address private newOwner_;
 
     uint16 private static nonce_;
     bool private mintDisabled_;
@@ -29,8 +29,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
     uint32 private currentEpoch_;                 // Num of current epoch
     uint14 private currentEpochTilesLeft_;        // How many tiles left to mint before new epoch is started
     uint128 private currentEpochPixelTilePrice_;  // Price per tile
-    uint128 private prevEpochPixelTilePrice_;     // To reserve for repay
-    uint128 private nextEpochPriceTileGrow_;      // currentEpochPixelTilePrice_ = prevEpochPixelTilePrice_ + nextEpochPriceTileGrow_;
+    uint128 private epochTilePriceGrow_;
 
     uint128 constant remainOnNft_ = 0.3 ever;
 
@@ -62,9 +61,8 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
 
         mintDisabled_ = true;
         currentEpoch_ = 1;
-        prevEpochPixelTilePrice_ = 0;
         currentEpochPixelTilePrice_ = 0.1 ever;
-        nextEpochPriceTileGrow_ = 0.1 ever;
+        epochTilePriceGrow_ = 0.1 ever;
         currentEpochTilesLeft_ = 10000;
         msg.sender.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
     }
@@ -81,18 +79,10 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
 
     function changeOwner(address newOwner) external onlyOwner {
         require(newOwner.value != 0, ErrorCodes.BAD_NEW_OWNER);
-        newOwner_ = newOwner;
+        owner_ = newOwner;
         msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
     }
 
-    function acceptOwnership() external {
-        require(newOwner_.value != 0, ErrorCodes.BAD_NEW_OWNER);
-        require(msg.sender == newOwner_, ErrorCodes.BAD_NEW_OWNER);
-
-        owner_ = newOwner_;
-        newOwner_ = address(0);
-        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
-    }
 
     function disableMint() external override responsible onlyOwner returns(bool) {
         mintDisabled_ = true;
@@ -172,16 +162,16 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         }
 
         uint128 currentPrice = tilesCount * currentEpochPixelTilePrice_;
-        uint128 prevPrice = tilesCount * prevEpochPixelTilePrice_;
+        uint128 prevPrice = currentPrice - tilesCount * epochTilePriceGrow_;
 
         // we check because messages not bounce on action phase.
-        // current price + 0.2 venom for gas + 1 venom for NFT deployment + 0.1 venom for storage payment
-        // + 0.05 venom for maximum forward fee
-        require(msg.value > currentPrice + 0.35 ever + 1 ever);
+        // current price + 0.2 venom for gas + 0.7 venom for NFT deployment + 0.05 venom for storage payment
+        // + 0.05 venom for maximum forward fee = 1 ever
+        require(msg.value > currentPrice + 1 ever);
 
         // We reverse on contract 0.1 venom for payment storage + diff between prev epoch price and current epoch price
         // for rebate
-        tvm.rawReserve(0.1 ever + currentPrice - prevPrice, 4);
+        tvm.rawReserve(0.05 ever + prevPrice, 4);
         emit NftMinted(nftId, currentEpoch_, msg.sender, pixelStartX, pixelStartY, pixelEndX, pixelEndY);
 
         // generate next epoch
@@ -198,7 +188,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
                     varInit: {_id: nftId},
                     code: _codeNft
                 }),
-                value: 1 ever + prevPrice,
+                value: 0.7 ever + currentPrice - prevPrice,
                 flag: MsgFlag.SENDER_PAYS_FEES
         } (
             msg.sender,
@@ -349,8 +339,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
     function _changeEpoch() private inline {
         currentEpoch_ += 1;
         currentEpochTilesLeft_ = 10000;
-        prevEpochPixelTilePrice_ = currentEpochPixelTilePrice_;
-        currentEpochPixelTilePrice_ += nextEpochPriceTileGrow_;
+        currentEpochPixelTilePrice_ += epochTilePriceGrow_;
         emit EpochChanged(currentEpoch_, currentEpochPixelTilePrice_);
     }
 }

@@ -72,8 +72,8 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
     function getJson() external view responsible returns (string json) {
         string name = format("Segmint Nft {}", _id);
         string description = format("Piece of canvas x from {} to {}, y from {} to {} pixels", nftPixelsStartX_, nftPixelsEndX_, nftPixelsStartY_, nftPixelsEndY_);
-        string source = "https://segmint-web3.github.io/frontend/collection_logo.png";
-        string external_url = "https://segmint-web3.github.io/frontend/";
+        string source = "https://segmint.app/collection_logo.png";
+        string external_url = "https://segmint.app/";
 
         json = format(
             "{\"type\":\"Basic NFT\",\"name\":\"{}\",\"description\":\"{}\",\"preview\":{\"source\":\"{}\",\"mimetype\":\"image/png\"},\"files\":[{\"source\":\"{}\",\"mimetype\":\"image/png\"}],\"external_url\":\"{}\"}",

@@ -11,21 +11,21 @@ async function main() {
       "history"
     ],
     "preview": {
-      "source": "https://segmint-web3.github.io/frontend/collection_logo.png",
+      "source": "https://segmint.app/collection_logo.png",
       "mimetype": "image/png"
     },
     "banner": {
-      "source": "https://segmint-web3.github.io/frontend/collection_logo.png",
+      "source": "https://segmint.app/collection_banner.png",
       "mimetype": "image/png"
     },
     "files": [
       {
-        "source": "https://segmint-web3.github.io/frontend/collection_logo.png",
+        "source": "https://segmint.app/collection_logo.png",
         "mimetype": "image/png"
       }
     ],
-    "external_url": "https://segmint-web3.github.io/frontend/",
-    "links": ["https://segmint-web3.github.io/frontend/"]
+    "external_url": "https://segmint.app/",
+    "links": ["https://segmint.app/"]
   }
 
 

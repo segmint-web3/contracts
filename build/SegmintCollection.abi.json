@@ -23,13 +23,6 @@
 			]
 		},
 		{
-			"name": "acceptOwnership",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "disableMint",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
@@ -366,7 +359,6 @@
 		{"name":"_indexDestroyValue","type":"uint128"},
 		{"name":"_deployIndexBasisValue","type":"uint128"},
 		{"name":"owner_","type":"address"},
-		{"name":"newOwner_","type":"address"},
 		{"name":"nonce_","type":"uint16"},
 		{"name":"mintDisabled_","type":"bool"},
 		{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tiles_","type":"map(uint14,tuple)"},
@@ -375,7 +367,6 @@
 		{"name":"currentEpoch_","type":"uint32"},
 		{"name":"currentEpochTilesLeft_","type":"uint14"},
 		{"name":"currentEpochPixelTilePrice_","type":"uint128"},
-		{"name":"prevEpochPixelTilePrice_","type":"uint128"},
-		{"name":"nextEpochPriceTileGrow_","type":"uint128"}
+		{"name":"epochTilePriceGrow_","type":"uint128"}
 	]
 }

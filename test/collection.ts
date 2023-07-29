@@ -289,13 +289,6 @@ describe("Test collection", async function () {
       )
 
       await locklift.tracing.trace(
-        collection.methods.acceptOwnership({}).send({
-          from: newOwnerEverWallet.address,
-          amount: locklift.utils.toNano(1),
-        })
-      )
-
-      await locklift.tracing.trace(
         collection.methods.enableMint({answerId: 0}).send({
           from: newOwnerEverWallet.address,
           amount: locklift.utils.toNano(1),
