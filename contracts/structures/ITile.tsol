@@ -9,14 +9,4 @@ interface ITile {
         uint80[10] g;
         uint80[10] b;
     }
-
-    // One tile, 10 lines
-    // So we have 10 lines
-    // by 10 width and 1 height
-    // pixels
-    struct Tile {
-        uint32 nftId;
-        TileColors colors;
-    }
-
 }

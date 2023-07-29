@@ -23,14 +23,13 @@ async function main() {
     throw new Error('Collection not deployed!');
   }
 
-  console.log(ownerWallet.address);
   await locklift.tracing.trace(
-    collection.methods.enableMint({answerId: 0}).send({
+    collection.methods.changeEpoch({answerId: 0}).send({
       from: ownerWallet.address,
       amount: locklift.utils.toNano(1),
     }),
   )
-  console.log(`Mint enabled at: ${collection.address.toString()}`);
+  console.log(`Epoch changed: ${collection.address.toString()}`);
 }
 
 main()

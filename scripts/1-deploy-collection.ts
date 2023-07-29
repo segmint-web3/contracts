@@ -1,13 +1,6 @@
-import {EverWalletAccount} from "everscale-standalone-client/nodejs";
-import { Address } from "locklift";
-import BigNumber from "bignumber.js";
+import {EverWalletAccount} from "everscale-standalone-client";
 
 async function main() {
-  const TokenRootAddress = new Address("0:431f19f8b5c48fba2368e995bd18772e20055900ae1872093fd4c7d563db1919");
-  const TokenRoot = locklift.factory.getDeployedContract("TokenRootUpgradeable", TokenRootAddress);
-
-  const { value0: tokenRootDecimals } = await TokenRoot.methods.decimals({answerId: 0}).call({responsible: true})
-
   const signer = (await locklift.keystore.getSigner("0"))!;
 
   const collectionMetadata = {
@@ -37,7 +30,6 @@ async function main() {
 
 
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});
-  locklift.factory.accounts.storage.addAccount(ownerWallet);
 
   const collectionArtifacts = await locklift.factory.getContractArtifacts("SegmintCollection");
   const nftArtifacts = await locklift.factory.getContractArtifacts("SegmintNft");
@@ -54,14 +46,12 @@ async function main() {
   const Index = await locklift.factory.getContractArtifacts("Index");
   const IndexBasis = await locklift.factory.getContractArtifacts("IndexBasis");
 
-  await locklift.tracing.trace(
+  const tracing = await locklift.tracing.trace(
     collection.methods.constructor({
       codeNft: nftArtifacts.code,
       codeIndex: Index.code,
       codeIndexBasis: IndexBasis.code,
-      jsonMetadata: JSON.stringify(collectionMetadata),
-      tokenRoot: TokenRootAddress,
-      onePixelTokenPrice: new BigNumber(1).shiftedBy(parseInt(tokenRootDecimals)).toString(10)
+      jsonMetadata: JSON.stringify(collectionMetadata)
     }).send({
       from: ownerWallet.address,
       amount: locklift.utils.toNano(3),

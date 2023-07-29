@@ -1,9 +1,5 @@
 pragma ever-solidity >= 0.64.0;
 
-import "broxus-ton-tokens-contracts/contracts/interfaces/ITokenRoot.tsol";
-import "broxus-ton-tokens-contracts/contracts/interfaces/ITokenWallet.tsol";
-import "broxus-ton-tokens-contracts/contracts/interfaces/IAcceptTokensTransferCallback.tsol";
-
 import '@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol';
 import '@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol';
 
@@ -14,43 +10,40 @@ import "./libraries/MsgFlag.tsol";
 import "./libraries/ErrorCodes.tsol";
 import './SegmintNft.tsol';
 
-contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmintCollection, IAcceptTokensTransferCallback {
-    uint16 private static nonce_;
-
+contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmintCollection {
     address private static owner_;
     address private newOwner_;
 
-    address private tokenRoot_;
-    address private tokenWallet_;
-    uint128 private onePixelTokenPrice_;
-
+    uint16 private static nonce_;
     bool private mintDisabled_;
-
-    // id of nft minted
-    uint32 private nftCounter_;
 
     // x = 0..100, y = 0.100 (100 pieces by 10 pixes - 1000x1000)
     // uint7 - 128 - x coord << 7
     // uint7 - 128 - y coord
-    mapping (uint14 => Tile) tiles_;
+    mapping (uint14 => TileColors) private tiles_;
 
     // Small mapping index -> nftId;
-    mapping (uint14 => uint32) tileOwnerNftId_;
+    mapping (uint14 => uint64) private tileOwner_;
 
-    uint128 remainOnNft_ = 0.3 ever;
+    uint32 private nftCounter_;                   // Just nft counter
+    uint32 private currentEpoch_;                 // Num of current epoch
+    uint14 private currentEpochTilesLeft_;        // How many tiles left to mint before new epoch is started
+    uint128 private currentEpochPixelTilePrice_;  // Price per tile
+    uint128 private prevEpochPixelTilePrice_;     // To reserve for repay
+    uint128 private nextEpochPriceTileGrow_;      // currentEpochPixelTilePrice_ = prevEpochPixelTilePrice_ + nextEpochPriceTileGrow_;
+
+    uint128 constant remainOnNft_ = 0.3 ever;
 
     event MintDisabledChanged(bool newValue);
-    event TileColorify(uint32 nftId, uint10 pixelStartX, uint10 pixelStartY, TileColors tileColors);
-    event NftMinted(uint32 nftId, address owner, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
-    event OnePixelTokenPriceChanged(uint128 newPrice);
+    event TileColorify(uint32 nftId, uint32 nftEpoch, uint10 pixelStartX, uint10 pixelStartY, TileColors tileColors);
+    event NftMinted(uint32 nftId, uint32 nftEpoch, address owner, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
+    event EpochChanged(uint32 newEpoch, uint128 oneTileClaimPrice);
 
     constructor(
         TvmCell codeNft,
         TvmCell codeIndex,
         TvmCell codeIndexBasis,
-        string jsonMetadata,
-        address tokenRoot,
-        uint128 onePixelTokenPrice
+        string jsonMetadata
     ) TIP4_1Collection (
         codeNft
     ) TIP4_2Collection (
@@ -59,19 +52,21 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         codeIndex,
         codeIndexBasis
     ) public {
-        require(msg.value >= 3 ever, ErrorCodes.NOT_ENOUGH_GAS);
         require(msg.sender == owner_, ErrorCodes.NOT_OWNER);
         require(tvm.pubkey() == 0, ErrorCodes.PUBKEY_MUST_BE_NOT_SET);
         tvm.rawReserve(1 ever, 0);
+
+        TvmBuilder salt;
+        salt.store(address(this));
+        _codeNft = tvm.setCodeSalt(_codeNft, salt.toCell());
+
         mintDisabled_ = true;
-        tokenRoot_ = tokenRoot;
-        onePixelTokenPrice_ = onePixelTokenPrice;
-        ITokenRoot(tokenRoot_).deployWallet{
-            value: 0,
-            bounce: false,
-            flag: 128,
-            callback: onWalletDeployed
-        }(address(this), 0.15 ever);
+        currentEpoch_ = 1;
+        prevEpochPixelTilePrice_ = 0;
+        currentEpochPixelTilePrice_ = 0.1 ever;
+        nextEpochPriceTileGrow_ = 0.1 ever;
+        currentEpochTilesLeft_ = 10000;
+        msg.sender.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
     }
 
     modifier onlyOwner() {
@@ -79,21 +74,9 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         _;
     }
 
-    modifier onlyTokenWallet() {
-        require(tokenWallet_.value != 0 && msg.sender == tokenWallet_, ErrorCodes.INVALID_TOKEN_WALLET);
-        _;
-    }
-
     modifier onlyMintEnabled() {
         require(mintDisabled_ == false, ErrorCodes.MINT_DISABLED);
         _;
-    }
-
-    function onWalletDeployed(
-        address tokenWallet
-    ) public {
-        require(msg.sender == tokenRoot_, ErrorCodes.INVALID_TOKEN_ROOT);
-        tokenWallet_ = tokenWallet;
     }
 
     function changeOwner(address newOwner) external onlyOwner {
@@ -118,8 +101,6 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
     }
 
     function enableMint() external override responsible onlyOwner returns(bool) {
-        // We can't enable mint if token wallet is not deployed yet
-        require(tokenWallet_.value != 0, ErrorCodes.INVALID_TOKEN_WALLET);
         mintDisabled_ = false;
         emit MintDisabledChanged(mintDisabled_);
         return { value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false } mintDisabled_;
@@ -129,28 +110,13 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false } mintDisabled_;
     }
 
-    function withdraw(address fromWallet, address to, uint128 deploy_wallet_value, uint128 amount) external onlyOwner {
-        require(to.value != 0, ErrorCodes.INVALID_RECIPIENT);
-        require(msg.value > deploy_wallet_value + 0.2 ever, ErrorCodes.NOT_ENOUGH_GAS);
-        // We allow to withdraw from any fromWallet
-        // in case someone will send wrong tip3 token to our contract.
-        tvm.rawReserve(0, 4);
-        TvmCell emptyPayload;
-        ITokenWallet(fromWallet).transfer{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}(
-            amount,
-            to,
-            deploy_wallet_value,
-            msg.sender,
-            false,
-            emptyPayload
-        );
+    function changeEpoch() external override responsible onlyOwner returns(uint32, uint128) {
+        _changeEpoch();
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false } (currentEpoch_, currentEpochPixelTilePrice_);
     }
 
-    function changeOneTilePrice(uint128 newTilePrice) external onlyOwner {
-        tvm.rawReserve(0, 4);
-        onePixelTokenPrice_ = newTilePrice;
-        emit OnePixelTokenPriceChanged(onePixelTokenPrice_);
-        msg.sender.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+    function setNftBurningBlocked(uint32 nftId, bool isBlocked) external onlyOwner  {
+        SegmintNft(_resolveNft(nftId)).setBurningBlocked{value: 0, bounce: false, flag: MsgFlag.REMAINING_GAS}(isBlocked, msg.sender);
     }
 
     function _buildNftState(
@@ -164,160 +130,171 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         });
     }
 
-    function _validateClaim(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify) private inline returns (bool, uint7, uint7, uint7, uint7) {
+    function _validateClaim(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY) private inline returns (uint7, uint7, uint7, uint7, uint14) {
         if (pixelStartX % 10 != 0 || pixelStartY % 10 != 0 || pixelEndX % 10 != 0 || pixelEndY % 10 != 0 || pixelStartX >= pixelEndX || pixelStartY >= pixelEndY || pixelEndX > 1000 || pixelEndY > 1000) {
-            return (true, 0, 0, 0, 0);
-        }
-
-        // 0 - 100
-        uint7 tilesWidthCount = uint7((pixelEndX - pixelStartX) / 10);
-        uint7 tilesHeightCount = uint7((pixelEndY - pixelStartY) / 10);
-
-        if (tilesWidthCount * tilesHeightCount != tilesToColorify.length) {
-            return (true, 0, 0, 0, 0);
+            revert(ErrorCodes.WRONG_TILE_COORDS);
         }
 
         // 0 - 99
         uint7 tilesStartX = uint7(pixelStartX / 10);
         uint7 tilesStartY = uint7(pixelStartY / 10);
 
-        // Check the tiles is not claimed
+        // 0 - 100
+        uint7 tilesWidthCount = uint7((pixelEndX - pixelStartX) / 10);
+        uint7 tilesHeightCount = uint7((pixelEndY - pixelStartY) / 10);
+
+        uint14 tilesCount = uint14(tilesWidthCount) * uint14(tilesHeightCount);
+        if (tilesCount > 100) {
+            revert(ErrorCodes.WRONG_TILE_COORDS);
+        }
+        return (tilesStartX, tilesStartY, tilesWidthCount, tilesHeightCount, tilesCount);
+    }
+
+    function claimTiles(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url, uint128 coinsToRedrawOneTile) external override onlyMintEnabled {
+
+        // we always store balance + 1 venom from incoming message for storage payments
+        (uint7 tilesStartX, uint7 tilesStartY, uint7 tilesWidthCount, uint7 tilesHeightCount, uint14 tilesCount) = _validateClaim(pixelStartX, pixelStartY, pixelEndX, pixelEndY);
+
+        uint32 nftId = nftCounter_;
+        nftCounter_ += 1;
+        uint64 nftIdWithEpoch = (uint64(nftId) << 32) | currentEpoch_;
+
+        for (uint14 tileX = tilesStartX; tileX < tilesStartX + tilesWidthCount; tileX++) {
+            uint14 shiftedX = tileX << 7;
+            for (uint7 tileY = tilesStartY; tileY < tilesStartY + tilesHeightCount; tileY++) {
+                // set this tile index to be owned by nft
+                // we already checked is this index free in _validateClaim
+                optional(uint64) oPrevOwner = tileOwner_.getSet(shiftedX | tileY, nftIdWithEpoch);
+                if (oPrevOwner.hasValue()) {
+                    require(oPrevOwner.get() & 4294967295 < currentEpoch_, ErrorCodes.TILE_ALREADY_TAKEN);
+                }
+            }
+        }
+
+        uint128 currentPrice = tilesCount * currentEpochPixelTilePrice_;
+        uint128 prevPrice = tilesCount * prevEpochPixelTilePrice_;
+
+        // we check because messages not bounce on action phase.
+        // current price + 0.2 venom for gas + 1 venom for NFT deployment + 0.1 venom for storage payment
+        // + 0.05 venom for maximum forward fee
+        require(msg.value > currentPrice + 0.35 ever + 1 ever);
+
+        // We reverse on contract 0.1 venom for payment storage + diff between prev epoch price and current epoch price
+        // for rebate
+        tvm.rawReserve(0.1 ever + currentPrice - prevPrice, 4);
+        emit NftMinted(nftId, currentEpoch_, msg.sender, pixelStartX, pixelStartY, pixelEndX, pixelEndY);
+
+        // generate next epoch
+        currentEpochTilesLeft_ -= tilesWidthCount * tilesHeightCount;
+        // if less then 15% left start new epoch.
+        if (currentEpochTilesLeft_ < 1500) {
+            _changeEpoch();
+        }
+
+        TvmCell stateNft = _buildNftState(_codeNft, uint256(nftId));
+        address nftAddr = new SegmintNft{
+                stateInit: tvm.buildStateInit({
+                    contr: SegmintNft,
+                    varInit: {_id: nftId},
+                    code: _codeNft
+                }),
+                value: 1 ever + prevPrice,
+                flag: MsgFlag.SENDER_PAYS_FEES
+        } (
+            msg.sender,
+            owner_,
+            remainOnNft_,
+            _indexDeployValue,
+            _indexDestroyValue,
+            _codeIndex,
+            currentPrice,
+            pixelStartX,
+            pixelStartY,
+            pixelEndX,
+            pixelEndY,
+            description,
+            url
+        );
+
+        SegmintNft(nftAddr).colorify{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}({tilesToColorify: tilesToColorify, description: description, url: url, coinsToRedrawOneTile: coinsToRedrawOneTile, sendGasBack: msg.sender});
+    }
+
+    function colorifyTile(uint32 nftId, TileColors tileColors, uint10 tilePixelX, uint10 tilePixelY, address sendGasBack) external override {
+        require(msg.sender == _resolveNft(nftId), ErrorCodes.WRONG_NFT);
+         tvm.rawReserve(0, 4);
+
+        uint14 index = (uint14(tilePixelX/10) << 7) | uint14(tilePixelY/10);
+        optional(uint64) oNftIdWithEpoch = tileOwner_.fetch(index);
+
+        if (oNftIdWithEpoch.hasValue()) {
+            uint64 nftIdWithEpoch = oNftIdWithEpoch.get();
+            if (uint32(nftIdWithEpoch >> 32) == nftId) {
+                // We iterate via tile color arrays
+                // because i'm not really sure how solidity operate with arrays
+                // and big structs. Due to TvmCell structure I think solidity doesn't
+                // really check how many elements are packed into array.
+                // So any bad gay can try to insert really big array to Increase contract storage
+                // payments.
+                uint80[] emptyColors = new uint80[](10);
+                TileColors newColors = TileColors(emptyColors, emptyColors, emptyColors);
+                for (uint y = 0; y < 10; y++) {
+                    newColors.r[y] = tileColors.r[y];
+                    newColors.g[y] = tileColors.g[y];
+                    newColors.b[y] = tileColors.b[y];
+                }
+                tiles_[index] = newColors;
+                emit TileColorify(nftId, uint32(nftIdWithEpoch & 4294967295), tilePixelX, tilePixelY, newColors);
+                // We don't return the change, to avoid creating too many messages
+                // we just use good gas calculation and param  uint128 coinsToRedrawOneTile in nft
+                // to manage them.
+            } else {
+                sendGasBack.transfer( 0,  false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+            }
+        }
+    }
+
+    function burnNft(uint32 nftId, uint128 lockedAmount, uint10 nftPixelStartX, uint10 nftPixelStartY, uint10 nftPixelEndX, uint10 nftPixelEndY) external override {
+        require(msg.sender == _resolveNft(nftId), ErrorCodes.WRONG_NFT);
+
+        (uint7 tilesStartX, uint7 tilesStartY, uint7 tilesWidthCount, uint7 tilesHeightCount, uint14 tilesCount) = _validateClaim(nftPixelStartX, nftPixelStartY, nftPixelEndX, nftPixelEndY);
         bool shouldCancel = false;
-        for (uint7 tileX = tilesStartX; tileX < tilesWidthCount; tileX++) {
-            for (uint7 tileY = tilesStartY; tileY < tilesHeightCount; tileY++) {
-                uint14 index = uint14(tileX) << 7 | uint14(tileY);
-                if (tileOwnerNftId_.exists(index)) {
+
+        for (uint14 tileX = tilesStartX; tileX < tilesStartX + tilesWidthCount; tileX++) {
+            uint14 shiftedX = tileX << 7;
+            for (uint7 tileY = tilesStartY; tileY < tilesStartY + tilesHeightCount; tileY++) {
+                uint64 prevOwnerInfo = tileOwner_[shiftedX | tileY];
+                uint32 ownedByNftId = uint32(prevOwnerInfo >> 32);
+                if (ownedByNftId == nftId) {
                     shouldCancel = true;
                 }
             }
         }
-
-        return (shouldCancel, tilesStartX, tilesStartY, tilesWidthCount, tilesHeightCount);
-    }
-
-    function onAcceptTokensTransfer(
-        address tokenRoot,
-        uint128 amount,
-        address sender,
-        address senderWallet,
-        address remainingGasTo,
-        TvmCell payload
-    ) override external onlyTokenWallet {
-        // Decode input
-        (uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url, uint128 coinsToRedrawOneTile) = abi.decode(payload, (uint10, uint10, uint10, uint10, TileColors[], string, string, uint128));
-
-        // Validate input
-        (bool shouldCancel, uint7 tilesStartX, uint7 tilesStartY, uint7 tilesWidthCount, uint7 tilesHeightCount) = _validateClaim(pixelStartX, pixelStartY, pixelEndX, pixelEndY, tilesToColorify);
-
-        // Amount must be widthTiles * heightTiles * 100 pixelPerTile * onePixelTokenPrice_
-        if (mintDisabled_ || shouldCancel || msg.value < 3.5 ever || amount != uint128(tilesWidthCount) * uint128(tilesHeightCount) * uint128(100) * onePixelTokenPrice_) {
-            if (msg.value < 1 ever) {
-                // User didn't not attached enough value to the message
-                // at this moment we are not sure we have enough
-                // value (after paying for current transaction gas)
-                // for safe transfer tokens back.
-                // So we just throwing an error and user must
-                // ask to manual refund.
-                require(false, ErrorCodes.NOT_ENOUGH_GAS);
-            }
-            // Not enough gas or tiles already taken or not enough payment
-            TvmCell emptyPayload;
-            ITokenWallet(msg.sender).transferToWallet{value: 0, bounce: false, flag: 128}(amount, senderWallet, remainingGasTo, false, emptyPayload);
+        if (shouldCancel) {
+            SegmintNft(msg.sender).onBurnError{value: 0, bounce: false, flag: MsgFlag.REMAINING_GAS}();
         } else {
-            // claim!!!
-            // we always store balance + 1 venom from incoming message for storage payments
-            tvm.rawReserve(1 ever, 4);
-            uint32 nftId = nftCounter_;
-            nftCounter_ += 1;
-
-            for (uint7 tileX = tilesStartX; tileX < tilesStartX + tilesWidthCount; tileX++) {
-                uint14 shiftedX = uint14(tileX) << 7;
-                for (uint7 tileY = tilesStartY; tileY < tilesStartY + tilesHeightCount; tileY++) {
-                    uint14 index = shiftedX | uint14(tileY);
-                    // set this tile index to be owned by nft
-                    // we already checked is this index free in _validateClaim
-                    tileOwnerNftId_[index] = nftId;
-                }
-            }
-
-            emit NftMinted(nftId, sender, pixelStartX, pixelStartY, pixelEndX, pixelEndY);
-
-            TvmBuilder salt;
-            salt.store(address(this));
-            TvmCell codeNft = tvm.setCodeSalt(_codeNft, salt.toCell());
-            TvmCell stateNft = _buildNftState(codeNft, uint256(nftId));
-
-            address nftAddr = new SegmintNft{
-                    stateInit: stateNft,
-                    value: 1 ever,
-                    flag: 0
-            } (
-                sender,
-                sender,
-                remainOnNft_,
-                _indexDeployValue,
-                _indexDestroyValue,
-                _codeIndex,
-                pixelStartX,
-                pixelStartY,
-                pixelEndX,
-                pixelEndY,
-                description,
-                url
-            );
-            SegmintNft(nftAddr).colorify{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}({tilesToColorify: tilesToColorify, description: description, url: url, coinsToRedrawOneTile: coinsToRedrawOneTile, sendGasBack: sender});
+            SegmintNft(msg.sender).onBurnSuccess{value: lockedAmount, bounce: false, flag: MsgFlag.REMAINING_GAS}();
         }
-    }
-
-    function colorifyTile(uint32 nftId, TileColors tileColors, uint10 tilePixelX, uint10 tilePixelY, address sendGasBack) external override {
-        // we always store balance + 0.001 venom from incoming message for storage payments
-        require(msg.sender == _resolveNft(nftId), ErrorCodes.WRONG_NFT);
-        // we always store 0.001 venom from incomig message for storage payments
-        tvm.rawReserve(0.001 ever, 4);
-
-        uint14 index = (uint14(tilePixelX/10) << 7) | uint14(tilePixelY/10);
-        optional(uint32) tileOwner = tileOwnerNftId_.fetch(index);
-        if (tileOwner.hasValue()) {
-            uint32 tileOwnedByNftId = tileOwner.get();
-            // unnecessary check, but why not.
-            require(tileOwnedByNftId == nftId, ErrorCodes.NFT_NOT_OWNER);
-
-            // We iterate via tile color arrays
-            // because i'm not really sure how solidity operate with arrays
-            // and big structs. Due to TvmCell structure I think solidity doesn't
-            // really check how many elements are packed into array.
-            // So any bad gay can try to insert really big array to Increase contract storage
-            // payments.
-            uint80[] emptyColors = new uint80[](10);
-            TileColors newColors = TileColors(emptyColors, emptyColors, emptyColors);
-            for (uint y = 0; y < 10; y++) {
-                newColors.r[y] = tileColors.r[y];
-                newColors.g[y] = tileColors.g[y];
-                newColors.b[y] = tileColors.b[y];
-            }
-            tiles_[index] = Tile(nftId, newColors);
-            emit TileColorify(nftId, tilePixelX, tilePixelY, newColors);
-        } else {
-            require(false, ErrorCodes.NFT_NOT_OWNER);
-        }
-        sendGasBack.transfer( 0,  false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
     }
 
     // To call offchain to get tile info and pixels
-    function getTile(uint10 tilePixelX, uint10 tilePixelY) external override responsible returns (uint8[] pixels, uint32 nftId) {
+    function getTile(uint10 tilePixelX, uint10 tilePixelY) external override responsible returns (uint8[] pixels, uint32 nftId, uint32 epoch) {
         // 2 ** 32
         nftId = uint32(4294967295);
         uint14 index = (uint14(tilePixelX/10) << 7) | uint14(tilePixelY/10);
-        optional(Tile) oTile = tiles_.fetch(index);
-        if (oTile.hasValue()) {
-            Tile tile = oTile.get();
-            nftId = tile.nftId;
-            pixels = _convertTileToPixels(tile.colors);
+        optional(TileColors) oTileColors = tiles_.fetch(index);
+        if (oTileColors.hasValue()) {
+            TileColors tileColors = oTileColors.get();
+            uint64 nftOwnerData = tileOwner_[index];
+            nftId = uint32(nftOwnerData >> 32);
+            epoch = uint32(nftOwnerData & 4294967295);
+            pixels = _convertTileToPixels(tileColors);
         } else {
-            optional(uint32) oNftId = tileOwnerNftId_.fetch(index);
-            if (oNftId.hasValue()) {
+            optional(uint64) oNftOwnerData = tileOwner_.fetch(index);
+            if (oNftOwnerData.hasValue()) {
                 // nft claimed but not colored
-                nftId = oNftId.get();
+                uint64 nftOwnerData = oNftOwnerData.get();
+                nftId = uint32(nftOwnerData >> 32);
+                epoch = uint32(nftOwnerData & 4294967295);
             }
             for (uint y = 0; y < 10; y++)  {
                 for (uint x = 0; x < 10; x++)  {
@@ -327,8 +304,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
                 }
             }
         }
-
-        return{value: 0, bounce: false, flag: 64} (pixels, nftId);
+        return{value: 0, bounce: false, flag: 64} (pixels, nftId, epoch);
     }
 
     // To call offchain to convert raw colors to pixels
@@ -336,20 +312,16 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         return{value: 0, bounce: false, flag: 64} _convertTileToPixels(tileColors);
     }
 
-    function getTiles() external responsible returns(mapping (uint14 => Tile)) {
+    function getTilesColors() external responsible returns(mapping (uint14 => TileColors)) {
         return{value: 0, bounce: false, flag: 64} tiles_;
     }
 
-    function getOnePixelTokenPrice() external responsible returns(uint128) {
-        return{value: 0, bounce: false, flag: 64} onePixelTokenPrice_;
+    function getTilesOwners() external responsible returns(mapping (uint14 => uint64)) {
+        return{value: 0, bounce: false, flag: 64} tileOwner_;
     }
 
-    function nftCodeWithoutSalt() external view responsible returns (TvmCell nftCode) {
-        return {value: 0, flag: 64, bounce: false} (_codeNft);
-    }
-
-    function getNftCount() external responsible returns(uint32) {
-        return{value: 0, bounce: false, flag: 64} nftCounter_;
+    function getData() external responsible returns(uint32 nftCounter, uint32 epoch, uint128 currentEpochPixelTilePrice, bool mintDisabled) {
+        return{value: 0, bounce: false, flag: 64} (nftCounter_, currentEpoch_, currentEpochPixelTilePrice_, mintDisabled_);
     }
 
     function getNftIndexCodeHash(
@@ -372,5 +344,13 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
             }
         }
         return pixels;
+    }
+
+    function _changeEpoch() private inline {
+        currentEpoch_ += 1;
+        currentEpochTilesLeft_ = 10000;
+        prevEpochPixelTilePrice_ = currentEpochPixelTilePrice_;
+        currentEpochPixelTilePrice_ += nextEpochPriceTileGrow_;
+        emit EpochChanged(currentEpoch_, currentEpochPixelTilePrice_);
     }
 }

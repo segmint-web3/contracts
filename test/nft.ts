@@ -4,11 +4,7 @@ chai.use(lockliftChai);
 
 import { Signer } from "locklift";
 import { EverWalletAccount, SimpleKeystore } from "everscale-standalone-client";
-import {
-  deployCollectionAndTokenForOwner,
-  encodeMintPayload,
-  getRandomTileColors,
-} from "./utils";
+import { deployCollectionForOwner, getRandomTileColors, metadata } from "./utils";
 import { FactorySource } from "../build/factorySource";
 
 let signer: Signer;
@@ -28,6 +24,7 @@ describe("Test nft", async function () {
   });
 
   describe("Contracts", async function () {
+
     it("Load contract factory", async function () {
       for (let contract of ['Index', 'IndexBasis', 'SegmintCollection', 'SegmintNft']) {
         const artifacts = await locklift.factory.getContractArtifacts("SegmintCollection");
@@ -38,31 +35,23 @@ describe("Test nft", async function () {
     });
 
     it("Deploy collection & nft", async function () {
-      const {collection: collection_, tokenRoot, tokenWallet} = await deployCollectionAndTokenForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true, 100);
-
-      collection = collection_;
-      await locklift.tracing.trace(
-        tokenWallet.methods.transfer({
-          amount: 100_000_000_000,
-          recipient: collection.address,
-          deployWalletValue: '0',
-          remainingGasTo: ownerEverWallet.address,
-          notify: true,
-          payload: await encodeMintPayload({
-            "pixelStartX": 0,
-            "pixelStartY": 0,
-            "pixelEndX": 10,
-            "pixelEndY": 10,
-            "tilesToColorify": [getRandomTileColors()],
-            "description": "no",
-            "url": "no",
-            "coinsToRedrawOneTile" : locklift.utils.toNano(0.35)
-          })
+      collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
+      // expect(Number(response._state)).to.be.equal(NEW_STATE, "Wrong state");
+      const tracing = await locklift.tracing.trace(
+        collection.methods.claimTiles({
+          "pixelStartX": 0,
+          "pixelStartY": 0,
+          "pixelEndX": 10,
+          "pixelEndY": 10,
+          "tilesToColorify": [getRandomTileColors()],
+          "description": "no",
+          "url": "no",
+          "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(10),
         })
-      )
+      );
 
       let {nft: nftAddress} = await collection.methods.nftAddress({answerId: 0, id: "0"}).call({responsible: true});
       nft = locklift.factory.getDeployedContract('SegmintNft', nftAddress);
@@ -158,4 +147,204 @@ describe("Test nft", async function () {
       expect(oldManagerAgain.equals(ownerEverWallet.address)).to.be.true;
     });
   });
+
+  it("Partially reclaimed nft must not be burnable. Full Reclaimed must be burnable.", async function () {
+    let tracing;
+    const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
+
+    // Claim 10x20 pixels tile.
+    await locklift.tracing.trace(
+      collection.methods.claimTiles({
+        "pixelStartX": 0,
+        "pixelStartY": 0,
+        "pixelEndX": 10,
+        "pixelEndY": 20,
+        "tilesToColorify": [getRandomTileColors()],
+        "description": "no",
+        "url": "no",
+        "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
+      }).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(10),
+      })
+    );
+
+    let {nft: nftAddress} = await collection.methods.nftAddress({answerId: 0, id: "0"}).call({responsible: true});
+    nft = locklift.factory.getDeployedContract('SegmintNft', nftAddress);
+
+    // change epoch to reclaim
+    await locklift.tracing.trace(
+      collection.methods.changeEpoch({answerId: 0}).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(1),
+      })
+    );
+
+    // Claim 10x10 from 10x20, 1/2.
+    await locklift.tracing.trace(
+      collection.methods.claimTiles({
+        "pixelStartX": 0,
+        "pixelStartY": 0,
+        "pixelEndX": 10,
+        "pixelEndY": 10,
+        "tilesToColorify": [getRandomTileColors()],
+        "description": "no",
+        "url": "no",
+        "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
+      }).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(10),
+      })
+    );
+
+    await locklift.tracing.trace(
+      nft.methods.burnNft({}).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(1.1),
+      })
+    );
+    expect((await nft.getFullState()).state?.isDeployed).to.be.equal(true);
+
+    // claim second tile of the first nft.
+    await locklift.tracing.trace(
+      collection.methods.claimTiles({
+        "pixelStartX": 0,
+        "pixelStartY": 10,
+        "pixelEndX": 10,
+        "pixelEndY": 20,
+        "tilesToColorify": [getRandomTileColors()],
+        "description": "no",
+        "url": "no",
+        "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
+      }).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(10),
+      })
+    );
+
+    await locklift.tracing.trace(
+      nft.methods.burnNft({}).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(1.1),
+      })
+    );
+    // must be deleted
+    expect((await nft.getFullState()).state).to.be.equal(undefined);
+  });
+
+  it("Collection owner can lock nft from be burned in case of unappropriated content.", async function () {
+    let tracing;
+    const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
+
+    // Claim 10x20 pixels tile.
+    await locklift.tracing.trace(
+      collection.methods.claimTiles({
+        "pixelStartX": 0,
+        "pixelStartY": 0,
+        "pixelEndX": 10,
+        "pixelEndY": 10,
+        "tilesToColorify": [getRandomTileColors()],
+        "description": "no",
+        "url": "no",
+        "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
+      }).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(10),
+      })
+    );
+
+    let {nft: nftAddress} = await collection.methods.nftAddress({answerId: 0, id: "0"}).call({responsible: true});
+    nft = locklift.factory.getDeployedContract('SegmintNft', nftAddress);
+
+    // change epoch to reclaim
+    await locklift.tracing.trace(
+      collection.methods.changeEpoch({answerId: 0}).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(1),
+      })
+    );
+
+    // Redraw
+    await locklift.tracing.trace(
+      collection.methods.claimTiles({
+        "pixelStartX": 0,
+        "pixelStartY": 0,
+        "pixelEndX": 10,
+        "pixelEndY": 10,
+        "tilesToColorify": [getRandomTileColors()],
+        "description": "no",
+        "url": "no",
+        "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
+      }).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(10),
+      })
+    );
+
+
+    // claim second tile of the first nft.
+    await locklift.tracing.trace(
+      collection.methods.claimTiles({
+        "pixelStartX": 0,
+        "pixelStartY": 10,
+        "pixelEndX": 10,
+        "pixelEndY": 20,
+        "tilesToColorify": [getRandomTileColors()],
+        "description": "no",
+        "url": "no",
+        "coinsToRedrawOneTile" : locklift.utils.toNano(0.3)
+      }).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(10),
+      })
+    );
+
+
+    // block
+    await locklift.tracing.trace(
+      collection.methods.setNftBurningBlocked({
+        "nftId": "0",
+        "isBlocked": true
+      }).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(1),
+      })
+    );
+    await locklift.tracing.trace(
+      nft.methods.burnNft({}).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(1.1),
+      }), {
+        allowedCodes: {
+          contracts: {
+            [nft.address.toString()]: {
+              compute: [1018],
+            },
+          },
+        },
+      }
+    );
+    // must be not burned
+    expect((await nft.getFullState()).state?.isDeployed).to.be.equal(true);
+
+    // unblock
+    await locklift.tracing.trace(
+      collection.methods.setNftBurningBlocked({
+        "nftId": "0",
+        "isBlocked": false
+      }).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(1),
+      })
+    );
+    await locklift.tracing.trace(
+      nft.methods.burnNft({}).send({
+        from: ownerEverWallet.address,
+        amount: locklift.utils.toNano(1.1),
+      })
+    );
+    // must be deleted
+    expect((await nft.getFullState()).state).to.be.equal(undefined);
+  });
+
 });

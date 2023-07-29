@@ -1,4 +1,5 @@
 pragma ever-solidity >= 0.64.0;
+pragma ignoreIntOverflow;
 
 import "./interfaces/ISegmintCollection.tsol";
 import "./libraries/MsgFlag.tsol";
@@ -10,14 +11,18 @@ import '@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Nft.sol';
 import '@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Nft.sol';
 
 contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
-    uint10 tilePixelsStartX_;
-    uint10 tilePixelsStartY_;
-    uint10 tilePixelsEndX_;
-    uint10 tilePixelsEndY_;
+
+    uint10 nftPixelsStartX_;
+    uint10 nftPixelsStartY_;
+    uint10 nftPixelsEndX_;
+    uint10 nftPixelsEndY_;
     uint128 remainOnNft_;
+    uint128 lockedAmount_;
 
     string description_;
     string url_;
+    bool burnInProgress_;
+    bool isBurningBlocked_;
 
     modifier onlyOwnerOrCollection() {
         require(msg.sender == _owner || msg.sender == _collection, ErrorCodes.NOT_OWNER);
@@ -31,10 +36,11 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         uint128 indexDeployValue,
         uint128 indexDestroyValue,
         TvmCell codeIndex,
-        uint10 tilePixelsStartX,
-        uint10 tilePixelsStartY,
-        uint10 tilePixelsEndX,
-        uint10 tilePixelsEndY,
+        uint128 lockedAmount,
+        uint10 nftPixelsStartX,
+        uint10 nftPixelsStartY,
+        uint10 nftPixelsEndX,
+        uint10 nftPixelsEndY,
         string description,
         string url
     ) TIP4_1Nft(
@@ -46,25 +52,26 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         indexDestroyValue,
         codeIndex
     ) public {
-        tilePixelsStartX_ = tilePixelsStartX;
-        tilePixelsStartY_ = tilePixelsStartY;
-        tilePixelsEndX_ = tilePixelsEndX;
-        tilePixelsEndY_ = tilePixelsEndY;
+        nftPixelsStartX_ = nftPixelsStartX;
+        nftPixelsStartY_ = nftPixelsStartY;
+        nftPixelsEndX_ = nftPixelsEndX;
+        nftPixelsEndY_ = nftPixelsEndY;
         remainOnNft_ = remainOnNft;
+        lockedAmount_ = lockedAmount;
         description_ = description;
         url_ = url;
+        isBurningBlocked_ = false;
         // We support ITIP4_2JSON_Metadata.getJson
         // But not would like to inherit TIP4_2Nft
         // Just implemented getJson() method below
         _supportedInterfaces[
             bytes4(tvm.functionId(ITIP4_2JSON_Metadata.getJson))
         ] = true;
-
     }
 
     function getJson() external view responsible returns (string json) {
         string name = format("Segmint Nft {}", _id);
-        string description = format("Piece of canvas x from {} to {}, y from {} to {} pixels", tilePixelsStartX_, tilePixelsEndX_, tilePixelsStartY_, tilePixelsEndY_);
+        string description = format("Piece of canvas x from {} to {}, y from {} to {} pixels", nftPixelsStartX_, nftPixelsEndX_, nftPixelsStartY_, nftPixelsEndY_);
         string source = "https://segmint-web3.github.io/frontend/collection_logo.png";
         string external_url = "https://segmint-web3.github.io/frontend/";
 
@@ -79,8 +86,8 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} json;
     }
 
-    function getNftCustomData() external responsible returns (uint256 id, address owner, address collection, string description, string url, uint10 tilePixelsStartX, uint10 tilePixelsStartY, uint10 tilePixelsEndX, uint10 tilePixelsEndY) {
-        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (_id, _owner, _collection, description_, url_, tilePixelsStartX_, tilePixelsStartY_, tilePixelsEndX_, tilePixelsEndY_);
+    function getNftCustomData() external responsible returns (uint256 id, address owner, address collection, uint128 lockedAmount,  string description, string url, uint10 tilePixelsStartX, uint10 tilePixelsStartY, uint10 tilePixelsEndX, uint10 tilePixelsEndY) {
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (_id, _owner, _collection, lockedAmount_, description_, url_, nftPixelsStartX_, nftPixelsStartY_, nftPixelsEndX_, nftPixelsEndY_);
     }
 
     function colorify(TileColors[] tilesToColorify, string description, string url, uint128 coinsToRedrawOneTile, address sendGasBack) public onlyOwnerOrCollection {
@@ -90,21 +97,49 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         url_ = url;
 
         uint32 counter = 0;
-        uint10 tilePixelsStartX = tilePixelsStartX_;
-        uint10 tilePixelsStartY = tilePixelsStartY_;
+        uint10 tilePixelsStartX = nftPixelsStartX_;
+        uint10 tilePixelsStartY = nftPixelsStartY_;
 
-        // up to 255 tiles. We have limit, one nft could own only 225 tiles
+        // Up to 100 tiles. We have limit, one nft could own up only 100 tiles
         // We take coinsToRedrawOneTile from input because it can not lead to any ownership lose
         // But can be useful in case significant gas price changes
         for (TileColors colors : tilesToColorify) {
-            ISegmintCollection(_collection).colorifyTile{flag: 0, bounce: false, value: coinsToRedrawOneTile}(uint32(_id), colors, tilePixelsStartX, tilePixelsStartY, sendGasBack);
+            ISegmintCollection(_collection).colorifyTile{flag: MsgFlag.SENDER_PAYS_FEES, bounce: false, value: coinsToRedrawOneTile}(uint32(_id), colors, tilePixelsStartX, tilePixelsStartY, sendGasBack);
             tilePixelsStartX += 10;
-            if (tilePixelsStartX >= tilePixelsEndX_) {
-                tilePixelsStartX = tilePixelsStartX_;
+            if (tilePixelsStartX >= nftPixelsEndX_) {
+                tilePixelsStartX = nftPixelsStartX_;
                 tilePixelsStartY += 10;
             }
         }
         sendGasBack.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+    }
+
+    function setBurningBlocked(bool isBlocked, address sendGasBack) external {
+        require(msg.sender == _collection, ErrorCodes.NOT_COLLECTION);
+        isBurningBlocked_ = isBlocked;
+        sendGasBack.transfer({value: 0, bounce: false, flag: MsgFlag.REMAINING_GAS + MsgFlag.IGNORE_ERRORS});
+    }
+
+    function burnNft() external onlyManager {
+        require(msg.value >= 0.3 ever, ErrorCodes.NOT_ENOUGH_GAS);
+        require(isBurningBlocked_ == false, ErrorCodes.BURNING_IS_BLOCKED);
+
+        require(burnInProgress_ == false, ErrorCodes.BURN_IN_PROGRESS);
+        burnInProgress_ = true;
+        ISegmintCollection(_collection).burnNft{value: 0, bounce: false, flag: MsgFlag.REMAINING_GAS}(uint32(_id), lockedAmount_, nftPixelsStartX_,  nftPixelsStartY_, nftPixelsEndX_, nftPixelsEndY_);
+    }
+
+    function onBurnSuccess() external  {
+        require(msg.sender == _collection, ErrorCodes.NOT_COLLECTION);
+        tvm.accept();
+        _destructIndex(_owner);
+        _owner.transfer({value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.DESTROY_IF_ZERO});
+    }
+
+    function onBurnError() external  {
+        require(msg.sender == _collection, ErrorCodes.NOT_COLLECTION);
+        burnInProgress_ = false;
+        _owner.transfer(0, false, MsgFlag.REMAINING_GAS + MsgFlag.IGNORE_ERRORS);
     }
 
     function _beforeTransfer(
@@ -122,7 +157,6 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
     ) internal virtual override(TIP4_1Nft, TIP4_3Nft) {
         TIP4_3Nft._afterTransfer(to, sendGasTo, callbacks);
     }
-
 
     function _beforeChangeOwner(
         address oldOwner,

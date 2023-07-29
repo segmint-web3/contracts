@@ -25,8 +25,7 @@ const config: LockliftConfig = {
   compiler: {
     version: "0.64.0",
     externalContracts: {
-      "precompiled": ['Index', 'IndexBasis'],
-      "node_modules/broxus-ton-tokens-contracts/build": ['TokenRootUpgradeable', 'TokenWalletUpgradeable', 'TokenWalletPlatform']
+      "precompiled": ['Index', 'IndexBasis']
     }
   },
   linker: {

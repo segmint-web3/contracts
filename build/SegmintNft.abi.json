@@ -12,10 +12,11 @@
 				{"name":"indexDeployValue","type":"uint128"},
 				{"name":"indexDestroyValue","type":"uint128"},
 				{"name":"codeIndex","type":"cell"},
-				{"name":"tilePixelsStartX","type":"uint10"},
-				{"name":"tilePixelsStartY","type":"uint10"},
-				{"name":"tilePixelsEndX","type":"uint10"},
-				{"name":"tilePixelsEndY","type":"uint10"},
+				{"name":"lockedAmount","type":"uint128"},
+				{"name":"nftPixelsStartX","type":"uint10"},
+				{"name":"nftPixelsStartY","type":"uint10"},
+				{"name":"nftPixelsEndX","type":"uint10"},
+				{"name":"nftPixelsEndY","type":"uint10"},
 				{"name":"description","type":"string"},
 				{"name":"url","type":"string"}
 			],
@@ -40,6 +41,7 @@
 				{"name":"id","type":"uint256"},
 				{"name":"owner","type":"address"},
 				{"name":"collection","type":"address"},
+				{"name":"lockedAmount","type":"uint128"},
 				{"name":"description","type":"string"},
 				{"name":"url","type":"string"},
 				{"name":"tilePixelsStartX","type":"uint10"},
@@ -56,6 +58,36 @@
 				{"name":"url","type":"string"},
 				{"name":"coinsToRedrawOneTile","type":"uint128"},
 				{"name":"sendGasBack","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setBurningBlocked",
+			"inputs": [
+				{"name":"isBlocked","type":"bool"},
+				{"name":"sendGasBack","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "burnNft",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onBurnSuccess",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onBurnError",
+			"inputs": [
 			],
 			"outputs": [
 			]
@@ -199,12 +231,15 @@
 		{"name":"_indexDeployValue","type":"uint128"},
 		{"name":"_indexDestroyValue","type":"uint128"},
 		{"name":"_codeIndex","type":"cell"},
-		{"name":"tilePixelsStartX_","type":"uint10"},
-		{"name":"tilePixelsStartY_","type":"uint10"},
-		{"name":"tilePixelsEndX_","type":"uint10"},
-		{"name":"tilePixelsEndY_","type":"uint10"},
+		{"name":"nftPixelsStartX_","type":"uint10"},
+		{"name":"nftPixelsStartY_","type":"uint10"},
+		{"name":"nftPixelsEndX_","type":"uint10"},
+		{"name":"nftPixelsEndY_","type":"uint10"},
 		{"name":"remainOnNft_","type":"uint128"},
+		{"name":"lockedAmount_","type":"uint128"},
 		{"name":"description_","type":"string"},
-		{"name":"url_","type":"string"}
+		{"name":"url_","type":"string"},
+		{"name":"burnInProgress_","type":"bool"},
+		{"name":"isBurningBlocked_","type":"bool"}
 	]
 }

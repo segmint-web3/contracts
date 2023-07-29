@@ -9,17 +9,7 @@
 				{"name":"codeNft","type":"cell"},
 				{"name":"codeIndex","type":"cell"},
 				{"name":"codeIndexBasis","type":"cell"},
-				{"name":"jsonMetadata","type":"string"},
-				{"name":"tokenRoot","type":"address"},
-				{"name":"onePixelTokenPrice","type":"uint128"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "onWalletDeployed",
-			"inputs": [
-				{"name":"tokenWallet","type":"address"}
+				{"name":"jsonMetadata","type":"string"}
 			],
 			"outputs": [
 			]
@@ -67,33 +57,35 @@
 			]
 		},
 		{
-			"name": "withdraw",
+			"name": "changeEpoch",
 			"inputs": [
-				{"name":"fromWallet","type":"address"},
-				{"name":"to","type":"address"},
-				{"name":"deploy_wallet_value","type":"uint128"},
-				{"name":"amount","type":"uint128"}
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"uint32"},
+				{"name":"value1","type":"uint128"}
+			]
+		},
+		{
+			"name": "setNftBurningBlocked",
+			"inputs": [
+				{"name":"nftId","type":"uint32"},
+				{"name":"isBlocked","type":"bool"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "changeOneTilePrice",
+			"name": "claimTiles",
 			"inputs": [
-				{"name":"newTilePrice","type":"uint128"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "onAcceptTokensTransfer",
-			"inputs": [
-				{"name":"tokenRoot","type":"address"},
-				{"name":"amount","type":"uint128"},
-				{"name":"sender","type":"address"},
-				{"name":"senderWallet","type":"address"},
-				{"name":"remainingGasTo","type":"address"},
-				{"name":"payload","type":"cell"}
+				{"name":"pixelStartX","type":"uint10"},
+				{"name":"pixelStartY","type":"uint10"},
+				{"name":"pixelEndX","type":"uint10"},
+				{"name":"pixelEndY","type":"uint10"},
+				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tilesToColorify","type":"tuple[]"},
+				{"name":"description","type":"string"},
+				{"name":"url","type":"string"},
+				{"name":"coinsToRedrawOneTile","type":"uint128"}
 			],
 			"outputs": [
 			]
@@ -111,6 +103,19 @@
 			]
 		},
 		{
+			"name": "burnNft",
+			"inputs": [
+				{"name":"nftId","type":"uint32"},
+				{"name":"lockedAmount","type":"uint128"},
+				{"name":"nftPixelStartX","type":"uint10"},
+				{"name":"nftPixelStartY","type":"uint10"},
+				{"name":"nftPixelEndX","type":"uint10"},
+				{"name":"nftPixelEndY","type":"uint10"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "getTile",
 			"inputs": [
 				{"name":"answerId","type":"uint32"},
@@ -119,7 +124,8 @@
 			],
 			"outputs": [
 				{"name":"pixels","type":"uint8[]"},
-				{"name":"nftId","type":"uint32"}
+				{"name":"nftId","type":"uint32"},
+				{"name":"epoch","type":"uint32"}
 			]
 		},
 		{
@@ -133,39 +139,33 @@
 			]
 		},
 		{
-			"name": "getTiles",
+			"name": "getTilesColors",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
 			],
 			"outputs": [
-				{"components":[{"name":"nftId","type":"uint32"},{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"colors","type":"tuple"}],"name":"value0","type":"map(uint14,tuple)"}
+				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"value0","type":"map(uint14,tuple)"}
 			]
 		},
 		{
-			"name": "getOnePixelTokenPrice",
+			"name": "getTilesOwners",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
 			],
 			"outputs": [
-				{"name":"value0","type":"uint128"}
+				{"name":"value0","type":"map(uint14,uint64)"}
 			]
 		},
 		{
-			"name": "nftCodeWithoutSalt",
+			"name": "getData",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
 			],
 			"outputs": [
-				{"name":"nftCode","type":"cell"}
-			]
-		},
-		{
-			"name": "getNftCount",
-			"inputs": [
-				{"name":"answerId","type":"uint32"}
-			],
-			"outputs": [
-				{"name":"value0","type":"uint32"}
+				{"name":"nftCounter","type":"uint32"},
+				{"name":"epoch","type":"uint32"},
+				{"name":"currentEpochPixelTilePrice","type":"uint128"},
+				{"name":"mintDisabled","type":"bool"}
 			]
 		},
 		{
@@ -281,8 +281,8 @@
 		}
 	],
 	"data": [
-		{"key":1,"name":"nonce_","type":"uint16"},
-		{"key":2,"name":"owner_","type":"address"}
+		{"key":1,"name":"owner_","type":"address"},
+		{"key":2,"name":"nonce_","type":"uint16"}
 	],
 	"events": [
 		{
@@ -297,6 +297,7 @@
 			"name": "TileColorify",
 			"inputs": [
 				{"name":"nftId","type":"uint32"},
+				{"name":"nftEpoch","type":"uint32"},
 				{"name":"pixelStartX","type":"uint10"},
 				{"name":"pixelStartY","type":"uint10"},
 				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tileColors","type":"tuple"}
@@ -308,6 +309,7 @@
 			"name": "NftMinted",
 			"inputs": [
 				{"name":"nftId","type":"uint32"},
+				{"name":"nftEpoch","type":"uint32"},
 				{"name":"owner","type":"address"},
 				{"name":"pixelStartX","type":"uint10"},
 				{"name":"pixelStartY","type":"uint10"},
@@ -318,9 +320,10 @@
 			]
 		},
 		{
-			"name": "OnePixelTokenPriceChanged",
+			"name": "EpochChanged",
 			"inputs": [
-				{"name":"newPrice","type":"uint128"}
+				{"name":"newEpoch","type":"uint32"},
+				{"name":"oneTileClaimPrice","type":"uint128"}
 			],
 			"outputs": [
 			]
@@ -362,16 +365,17 @@
 		{"name":"_indexDeployValue","type":"uint128"},
 		{"name":"_indexDestroyValue","type":"uint128"},
 		{"name":"_deployIndexBasisValue","type":"uint128"},
-		{"name":"nonce_","type":"uint16"},
 		{"name":"owner_","type":"address"},
 		{"name":"newOwner_","type":"address"},
-		{"name":"tokenRoot_","type":"address"},
-		{"name":"tokenWallet_","type":"address"},
-		{"name":"onePixelTokenPrice_","type":"uint128"},
+		{"name":"nonce_","type":"uint16"},
 		{"name":"mintDisabled_","type":"bool"},
+		{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tiles_","type":"map(uint14,tuple)"},
+		{"name":"tileOwner_","type":"map(uint14,uint64)"},
 		{"name":"nftCounter_","type":"uint32"},
-		{"components":[{"name":"nftId","type":"uint32"},{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"colors","type":"tuple"}],"name":"tiles_","type":"map(uint14,tuple)"},
-		{"name":"tileOwnerNftId_","type":"map(uint14,uint32)"},
-		{"name":"remainOnNft_","type":"uint128"}
+		{"name":"currentEpoch_","type":"uint32"},
+		{"name":"currentEpochTilesLeft_","type":"uint14"},
+		{"name":"currentEpochPixelTilePrice_","type":"uint128"},
+		{"name":"prevEpochPixelTilePrice_","type":"uint128"},
+		{"name":"nextEpochPriceTileGrow_","type":"uint128"}
 	]
 }

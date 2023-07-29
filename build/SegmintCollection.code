@@ -9,26 +9,12 @@ IFREF {
 }
 GETGLOB 6
 THROWIF 51
-OVER
-PUSHCONT {
-	LDREF
-	LDREF
-	LDREF
-	LDREF
-	ENDS
-	CTOS
-}
-PUSHCONT {
-	LDREF
-	LDREF
-	LDREF
-}
-IFELSE
 LDREF
-LDMSGADDR
-LDU 128
+LDREF
+LDREF
+LDREF
 ENDS
-ROLL 5
+ROLL 3
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 29
 ACCEPT
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 31
@@ -58,8 +44,6 @@ ROTREV
 PUSHINT 32
 DICTUSETB
 SETGLOB 10
-.loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
-ROT
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol, 26
 ACCEPT
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol, 28
@@ -73,8 +57,6 @@ ROTREV
 PUSHINT 32
 DICTUSETB
 SETGLOB 10
-.loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol, 0
-SWAP2
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 41
 OVER
 HASHCU
@@ -112,102 +94,168 @@ SETGLOB 10
 CALLREF {
 	CALL $_deployIndexBasis_5852e463_internal_macro$
 }
-.loc ../contracts/SegmintCollection.tsol, 62
-DEPTH
-ADDCONST -2
-PICK
-PUSHINT 3000000000
-GEQ
-THROWIFNOT 1003
-.loc ../contracts/SegmintCollection.tsol, 63
+.loc ../contracts/SegmintCollection.tsol, 55
 GETGLOB 9
-GETGLOB 20
+GETGLOB 19
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/SegmintCollection.tsol, 64
+.loc ../contracts/SegmintCollection.tsol, 56
 GETGLOB 2
 THROWIF 1001
-.loc ../contracts/SegmintCollection.tsol, 65
+.loc ../contracts/SegmintCollection.tsol, 57
 PUSHINT 1000000000
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/SegmintCollection.tsol, 66
-TRUE
-SETGLOB 25
-.loc ../contracts/SegmintCollection.tsol, 67
-SWAP
-SETGLOB 22
-.loc ../contracts/SegmintCollection.tsol, 68
-SETGLOB 24
-.loc ../contracts/SegmintCollection.tsol, 69
-PUSHINT 150000000
+.loc ../contracts/SegmintCollection.tsol, 60
 MYADDR
-GETGLOB 22
-FALSE
 NEWC
-STSLICECONST x6_
-STI 1
-STSLICECONST x1_
 STSLICE
+.loc ../contracts/SegmintCollection.tsol, 61
+GETGLOB 11
+CTOS
+SWAP
+ENDC
+
+CALLREF {
+	PUSH S1
+	PUSHSLICE x8adb35
+	SDEQ
+	PUSHREFCONT {
+		SWAP      ; salt sliceCode
+		LDREF
+		LDREF
+		DROP         ; salt selfCallCode usualSelector
+		XCHG S1, S2  ; selfCallCode salt usualSelector
+		CTOS         ; selfCallCode salt usualSelector
+		CALLREF {
+			
+			LDREFRTOS  ; selfCallCode salt restUsualSelector intSelector
+
+			PUSHSLICE xF4A4_
+			SDBEGINSX
+			LDDICT     ; selfCallCode salt restUsualSelector dict intSelector
+			LDU 10
+			NIP
+			DUP
+			SREFS      ; selfCallCode salt restUsualSelector dict intSelector refs
+			PUSHCONT {
+				LDREF
+			}
+			PUSHCONT {
+				PUSHREF {
+				}
+				SWAP
+			}
+			IFELSE
+		                ; selfCallCode salt restUsualSelector dict version intSelector
+			PUSHSLICE xF4A1
+			SDBEGINSX
+			DROP
+			            ; selfCallCode salt restUsualSelector dict version
+			SWAP        ; selfCallCode salt restUsualSelector version dict
+			NEWC        ; selfCallCode salt restUsualSelector version dict builder
+			STSLICECONST xF4A4_ ; DICTPUSHCONST
+			STDICT
+			PUSHINT 32
+			STUR 10
+			STSLICECONST xF4A1 ; DICTUGETJMP
+			STREF       ; selfCallCode salt restUsualSelector builder
+			XCHG S1, S2 ; selfCallCode restUsualSelector salt builder
+			STREF       ; selfCallCode restUsualSelector builder
+			NEWC        ; selfCallCode restUsualSelector builder usualBuilder
+			STBREF      ; selfCallCode restUsualSelector usualBuilder
+			STSLICE     ; selfCallCode usualBuilder
+
+		}
+		NEWC        ; selfCallCode usualBuilder mainBuilder
+		STSLICECONST x8adb35
+		XCHG S1, S2 ; usualBuilder selfCallCode mainBuilder
+		STREF
+		STBREF
+		ENDC
+	}
+	PUSHREFCONT {
+		SWAP
+		CALLREF {
+			
+			LDREFRTOS  ; selfCallCode salt restUsualSelector intSelector
+
+			PUSHSLICE xF4A4_
+			SDBEGINSX
+			LDDICT     ; selfCallCode salt restUsualSelector dict intSelector
+			LDU 10
+			NIP
+			DUP
+			SREFS      ; selfCallCode salt restUsualSelector dict intSelector refs
+			PUSHCONT {
+				LDREF
+			}
+			PUSHCONT {
+				PUSHREF {
+				}
+				SWAP
+			}
+			IFELSE
+		                ; selfCallCode salt restUsualSelector dict version intSelector
+			PUSHSLICE xF4A1
+			SDBEGINSX
+			DROP
+			            ; selfCallCode salt restUsualSelector dict version
+			SWAP        ; selfCallCode salt restUsualSelector version dict
+			NEWC        ; selfCallCode salt restUsualSelector version dict builder
+			STSLICECONST xF4A4_ ; DICTPUSHCONST
+			STDICT
+			PUSHINT 32
+			STUR 10
+			STSLICECONST xF4A1 ; DICTUGETJMP
+			STREF       ; selfCallCode salt restUsualSelector builder
+			XCHG S1, S2 ; selfCallCode restUsualSelector salt builder
+			STREF       ; selfCallCode restUsualSelector builder
+			NEWC        ; selfCallCode restUsualSelector builder usualBuilder
+			STBREF      ; selfCallCode restUsualSelector usualBuilder
+			STSLICE     ; selfCallCode usualBuilder
+
+		}
+		ENDC
+	}
+	IFELSE
+}
+SETGLOB 11
+.loc ../contracts/SegmintCollection.tsol, 63
+TRUE
+SETGLOB 22
+.loc ../contracts/SegmintCollection.tsol, 64
 PUSHINT 1
-STUR 111
-ROTREV
-PUSHSLICE x31edd4c743a94950
+SETGLOB 26
+.loc ../contracts/SegmintCollection.tsol, 65
+PUSHINT 0
+SETGLOB 29
+.loc ../contracts/SegmintCollection.tsol, 66
+PUSHINT 100000000
+SETGLOB 28
+.loc ../contracts/SegmintCollection.tsol, 67
+PUSHINT 100000000
+SETGLOB 30
+.loc ../contracts/SegmintCollection.tsol, 68
+PUSHINT 10000
+SETGLOB 27
+.loc ../contracts/SegmintCollection.tsol, 69
+GETGLOB 9
 NEWC
+STSLICECONST x42_
 STSLICE
-STSLICE
-STU 128
-STBREFR
+PUSHINT 111
+STZEROES
 ENDC
 PUSHPOW2 7
+ADDCONST 2
+UFITS 8
 SENDRAWMSG
 .loc ../contracts/SegmintCollection.tsol, 0
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
-
-.macro onWalletDeployed
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/SegmintCollection.tsol, 92
-OVER
-PUSHCONT {
-	LDREF
-	ENDS
-	CTOS
-}
-IF
-LDMSGADDR
-ENDS
-.loc ../contracts/SegmintCollection.tsol, 0
-CALLREF {
-	CALL $onWalletDeployed_6eb5ea01_internal_macro$
-}
-CALLREF {
-	CALL $c7_to_c4$
-}
-THROW 0
-
-.globl	onWalletDeployed_6eb5ea01_internal
-.type	onWalletDeployed_6eb5ea01_internal, @function
-CALL $onWalletDeployed_6eb5ea01_internal_macro$
-
-.macro onWalletDeployed_6eb5ea01_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 95
-GETGLOB 9
-GETGLOB 22
-SDEQ
-THROWIFNOT 1014
-.loc ../contracts/SegmintCollection.tsol, 96
-SETGLOB 23
-.loc ../contracts/SegmintCollection.tsol, 0
 
 .macro changeOwner
 DROP
@@ -218,7 +266,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 99
+.loc ../contracts/SegmintCollection.tsol, 82
 OVER
 PUSHCONT {
 	LDREF
@@ -238,20 +286,20 @@ CALLREF {
 THROW 0
 
 .macro changeOwner_a6f9dae1_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 78
+.loc ../contracts/SegmintCollection.tsol, 73
 GETGLOB 9
-GETGLOB 20
+GETGLOB 19
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/SegmintCollection.tsol, 100
+.loc ../contracts/SegmintCollection.tsol, 83
 DUP
 PARSEMSGADDR
 INDEX 3
 PLDU 256
 THROWIFNOT 1002
-.loc ../contracts/SegmintCollection.tsol, 101
-SETGLOB 21
-.loc ../contracts/SegmintCollection.tsol, 102
+.loc ../contracts/SegmintCollection.tsol, 84
+SETGLOB 20
+.loc ../contracts/SegmintCollection.tsol, 85
 GETGLOB 9
 NEWC
 STSLICECONST x42_
@@ -272,7 +320,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 105
+.loc ../contracts/SegmintCollection.tsol, 88
 ENDS
 .loc ../contracts/SegmintCollection.tsol, 0
 CALLREF {
@@ -284,26 +332,26 @@ CALLREF {
 THROW 0
 
 .macro acceptOwnership_79ba5097_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 106
-GETGLOB 21
+.loc ../contracts/SegmintCollection.tsol, 89
+GETGLOB 20
 PARSEMSGADDR
 INDEX 3
 PLDU 256
 THROWIFNOT 1002
-.loc ../contracts/SegmintCollection.tsol, 107
+.loc ../contracts/SegmintCollection.tsol, 90
 GETGLOB 9
-GETGLOB 21
+GETGLOB 20
 SDEQ
 THROWIFNOT 1002
-.loc ../contracts/SegmintCollection.tsol, 109
-GETGLOB 21
-SETGLOB 20
-.loc ../contracts/SegmintCollection.tsol, 110
+.loc ../contracts/SegmintCollection.tsol, 92
+GETGLOB 20
+SETGLOB 19
+.loc ../contracts/SegmintCollection.tsol, 93
 PUSHREFSLICE {
 	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 }
-SETGLOB 21
-.loc ../contracts/SegmintCollection.tsol, 111
+SETGLOB 20
+.loc ../contracts/SegmintCollection.tsol, 94
 GETGLOB 9
 NEWC
 STSLICECONST x42_
@@ -324,7 +372,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 114
+.loc ../contracts/SegmintCollection.tsol, 97
 LDU 32
 GETGLOB 4
 ROT
@@ -387,16 +435,16 @@ CALLREF {
 THROW 0
 
 .macro disableMint_34452f38_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 78
+.loc ../contracts/SegmintCollection.tsol, 73
 GETGLOB 9
-GETGLOB 20
+GETGLOB 19
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/SegmintCollection.tsol, 115
+.loc ../contracts/SegmintCollection.tsol, 98
 TRUE
 DUP
-SETGLOB 25
-.loc ../contracts/SegmintCollection.tsol, 116
+SETGLOB 22
+.loc ../contracts/SegmintCollection.tsol, 99
 PUSHSLICE xc00000000000000000000000005975e3d6
 NEWC
 STSLICE
@@ -404,7 +452,7 @@ STI 1
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../contracts/SegmintCollection.tsol, 117
+.loc ../contracts/SegmintCollection.tsol, 100
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -413,7 +461,7 @@ SETINDEXQ 4
 FALSE
 SETINDEXQ 1
 SETGLOB 4
-GETGLOB 25
+GETGLOB 22
 .loc ../contracts/SegmintCollection.tsol, 0
 
 .macro enableMint
@@ -425,7 +473,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 120
+.loc ../contracts/SegmintCollection.tsol, 103
 LDU 32
 GETGLOB 4
 ROT
@@ -488,22 +536,16 @@ CALLREF {
 THROW 0
 
 .macro enableMint_44b28d59_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 78
+.loc ../contracts/SegmintCollection.tsol, 73
 GETGLOB 9
-GETGLOB 20
+GETGLOB 19
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/SegmintCollection.tsol, 122
-GETGLOB 23
-PARSEMSGADDR
-INDEX 3
-PLDU 256
-THROWIFNOT 1015
-.loc ../contracts/SegmintCollection.tsol, 123
+.loc ../contracts/SegmintCollection.tsol, 104
 FALSE
 DUP
-SETGLOB 25
-.loc ../contracts/SegmintCollection.tsol, 124
+SETGLOB 22
+.loc ../contracts/SegmintCollection.tsol, 105
 PUSHSLICE xc00000000000000000000000005975e3d6
 NEWC
 STSLICE
@@ -511,7 +553,7 @@ STI 1
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../contracts/SegmintCollection.tsol, 125
+.loc ../contracts/SegmintCollection.tsol, 106
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -520,7 +562,7 @@ SETINDEXQ 4
 FALSE
 SETINDEXQ 1
 SETGLOB 4
-GETGLOB 25
+GETGLOB 22
 .loc ../contracts/SegmintCollection.tsol, 0
 
 .macro getMintDisabled
@@ -532,7 +574,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 128
+.loc ../contracts/SegmintCollection.tsol, 109
 LDU 32
 GETGLOB 4
 ROT
@@ -595,7 +637,7 @@ CALLREF {
 THROW 0
 
 .macro getMintDisabled_5eab911d_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 129
+.loc ../contracts/SegmintCollection.tsol, 110
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -604,10 +646,10 @@ SETINDEXQ 4
 FALSE
 SETINDEXQ 1
 SETGLOB 4
-GETGLOB 25
+GETGLOB 22
 .loc ../contracts/SegmintCollection.tsol, 0
 
-.macro withdraw
+.macro changeEpoch
 DROP
 GETGLOB 6
 THROWIFNOT 76
@@ -616,66 +658,154 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 132
-OVER
-PUSHCONT {
-	LDREF
-	ENDS
-	CTOS
-}
-IF
-LDMSGADDR
-LDREF
-ENDS
-CTOS
-LDMSGADDR
-LDU 128
-LDU 128
+.loc ../contracts/SegmintCollection.tsol, 113
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
 ENDS
 .loc ../contracts/SegmintCollection.tsol, 0
 CALLREF {
-	CALL $withdraw_a77ff5a1_internal_macro$
+	CALL $changeEpoch_fe6f86f8_internal_macro$
+}
+PUSH S2
+PUSHCONT {
+	PUSH S4
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 98
+	STZEROES
+	REVERSE 2, 1
+	STSLICECONST xe4e7a2c2
+	STU 32
+	STU 128
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	REVERSE 2, 1
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 32
+	STU 128
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro changeEpoch_fe6f86f8_internal_macro
+.loc ../contracts/SegmintCollection.tsol, 73
+GETGLOB 9
+GETGLOB 19
+SDEQ
+THROWIFNOT 1000
+.loc ../contracts/SegmintCollection.tsol, 351
+GETGLOB 26
+INC
+UFITS 32
+SETGLOB 26
+.loc ../contracts/SegmintCollection.tsol, 352
+PUSHINT 10000
+SETGLOB 27
+.loc ../contracts/SegmintCollection.tsol, 353
+GETGLOB 28
+SETGLOB 29
+.loc ../contracts/SegmintCollection.tsol, 354
+GETGLOB 28
+GETGLOB 30
+ADD
+UFITS 128
+DUP
+SETGLOB 28
+.loc ../contracts/SegmintCollection.tsol, 355
+GETGLOB 26
+PUSHSLICE xc00000000000000000000000006abb92de
+NEWC
+STSLICE
+STU 32
+STU 128
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/SegmintCollection.tsol, 115
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+GETGLOB 26
+GETGLOB 28
+.loc ../contracts/SegmintCollection.tsol, 0
+
+.macro setNftBurningBlocked
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/SegmintCollection.tsol, 118
+LDU 32
+LDI 1
+ENDS
+.loc ../contracts/SegmintCollection.tsol, 0
+CALLREF {
+	CALL $setNftBurningBlocked_1a2095ae_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.macro withdraw_a77ff5a1_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 78
+.macro setNftBurningBlocked_1a2095ae_internal_macro
+.loc ../contracts/SegmintCollection.tsol, 73
 GETGLOB 9
-GETGLOB 20
+GETGLOB 19
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/SegmintCollection.tsol, 133
-PUSH S2
-PARSEMSGADDR
-INDEX 3
-PLDU 256
-THROWIFNOT 1016
-.loc ../contracts/SegmintCollection.tsol, 134
-DEPTH
-ADDCONST -2
-PICK
-PUSH S2
-PUSHINT 200000000
-ADD
-UFITS 128
-GREATER
-THROWIFNOT 1003
-.loc ../contracts/SegmintCollection.tsol, 137
-PUSHINT 0
-PUSHINT 4
-RAWRESERVE
-.loc ../contracts/SegmintCollection.tsol, 138
-PUSHREF {
-}
-.loc ../contracts/SegmintCollection.tsol, 139
-FALSE
+.loc ../contracts/SegmintCollection.tsol, 119
 GETGLOB 9
-ROLL 4
-BLKSWAP 2, 4
-ROLL 6
+XCHG S2
+CALLREF {
+	CALL $_resolveNft_2d542587_internal_macro$
+}
 FALSE
 NEWC
 STSLICECONST x6_
@@ -684,77 +814,14 @@ STSLICECONST x1_
 STSLICE
 PUSHINT 1
 STUR 111
-ROLLREV 6
+ROTREV
 NEWC
-STSLICECONST x73e22143
-STU 128
-STSLICE
-STU 128
-ROLLREV 3
-NEWC
-STSLICE
+STSLICECONST x58f56634
 STI 1
-STREF
-STBREFR
-STBREFR
-ENDC
-PUSHPOW2 7
-SENDRAWMSG
-.loc ../contracts/SegmintCollection.tsol, 0
-
-.macro changeOneTilePrice
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/SegmintCollection.tsol, 149
-LDU 128
-ENDS
-.loc ../contracts/SegmintCollection.tsol, 0
-CALLREF {
-	CALL $changeOneTilePrice_bb9adcd7_internal_macro$
-}
-CALLREF {
-	CALL $c7_to_c4$
-}
-THROW 0
-
-.macro changeOneTilePrice_bb9adcd7_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 78
-GETGLOB 9
-GETGLOB 20
-SDEQ
-THROWIFNOT 1000
-.loc ../contracts/SegmintCollection.tsol, 150
-PUSHINT 0
-PUSHINT 4
-RAWRESERVE
-.loc ../contracts/SegmintCollection.tsol, 151
-DUP
-SETGLOB 24
-.loc ../contracts/SegmintCollection.tsol, 152
-PUSHSLICE xc0000000000000000000000000118591fe
-NEWC
 STSLICE
-STU 128
+STBREFR
 ENDC
-PUSHINT 0
-SENDRAWMSG
-.loc ../contracts/SegmintCollection.tsol, 153
-GETGLOB 9
-NEWC
-STSLICECONST x42_
-STSLICE
-PUSHINT 111
-STZEROES
-ENDC
-PUSHPOW2 7
-ADDCONST 2
-UFITS 8
+PUSHINT 64
 SENDRAWMSG
 .loc ../contracts/SegmintCollection.tsol, 0
 
@@ -763,7 +830,7 @@ SENDRAWMSG
 CALL $_buildNftState_c971fdf8_internal_macro$
 
 .macro _buildNftState_c971fdf8_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 160
+.loc ../contracts/SegmintCollection.tsol, 127
 PUSHINT 0
 NEWC
 STU 256
@@ -790,7 +857,7 @@ STZERO
 ENDC
 .loc ../contracts/SegmintCollection.tsol, 0
 
-.macro onAcceptTokensTransfer
+.macro claimTiles
 DROP
 GETGLOB 6
 THROWIFNOT 76
@@ -799,54 +866,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 198
-OVER
-PUSHCONT {
-	LDREF
-	ENDS
-	CTOS
-}
-IF
-LDMSGADDR
-LDU 128
-LDREF
-ENDS
-CTOS
-LDMSGADDR
-LDREF
-ENDS
-CTOS
-LDMSGADDR
-LDREF
-ENDS
-CTOS
-LDMSGADDR
-LDREF
-ENDS
-.loc ../contracts/SegmintCollection.tsol, 0
-CALLREF {
-	CALL $onAcceptTokensTransfer_e63f2284_internal_macro$
-}
-CALLREF {
-	CALL $c7_to_c4$
-}
-THROW 0
-
-.macro onAcceptTokensTransfer_e63f2284_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 83
-GETGLOB 23
-PARSEMSGADDR
-INDEX 3
-PLDU 256
-NEQINT 0
-GETGLOB 9
-GETGLOB 23
-SDEQ
-AND
-THROWIFNOT 1015
-.loc ../contracts/SegmintCollection.tsol, 207
-DUP
-CTOS
+.loc ../contracts/SegmintCollection.tsol, 154
 LDU 10
 LDU 10
 LDU 10
@@ -860,524 +880,426 @@ LDREF
 LDREF
 LDU 128
 ENDS
-.loc ../contracts/SegmintCollection.tsol, 210
-BLKPUSH 5, 7
+.loc ../contracts/SegmintCollection.tsol, 0
+CALLREF {
+	CALL $claimTiles_d91ce803_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro claimTiles_d91ce803_internal_macro
+.loc ../contracts/SegmintCollection.tsol, 78
+GETGLOB 22
+FALSE
+EQUAL
+THROWIFNOT 1010
+.loc ../contracts/SegmintCollection.tsol, 157
+BLKPUSH 4, 7
+.loc ../contracts/SegmintCollection.tsol, 135
+PUSH S3
+PUSHINT 10
+MOD
+NEQINT 0
+DUP
 PUSHCONT {
-	.loc ../contracts/SegmintCollection.tsol, 168
-	PUSH S4
+	DROP
+	PUSH S2
 	PUSHINT 10
 	MOD
 	NEQINT 0
 	DUP
 	PUSHCONT {
 		DROP
-		PUSH S3
+		OVER
 		PUSHINT 10
 		MOD
 		NEQINT 0
 		DUP
 		PUSHCONT {
 			DROP
-			PUSH S2
+			DUP
 			PUSHINT 10
 			MOD
 			NEQINT 0
-			DUP
-			PUSHCONT {
-				DROP
-				OVER
-				PUSHINT 10
-				MOD
-				NEQINT 0
-				PUSH2 S5, S3
-				GEQ
-				PUSH2 S5, S3
-				GEQ
-				PUSH S5
-				PUSHINT 1000
-				GREATER
-				PUSH S5
-				PUSHINT 1000
-				GREATER
-				OR
-				OR
-				OR
-				OR
-			}
-			IFNOT
+			PUSH2 S4, S2
+			GEQ
+			PUSH2 S4, S2
+			GEQ
+			PUSH S4
+			PUSHINT 1000
+			GREATER
+			PUSH S4
+			PUSHINT 1000
+			GREATER
+			OR
+			OR
+			OR
+			OR
 		}
 		IFNOT
 	}
 	IFNOT
-	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 169
-		TRUE
-		PUSHINT 0
-		BLKPUSH 3, 0
-		BLKDROP2 5, 5
-		.loc ../contracts/SegmintCollection.tsol, 0
-	}
-	IFJMP
-	.loc ../contracts/SegmintCollection.tsol, 173
-	ROT
-	PUSH S4
-	SUB
-	UFITS 10
-	PUSHINT 10
-	DIV
-	UFITS 7
-	.loc ../contracts/SegmintCollection.tsol, 174
-	ROT
-	PUSH S3
-	SUB
-	UFITS 10
-	PUSHINT 10
-	DIV
-	UFITS 7
-	.loc ../contracts/SegmintCollection.tsol, 176
-	DUP2
-	MUL
-	UFITS 7
-	ROLL 3
-	FIRST
-	NEQ
-	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 177
-		TRUE
-		PUSHINT 0
-		BLKPUSH 3, 0
-		BLKDROP2 4, 5
-		.loc ../contracts/SegmintCollection.tsol, 0
-	}
-	IFJMP
-	.loc ../contracts/SegmintCollection.tsol, 181
-	ROLL 3
-	PUSHINT 10
-	DIV
-	UFITS 7
-	.loc ../contracts/SegmintCollection.tsol, 182
-	ROLL 3
-	PUSHINT 10
-	DIV
-	UFITS 7
-	.loc ../contracts/SegmintCollection.tsol, 185
-	FALSE
-	.loc ../contracts/SegmintCollection.tsol, 186
-	PUSH S2
-	PUSHCONT {
-		PUSH2 S0, S5
-		LESS
-	}
-	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 187
-		PUSH S2
-		PUSHCONT {
-			PUSH2 S0, S5
-			LESS
-		}
-		PUSHCONT {
-			.loc ../contracts/SegmintCollection.tsol, 188
-			OVER
-			LSHIFT 7
-			UFITS 14
-			OVER
-			OR
-			.loc ../contracts/SegmintCollection.tsol, 189
-			GETGLOB 28
-			PUSHINT 14
-			DICTUGET
-			NULLSWAPIFNOT
-			NIP
-			PUSHCONT {
-				.loc ../contracts/SegmintCollection.tsol, 190
-				TRUE
-				POP S3
-				.loc ../contracts/SegmintCollection.tsol, 0
-			}
-			IF
-			.loc ../contracts/SegmintCollection.tsol, 187
-			INC
-			UFITS 7
-			.loc ../contracts/SegmintCollection.tsol, 0
-		}
-		WHILE
-		DROP
-		.loc ../contracts/SegmintCollection.tsol, 186
-		INC
-		UFITS 7
-		.loc ../contracts/SegmintCollection.tsol, 0
-	}
-	WHILE
-	DROP
-	.loc ../contracts/SegmintCollection.tsol, 195
-	ROLL 3
-	XCHG S1, S4
-	.loc ../contracts/SegmintCollection.tsol, 167
-}
-CALLX
-.loc ../contracts/SegmintCollection.tsol, 213
-GETGLOB 25
-ROLL 5
-DEPTH
-ADDCONST -2
-PICK
-PUSHINT 3500000000
-LESS
-OR
-OR
-DUP
-PUSHCONT {
-	DROP
-	PUSH S16
-	BLKPUSH 2, 2
-	MUL
-	UFITS 128
-	MULCONST 100
-	UFITS 128
-	GETGLOB 24
-	MUL
-	UFITS 128
-	NEQ
 }
 IFNOT
+THROWIF 1011
+.loc ../contracts/SegmintCollection.tsol, 140
+PUSH S3
+PUSHINT 10
+DIV
+UFITS 7
+.loc ../contracts/SegmintCollection.tsol, 141
+PUSH S3
+PUSHINT 10
+DIV
+UFITS 7
+.loc ../contracts/SegmintCollection.tsol, 144
+ROLL 3
+ROLL 5
+SUB
+UFITS 10
+PUSHINT 10
+DIV
+UFITS 7
+.loc ../contracts/SegmintCollection.tsol, 145
+BLKSWAP 2, 3
+SUBR
+UFITS 10
+PUSHINT 10
+DIV
+UFITS 7
+.loc ../contracts/SegmintCollection.tsol, 147
+DUP2
+MUL
+UFITS 14
+.loc ../contracts/SegmintCollection.tsol, 148
+DUP
+GTINT 100
+THROWIF 1011
+.loc ../contracts/SegmintCollection.tsol, 159
+GETGLOB 25
+DUP
+.loc ../contracts/SegmintCollection.tsol, 160
+INC
+UFITS 32
+SETGLOB 25
+.loc ../contracts/SegmintCollection.tsol, 161
+DUP
+LSHIFT 32
+UFITS 64
+GETGLOB 26
+OR
+.loc ../contracts/SegmintCollection.tsol, 163
+PUSH S6
 PUSHCONT {
-	.loc ../contracts/SegmintCollection.tsol, 214
-	DEPTH
-	ADDCONST -2
-	PICK
-	PUSHINT 1000000000
+	PUSH3 S0, S7, S5
+	ADD
+	UFITS 7
 	LESS
-	THROWIF 1003
-	.loc ../contracts/SegmintCollection.tsol, 224
-	PUSHREF {
-	}
-	.loc ../contracts/SegmintCollection.tsol, 225
-	FALSE
-	PUSH S15
-	PUSH S17
-	PUSH S20
-	GETGLOB 9
-	FALSE
-	NEWC
-	STSLICECONST x6_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	PUSHINT 1
-	STUR 111
-	ROLLREV 5
-	NEWC
-	STSLICECONST x46a9d7ec
-	STU 128
-	STSLICE
-	ROLLREV 3
-	NEWC
-	STSLICE
-	STI 1
-	STREF
-	STBREFR
 }
 PUSHCONT {
-	.loc ../contracts/SegmintCollection.tsol, 229
-	PUSHINT 1000000000
-	PUSHINT 4
-	RAWRESERVE
-	.loc ../contracts/SegmintCollection.tsol, 230
-	GETGLOB 26
+	.loc ../contracts/SegmintCollection.tsol, 164
 	DUP
-	.loc ../contracts/SegmintCollection.tsol, 231
-	INC
-	UFITS 32
-	SETGLOB 26
-	.loc ../contracts/SegmintCollection.tsol, 233
-	PUSH S4
+	LSHIFT 7
+	UFITS 14
+	.loc ../contracts/SegmintCollection.tsol, 165
+	PUSH S7
 	PUSHCONT {
-		PUSH3 S0, S5, S3
+		PUSH3 S0, S8, S6
 		ADD
 		UFITS 7
 		LESS
 	}
 	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 234
-		DUP
-		LSHIFT 7
-		UFITS 14
-		.loc ../contracts/SegmintCollection.tsol, 235
-		PUSH S5
+		.loc ../contracts/SegmintCollection.tsol, 168
+		PUSH S3
+		NEWC
+		STU 64
+		BLKPUSH 2, 2
+		OR
+		GETGLOB 24
+		PUSHINT 14
+		DICTUSETGETB
+		NULLSWAPIFNOT
 		PUSHCONT {
-			PUSH3 S0, S6, S4
-			ADD
-			UFITS 7
-			LESS
+			PLDU 64
 		}
+		IF
+		SWAP
+		SETGLOB 24
+		.loc ../contracts/SegmintCollection.tsol, 169
+		DUP
+		ISNULL
 		PUSHCONT {
-			.loc ../contracts/SegmintCollection.tsol, 236
-			DUP2
-			OR
-			.loc ../contracts/SegmintCollection.tsol, 239
-			GETGLOB 28
-			PUSH S5
-			NEWC
-			STU 32
-			ROTREV
-			PUSHINT 14
-			DICTUSETB
-			SETGLOB 28
-			.loc ../contracts/SegmintCollection.tsol, 235
-			INC
-			UFITS 7
+			.loc ../contracts/SegmintCollection.tsol, 170
+			BLKPUSH 2, 0
+			ISNULL
+			THROWIF 63
+			PUSHPOW2DEC 32
+			AND
+			GETGLOB 26
+			LESS
+			THROWIFNOT 1014
 			.loc ../contracts/SegmintCollection.tsol, 0
 		}
-		WHILE
-		DROP2
-		.loc ../contracts/SegmintCollection.tsol, 233
+		IFNOT
+		.loc ../contracts/SegmintCollection.tsol, 0
+		DROP
+		.loc ../contracts/SegmintCollection.tsol, 165
 		INC
 		UFITS 7
 		.loc ../contracts/SegmintCollection.tsol, 0
 	}
 	WHILE
-	DROP
-	.loc ../contracts/SegmintCollection.tsol, 243
-	PUSH3 S9, S10, S11
-	PUSH S15
-	PUSH S20
-	PUSH S5
-	PUSHSLICE xc00000000000000000000000003c832c7f
-	NEWC
-	STSLICE
-	STU 32
-	STSLICE
-	STU 10
-	STU 10
-	STU 10
-	STU 10
-	ENDC
-	PUSHINT 0
-	SENDRAWMSG
-	.loc ../contracts/SegmintCollection.tsol, 246
-	MYADDR
-	NEWC
-	STSLICE
-	.loc ../contracts/SegmintCollection.tsol, 247
-	GETGLOB 11
-	CTOS
-	SWAP
-	ENDC
-	
-	CALLREF {
-		PUSH S1
-		PUSHSLICE x8adb35
-		SDEQ
-		PUSHREFCONT {
-			SWAP      ; salt sliceCode
-			LDREF
-			LDREF
-			DROP         ; salt selfCallCode usualSelector
-			XCHG S1, S2  ; selfCallCode salt usualSelector
-			CTOS         ; selfCallCode salt usualSelector
-			CALLREF {
-				
-				LDREFRTOS  ; selfCallCode salt restUsualSelector intSelector
-	
-				PUSHSLICE xF4A4_
-				SDBEGINSX
-				LDDICT     ; selfCallCode salt restUsualSelector dict intSelector
-				LDU 10
-				NIP
-				DUP
-				SREFS      ; selfCallCode salt restUsualSelector dict intSelector refs
-				PUSHCONT {
-					LDREF
-				}
-				PUSHCONT {
-					PUSHREF {
-					}
-					SWAP
-				}
-				IFELSE
-			                ; selfCallCode salt restUsualSelector dict version intSelector
-				PUSHSLICE xF4A1
-				SDBEGINSX
-				DROP
-				            ; selfCallCode salt restUsualSelector dict version
-				SWAP        ; selfCallCode salt restUsualSelector version dict
-				NEWC        ; selfCallCode salt restUsualSelector version dict builder
-				STSLICECONST xF4A4_ ; DICTPUSHCONST
-				STDICT
-				PUSHINT 32
-				STUR 10
-				STSLICECONST xF4A1 ; DICTUGETJMP
-				STREF       ; selfCallCode salt restUsualSelector builder
-				XCHG S1, S2 ; selfCallCode restUsualSelector salt builder
-				STREF       ; selfCallCode restUsualSelector builder
-				NEWC        ; selfCallCode restUsualSelector builder usualBuilder
-				STBREF      ; selfCallCode restUsualSelector usualBuilder
-				STSLICE     ; selfCallCode usualBuilder
-	
-			}
-			NEWC        ; selfCallCode usualBuilder mainBuilder
-			STSLICECONST x8adb35
-			XCHG S1, S2 ; usualBuilder selfCallCode mainBuilder
-			STREF
-			STBREF
-			ENDC
-		}
-		PUSHREFCONT {
-			SWAP
-			CALLREF {
-				
-				LDREFRTOS  ; selfCallCode salt restUsualSelector intSelector
-	
-				PUSHSLICE xF4A4_
-				SDBEGINSX
-				LDDICT     ; selfCallCode salt restUsualSelector dict intSelector
-				LDU 10
-				NIP
-				DUP
-				SREFS      ; selfCallCode salt restUsualSelector dict intSelector refs
-				PUSHCONT {
-					LDREF
-				}
-				PUSHCONT {
-					PUSHREF {
-					}
-					SWAP
-				}
-				IFELSE
-			                ; selfCallCode salt restUsualSelector dict version intSelector
-				PUSHSLICE xF4A1
-				SDBEGINSX
-				DROP
-				            ; selfCallCode salt restUsualSelector dict version
-				SWAP        ; selfCallCode salt restUsualSelector version dict
-				NEWC        ; selfCallCode salt restUsualSelector version dict builder
-				STSLICECONST xF4A4_ ; DICTPUSHCONST
-				STDICT
-				PUSHINT 32
-				STUR 10
-				STSLICECONST xF4A1 ; DICTUGETJMP
-				STREF       ; selfCallCode salt restUsualSelector builder
-				XCHG S1, S2 ; selfCallCode restUsualSelector salt builder
-				STREF       ; selfCallCode restUsualSelector builder
-				NEWC        ; selfCallCode restUsualSelector builder usualBuilder
-				STBREF      ; selfCallCode restUsualSelector usualBuilder
-				STSLICE     ; selfCallCode usualBuilder
-	
-			}
-			ENDC
-		}
-		IFELSE
-	}
-	.loc ../contracts/SegmintCollection.tsol, 248
-	SWAP
-	CALLREF {
-		CALL $_buildNftState_c971fdf8_internal_macro$
-	}
-	.loc ../contracts/SegmintCollection.tsol, 250
-	PUSH3 S6, S7, S9
-	PUSH3 S13, S14, S15
-	GETGLOB 14
-	GETGLOB 17
-	GETGLOB 16
-	GETGLOB 29
-	PUSH S26
-	PUSH S27
-	ROLL 12
-	DUP
-	HASHCU
-	NEWC
-	STSLICECONST x801_
-	STU 256
-	ENDC
-	CTOS
-	ROLLREV 13
-	PUSH S13
-	NEWC
-	STSLICECONST x62_
-	STSLICE
-	PUSHINT 2949852426645541256083542794369173188247555
-	STUR 143
-	OVER
-	CALLREF {
-		CTOS
-		LDI 1
-		SWAP
-		PUSHCONT {
-			LDI 5
-			NIP
-		}
-		IF
-		LDI 1
-		SWAP
-		PUSHCONT {
-			LDI 2
-			NIP
-		}
-		IF
-		LDOPTREF
-		LDOPTREF
-		LDDICT
-		ENDS
-		BLKDROP 3
-	}
-	STREF
-	STSLICECONST 1
-	ROLLREV 12
-	NEWC
-	STSLICECONST x2db95bc1
-	STSLICE
-	ROLLREV 11
-	NEWC
-	STSLICE
-	STU 128
-	STU 128
-	STU 128
-	STREF
-	STU 10
-	STU 10
-	STU 10
-	STU 10
-	STREF
-	STREF
-	STBREFR
-	STBREFR
-	ENDC
-	PUSHINT 0
-	SENDRAWMSG
-	.loc ../contracts/SegmintCollection.tsol, 268
-	PUSH S16
-	PUSH3 S6, S7, S8
-	PUSH S12
-	ROLL 5
-	FALSE
-	NEWC
-	STSLICECONST x6_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	PUSHINT 1
-	STUR 111
-	ROLLREV 5
-	NEWC
-	STSLICECONST x5e24d044
-	SWAP
-	UNPAIR
-	XCHG S2
-	STU 32
-	STDICT
-	STREF
-	STREF
-	STU 128
-	STSLICE
+	DROP2
+	.loc ../contracts/SegmintCollection.tsol, 163
+	INC
+	UFITS 14
+	.loc ../contracts/SegmintCollection.tsol, 0
 }
-IFELSE
+WHILE
+DROP2
+.loc ../contracts/SegmintCollection.tsol, 175
+OVER
+GETGLOB 28
+MUL
+UFITS 128
+.loc ../contracts/SegmintCollection.tsol, 176
+ROT
+GETGLOB 29
+MUL
+UFITS 128
+.loc ../contracts/SegmintCollection.tsol, 181
+DEPTH
+ADDCONST -2
+PICK
+PUSH S2
+PUSHINT 350000000
+ADD
+UFITS 128
+PUSHINT 1000000000
+ADD
+UFITS 128
+GREATER
+THROWIFNOT 100
+.loc ../contracts/SegmintCollection.tsol, 185
+PUSHINT 100000000
+PUSH S2
+ADD
+UFITS 128
+OVER
+SUB
+UFITS 128
+PUSHINT 4
+RAWRESERVE
+.loc ../contracts/SegmintCollection.tsol, 186
+PUSH3 S11, S12, S13
+PUSH S17
+GETGLOB 9
+GETGLOB 26
+PUSH S8
+PUSHSLICE xc00000000000000000000000006720c1c7
+NEWC
+STSLICE
+STU 32
+STU 32
+STSLICE
+STU 10
+STU 10
+STU 10
+STU 10
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/SegmintCollection.tsol, 189
+BLKSWAP 2, 3
+MUL
+UFITS 7
+GETGLOB 27
+SUBR
+UFITS 14
+DUP
+SETGLOB 27
+.loc ../contracts/SegmintCollection.tsol, 191
+PUSHINT 1500
+LESS
+PUSHCONT {
+	.loc ../contracts/SegmintCollection.tsol, 351
+	GETGLOB 26
+	INC
+	UFITS 32
+	SETGLOB 26
+	.loc ../contracts/SegmintCollection.tsol, 352
+	PUSHINT 10000
+	SETGLOB 27
+	.loc ../contracts/SegmintCollection.tsol, 353
+	GETGLOB 28
+	SETGLOB 29
+	.loc ../contracts/SegmintCollection.tsol, 354
+	GETGLOB 28
+	GETGLOB 30
+	ADD
+	UFITS 128
+	DUP
+	SETGLOB 28
+	.loc ../contracts/SegmintCollection.tsol, 355
+	GETGLOB 26
+	PUSHSLICE xc00000000000000000000000006abb92de
+	NEWC
+	STSLICE
+	STU 32
+	STU 128
+	ENDC
+	PUSHINT 0
+	SENDRAWMSG
+	.loc ../contracts/SegmintCollection.tsol, 0
+}
+IF
+.loc ../contracts/SegmintCollection.tsol, 195
+GETGLOB 11
+PUSH S3
+CALLREF {
+	CALL $_buildNftState_c971fdf8_internal_macro$
+}
+.loc ../contracts/SegmintCollection.tsol, 196
+DROP
+PUSH2 S6, S7
+BLKSWAP 4, 11
+REVERSE 4, 0
+ROLL 7
+GETGLOB 14
+GETGLOB 17
+GETGLOB 16
+PUSHINT 300000000
+GETGLOB 19
+GETGLOB 9
+PUSHINT 0
+NEWC
+STU 256
+PUSHINT 0
+NEWDICT
+PUSHINT 64
+DICTUSETB
+ROLL 15
+NEWC
+STU 256
+PUSHINT 1
+ROT
+PUSHINT 64
+DICTUSETB
+NEWC
+STDICT
+ENDC
+GETGLOB 11
+NEWC
+STSLICECONST x2_
+STOPTREF
+STOPTREF
+STZERO
+ENDC
+DUP
+HASHCU
+NEWC
+STSLICECONST x801_
+STU 256
+ENDC
+CTOS
+ROLLREV 14
+PUSHINT 1000000000
+ROLL 16
+ADD
+UFITS 128
+PUSH S15
+NEWC
+STSLICECONST x62_
+STSLICE
+SWAP
+STGRAMS
+PUSHINT 3
+STUR 107
+OVER
+CALLREF {
+	CTOS
+	LDI 1
+	SWAP
+	PUSHCONT {
+		LDI 5
+		NIP
+	}
+	IF
+	LDI 1
+	SWAP
+	PUSHCONT {
+		LDI 2
+		NIP
+	}
+	IF
+	LDOPTREF
+	LDOPTREF
+	LDDICT
+	ENDS
+	BLKDROP 3
+}
+STREF
+STSLICECONST 1
+ROLLREV 13
+NEWC
+STSLICECONST x510f43b9
+STSLICE
+ROLLREV 12
+NEWC
+STSLICE
+STU 128
+STU 128
+STU 128
+STREF
+ROLLREV 7
+NEWC
+STU 128
+STU 10
+STU 10
+STU 10
+STU 10
+STREF
+STREF
+STBREFR
+STBREFR
+STBREFR
+ENDC
+PUSHINT 1
+SENDRAWMSG
+.loc ../contracts/SegmintCollection.tsol, 220
+GETGLOB 9
+BLKSWAP 4, 4
+REVERSE 4, 0
+ROLL 5
+FALSE
+NEWC
+STSLICECONST x6_
+STI 1
+STSLICECONST x1_
+STSLICE
+PUSHINT 1
+STUR 111
+ROLLREV 5
+NEWC
+STSLICECONST x5e24d044
+SWAP
+UNPAIR
+XCHG S2
+STU 32
+STDICT
+STREF
+STREF
+STU 128
+STSLICE
 STBREFR
 ENDC
 PUSHPOW2 7
 SENDRAWMSG
 .loc ../contracts/SegmintCollection.tsol, 0
-PUSHINT 18
-DROPX
+DROP2
 
 .macro colorifyTile
 DROP
@@ -1388,7 +1310,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 272
+.loc ../contracts/SegmintCollection.tsol, 223
 OVER
 PUSHCONT {
 	LDU 32
@@ -1452,7 +1374,7 @@ CALLREF {
 THROW 0
 
 .macro colorifyTile_06d84c5c_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 274
+.loc ../contracts/SegmintCollection.tsol, 224
 GETGLOB 9
 PUSH S5
 CALLREF {
@@ -1460,11 +1382,11 @@ CALLREF {
 }
 SDEQ
 THROWIFNOT 1012
-.loc ../contracts/SegmintCollection.tsol, 276
-PUSHINT 1000000
+.loc ../contracts/SegmintCollection.tsol, 225
+PUSHINT 0
 PUSHINT 4
 RAWRESERVE
-.loc ../contracts/SegmintCollection.tsol, 278
+.loc ../contracts/SegmintCollection.tsol, 227
 PUSH S2
 PUSHINT 10
 DIV
@@ -1474,134 +1396,163 @@ PUSH S2
 PUSHINT 10
 DIV
 OR
-.loc ../contracts/SegmintCollection.tsol, 279
+.loc ../contracts/SegmintCollection.tsol, 228
 DUP
-GETGLOB 28
+GETGLOB 24
 PUSHINT 14
 DICTUGET
 NULLSWAPIFNOT
 PUSHCONT {
-	PLDU 32
+	PLDU 64
 }
 IF
-.loc ../contracts/SegmintCollection.tsol, 280
+.loc ../contracts/SegmintCollection.tsol, 230
 DUP
 ISNULL
 PUSHCONT {
-	.loc ../contracts/SegmintCollection.tsol, 301
-	THROW 1013
-}
-PUSHCONT {
-	.loc ../contracts/SegmintCollection.tsol, 281
+	.loc ../contracts/SegmintCollection.tsol, 231
 	BLKPUSH 2, 0
 	ISNULL
 	THROWIF 63
-	.loc ../contracts/SegmintCollection.tsol, 283
-	PUSH S7
+	.loc ../contracts/SegmintCollection.tsol, 232
+	DUP
+	RSHIFT 32
+	UFITS 32
+	PUSH S8
 	EQUAL
-	THROWIFNOT 1013
-	.loc ../contracts/SegmintCollection.tsol, 291
-	PUSHINT 10
-	PUSHREF
-	.compute $new_array_line_290_column_35_ast_id_1052$
-	PAIR
-	.loc ../contracts/SegmintCollection.tsol, 292
-	PUSH2 S0, S0
-	ROT
-	TRIPLE
-	.loc ../contracts/SegmintCollection.tsol, 293
-	PUSHINT 0
 	PUSHCONT {
-		DUP
-		LESSINT 10
-	}
-	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 294
-		PUSH2 S0, S7
-		INDEX2 0, 1
-		PUSHINT 32
-		DICTUGET
-		THROWIFNOT 50
-		PLDU 80
-		PUSH2 S2, S2
-		FIRST
-		UNPAIR
-		PUXC S4, S-1
-		PUSH2 S1, S2
-		LESS
-		THROWIFNOT 50
-		ROLL 4
-		NEWC
-		STU 80
-		ROTREV
-		PUSHINT 32
-		DICTUSETB
+		.loc ../contracts/SegmintCollection.tsol, 239
+		PUSHINT 10
+		PUSHREF
+		.compute $new_array_line_238_column_39_ast_id_888$
 		PAIR
-		SETINDEX 0
-		POP S2
-		.loc ../contracts/SegmintCollection.tsol, 295
-		PUSH2 S0, S7
-		INDEX2 1, 1
-		PUSHINT 32
-		DICTUGET
-		THROWIFNOT 50
-		PLDU 80
-		PUSH2 S2, S2
-		SECOND
-		UNPAIR
-		PUXC S4, S-1
-		PUSH2 S1, S2
-		LESS
-		THROWIFNOT 50
-		ROLL 4
-		NEWC
-		STU 80
+		.loc ../contracts/SegmintCollection.tsol, 240
+		PUSH2 S0, S0
+		ROT
+		TRIPLE
+		.loc ../contracts/SegmintCollection.tsol, 241
+		PUSHINT 0
+		PUSHCONT {
+			DUP
+			LESSINT 10
+		}
+		PUSHCONT {
+			.loc ../contracts/SegmintCollection.tsol, 242
+			PUSH2 S0, S8
+			INDEX2 0, 1
+			PUSHINT 32
+			DICTUGET
+			THROWIFNOT 50
+			PLDU 80
+			PUSH2 S2, S2
+			FIRST
+			UNPAIR
+			PUXC S4, S-1
+			PUSH2 S1, S2
+			LESS
+			THROWIFNOT 50
+			ROLL 4
+			NEWC
+			STU 80
+			ROTREV
+			PUSHINT 32
+			DICTUSETB
+			PAIR
+			SETINDEX 0
+			POP S2
+			.loc ../contracts/SegmintCollection.tsol, 243
+			PUSH2 S0, S8
+			INDEX2 1, 1
+			PUSHINT 32
+			DICTUGET
+			THROWIFNOT 50
+			PLDU 80
+			PUSH2 S2, S2
+			SECOND
+			UNPAIR
+			PUXC S4, S-1
+			PUSH2 S1, S2
+			LESS
+			THROWIFNOT 50
+			ROLL 4
+			NEWC
+			STU 80
+			ROTREV
+			PUSHINT 32
+			DICTUSETB
+			PAIR
+			SETINDEX 1
+			POP S2
+			.loc ../contracts/SegmintCollection.tsol, 244
+			PUSH2 S0, S8
+			INDEX2 2, 1
+			PUSHINT 32
+			DICTUGET
+			THROWIFNOT 50
+			PLDU 80
+			PUSH2 S2, S2
+			THIRD
+			UNPAIR
+			PUXC S4, S-1
+			PUSH2 S1, S2
+			LESS
+			THROWIFNOT 50
+			ROLL 4
+			NEWC
+			STU 80
+			ROTREV
+			PUSHINT 32
+			DICTUSETB
+			PAIR
+			SETINDEX 2
+			POP S2
+			.loc ../contracts/SegmintCollection.tsol, 241
+			INC
+			.loc ../contracts/SegmintCollection.tsol, 0
+		}
+		WHILE
+		DROP
+		.loc ../contracts/SegmintCollection.tsol, 246
+		PUSH S3
+		GETGLOB 23
+		PUSH S2
+		CALLREF {
+			UNTRIPLE
+			XCHG S2
+			NEWC
+			SWAP
+			UNPAIR
+			XCHG S2
+			STU 32
+			STDICT
+			SWAP
+			UNPAIR
+			XCHG S2
+			STU 32
+			STDICT
+			SWAP
+			UNPAIR
+			XCHG S2
+			STU 32
+			STDICT
+		}
 		ROTREV
-		PUSHINT 32
+		PUSHINT 14
 		DICTUSETB
-		PAIR
-		SETINDEX 1
-		POP S2
-		.loc ../contracts/SegmintCollection.tsol, 296
-		PUSH2 S0, S7
-		INDEX2 2, 1
-		PUSHINT 32
-		DICTUGET
-		THROWIFNOT 50
-		PLDU 80
-		PUSH2 S2, S2
-		THIRD
-		UNPAIR
-		PUXC S4, S-1
-		PUSH2 S1, S2
-		LESS
-		THROWIFNOT 50
-		ROLL 4
+		SETGLOB 23
+		.loc ../contracts/SegmintCollection.tsol, 247
+		PUSH3 S5, S6, S1
+		PUSHPOW2DEC 32
+		AND
+		UFITS 32
+		PUSH S11
+		PUSHSLICE xc00000000000000000000000003f8c4283
 		NEWC
-		STU 80
-		ROTREV
-		PUSHINT 32
-		DICTUSETB
-		PAIR
-		SETINDEX 2
-		POP S2
-		.loc ../contracts/SegmintCollection.tsol, 293
-		INC
-		.loc ../contracts/SegmintCollection.tsol, 0
-	}
-	WHILE
-	DROP
-	.loc ../contracts/SegmintCollection.tsol, 298
-	PUSH2 S7, S0
-	PAIR
-	PUSH S3
-	GETGLOB 27
-	ROT
-	CALLREF {
-		UNPAIR
-		SWAP
-		NEWC
+		STSLICE
 		STU 32
+		STU 32
+		STU 10
+		STU 10
 		SWAP
 		UNTRIPLE
 		REVERSE 4, 0
@@ -1620,56 +1571,240 @@ PUSHCONT {
 		XCHG S2
 		STU 32
 		STDICT
+		ENDC
+		PUSHINT 0
 	}
-	ROTREV
-	PUSHINT 14
-	DICTUSETB
-	SETGLOB 27
-	.loc ../contracts/SegmintCollection.tsol, 299
-	PUSH3 S4, S5, S7
-	PUSHSLICE xc000000000000000000000000033c65aeb
-	NEWC
-	STSLICE
-	STU 32
-	STU 10
-	STU 10
-	SWAP
-	UNTRIPLE
-	REVERSE 4, 0
-	SWAP
-	UNPAIR
-	XCHG S2
-	STU 32
-	STDICT
-	SWAP
-	UNPAIR
-	XCHG S2
-	STU 32
-	STDICT
-	SWAP
-	UNPAIR
-	XCHG S2
-	STU 32
-	STDICT
-	ENDC
-	PUSHINT 0
+	PUSHCONT {
+		.loc ../contracts/SegmintCollection.tsol, 252
+		PUSH S3
+		NEWC
+		STSLICECONST x42_
+		STSLICE
+		PUSHINT 111
+		STZEROES
+		ENDC
+		PUSHPOW2 7
+		ADDCONST 2
+		UFITS 8
+	}
+	IFELSE
 	SENDRAWMSG
+	.loc ../contracts/SegmintCollection.tsol, 0
+	DROP
+}
+IFNOT
+.loc ../contracts/SegmintCollection.tsol, 0
+BLKDROP 7
+
+.macro burnNft
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/SegmintCollection.tsol, 257
+LDU 32
+LDU 128
+LDU 10
+LDU 10
+LDU 10
+LDU 10
+ENDS
+.loc ../contracts/SegmintCollection.tsol, 0
+CALLREF {
+	CALL $burnNft_7cde54ba_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro burnNft_7cde54ba_internal_macro
+.loc ../contracts/SegmintCollection.tsol, 258
+GETGLOB 9
+PUSH S6
+CALLREF {
+	CALL $_resolveNft_2d542587_internal_macro$
+}
+SDEQ
+THROWIFNOT 1012
+.loc ../contracts/SegmintCollection.tsol, 135
+PUSH S3
+PUSHINT 10
+MOD
+NEQINT 0
+DUP
+PUSHCONT {
+	DROP
+	PUSH S2
+	PUSHINT 10
+	MOD
+	NEQINT 0
+	DUP
+	PUSHCONT {
+		DROP
+		OVER
+		PUSHINT 10
+		MOD
+		NEQINT 0
+		DUP
+		PUSHCONT {
+			DROP
+			DUP
+			PUSHINT 10
+			MOD
+			NEQINT 0
+			PUSH2 S4, S2
+			GEQ
+			PUSH2 S4, S2
+			GEQ
+			PUSH S4
+			PUSHINT 1000
+			GREATER
+			PUSH S4
+			PUSHINT 1000
+			GREATER
+			OR
+			OR
+			OR
+			OR
+		}
+		IFNOT
+	}
+	IFNOT
+}
+IFNOT
+THROWIF 1011
+.loc ../contracts/SegmintCollection.tsol, 140
+PUSH S3
+PUSHINT 10
+DIV
+UFITS 7
+.loc ../contracts/SegmintCollection.tsol, 141
+PUSH S3
+PUSHINT 10
+DIV
+UFITS 7
+.loc ../contracts/SegmintCollection.tsol, 144
+ROLL 3
+ROLL 5
+SUB
+UFITS 10
+PUSHINT 10
+DIV
+UFITS 7
+.loc ../contracts/SegmintCollection.tsol, 145
+BLKSWAP 2, 3
+SUBR
+UFITS 10
+PUSHINT 10
+DIV
+UFITS 7
+.loc ../contracts/SegmintCollection.tsol, 147
+DUP2
+MUL
+UFITS 14
+.loc ../contracts/SegmintCollection.tsol, 148
+GTINT 100
+THROWIF 1011
+.loc ../contracts/SegmintCollection.tsol, 261
+FALSE
+.loc ../contracts/SegmintCollection.tsol, 263
+PUSH S4
+PUSHCONT {
+	PUSH3 S0, S5, S3
+	ADD
+	UFITS 7
+	LESS
+}
+PUSHCONT {
+	.loc ../contracts/SegmintCollection.tsol, 264
+	DUP
+	LSHIFT 7
+	UFITS 14
+	.loc ../contracts/SegmintCollection.tsol, 265
+	PUSH S5
+	PUSHCONT {
+		PUSH3 S0, S6, S4
+		ADD
+		UFITS 7
+		LESS
+	}
+	PUSHCONT {
+		.loc ../contracts/SegmintCollection.tsol, 266
+		DUP2
+		OR
+		GETGLOB 24
+		PUSHINT 14
+		DICTUGET
+		ZEROSWAPIFNOT
+		PUSHCONT {
+			PLDU 64
+		}
+		IF
+		.loc ../contracts/SegmintCollection.tsol, 267
+		RSHIFT 32
+		UFITS 32
+		.loc ../contracts/SegmintCollection.tsol, 268
+		PUSH S10
+		EQUAL
+		PUSHCONT {
+			.loc ../contracts/SegmintCollection.tsol, 269
+			TRUE
+			POP S4
+			.loc ../contracts/SegmintCollection.tsol, 0
+		}
+		IF
+		.loc ../contracts/SegmintCollection.tsol, 265
+		INC
+		UFITS 7
+		.loc ../contracts/SegmintCollection.tsol, 0
+	}
+	WHILE
+	DROP2
+	.loc ../contracts/SegmintCollection.tsol, 263
+	INC
+	UFITS 14
+	.loc ../contracts/SegmintCollection.tsol, 0
+}
+WHILE
+DROP
+.loc ../contracts/SegmintCollection.tsol, 273
+PUSHCONT {
+	.loc ../contracts/SegmintCollection.tsol, 274
+	GETGLOB 9
+	FALSE
+	NEWC
+	STSLICECONST x6_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	PUSHSLICE x000000000000000000000000000025007981_
+}
+PUSHCONT {
+	.loc ../contracts/SegmintCollection.tsol, 276
+	PUSH S4
+	GETGLOB 9
+	FALSE
+	NEWC
+	STSLICECONST x6_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	PUSHSLICE x0000000000000000000000000001f53c27f_
 }
 IFELSE
-.loc ../contracts/SegmintCollection.tsol, 303
-DROP2
-NEWC
-STSLICECONST x42_
-STSLICE
-PUSHINT 111
-STZEROES
+STSLICER
 ENDC
-PUSHPOW2 7
-ADDCONST 2
-UFITS 8
+PUSHINT 64
 SENDRAWMSG
 .loc ../contracts/SegmintCollection.tsol, 0
-BLKDROP 4
+BLKDROP 6
 
 .macro getTile
 DROP
@@ -1680,7 +1815,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 307
+.loc ../contracts/SegmintCollection.tsol, 281
 LDU 32
 GETGLOB 4
 ROT
@@ -1693,9 +1828,9 @@ ENDS
 CALLREF {
 	CALL $getTile_b6d2b11c_internal_macro$
 }
-PUSH S2
+PUSH S3
 PUSHCONT {
-	PUSH S4
+	PUSH S5
 	CTOS
 	LDU 2
 	LDMSGADDR
@@ -1706,13 +1841,14 @@ PUSHCONT {
 	STSLICE
 	PUSHINT 98
 	STZEROES
-	REVERSE 2, 1
-	STSLICECONST x8e4e1a4e
+	REVERSE 3, 1
+	STSLICECONST xaa7de1f8
 	SWAP
 	UNPAIR
 	XCHG S2
 	STU 32
 	STDICT
+	STU 32
 	STU 32
 	ENDC
 	PUSHINT 0
@@ -1736,7 +1872,7 @@ PUSHCONT {
 	STDICT
 	PUSHINT 106
 	STZEROES
-	REVERSE 2, 1
+	REVERSE 3, 1
 	GETGLOB 4
 	INDEX 5
 	STUR 32
@@ -1745,6 +1881,7 @@ PUSHCONT {
 	XCHG S2
 	STU 32
 	STDICT
+	STU 32
 	STU 32
 	ENDC
 	GETGLOB 4
@@ -1758,31 +1895,33 @@ CALLREF {
 THROW 0
 
 .macro getTile_b6d2b11c_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 307
+.loc ../contracts/SegmintCollection.tsol, 281
 PUSHINT 0
 NEWDICT
 PAIR
-.loc ../contracts/SegmintCollection.tsol, 309
+PUSHINT 0
+DUP
+.loc ../contracts/SegmintCollection.tsol, 283
 PUSHPOW2DEC 32
-.loc ../contracts/SegmintCollection.tsol, 310
-ROLL 3
+POP S2
+.loc ../contracts/SegmintCollection.tsol, 284
+ROLL 4
 PUSHINT 10
 DIV
 LSHIFT 7
 UFITS 14
-ROLL 3
+ROLL 4
 PUSHINT 10
 DIV
 OR
-.loc ../contracts/SegmintCollection.tsol, 311
+.loc ../contracts/SegmintCollection.tsol, 285
 DUP
-GETGLOB 27
+GETGLOB 23
 PUSHINT 14
 DICTUGET
 NULLSWAPIFNOT
 IFREF {
 	LDU 32
-	LDU 32
 	LDDICT
 	ROTREV
 	PAIR
@@ -1796,40 +1935,46 @@ IFREF {
 	LDDICT
 	ROTREV
 	PAIR
-	SWAP
-	ROLLREV 3
-	TRIPLE
 	SWAP
 	ENDS
-	PAIR
+	TRIPLE
 }
-.loc ../contracts/SegmintCollection.tsol, 312
+.loc ../contracts/SegmintCollection.tsol, 286
 DUP
 ISNULL
 PUSHCONT {
-	.loc ../contracts/SegmintCollection.tsol, 317
+	.loc ../contracts/SegmintCollection.tsol, 293
 	OVER
-	GETGLOB 28
+	GETGLOB 24
 	PUSHINT 14
 	DICTUGET
 	NULLSWAPIFNOT
 	PUSHCONT {
-		PLDU 32
+		PLDU 64
 	}
 	IF
-	.loc ../contracts/SegmintCollection.tsol, 318
+	.loc ../contracts/SegmintCollection.tsol, 294
 	DUP
 	ISNULL
 	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 320
+		.loc ../contracts/SegmintCollection.tsol, 296
 		BLKPUSH 2, 0
 		ISNULL
 		THROWIF 63
+		.loc ../contracts/SegmintCollection.tsol, 297
+		DUP
+		RSHIFT 32
+		UFITS 32
+		POP S6
+		.loc ../contracts/SegmintCollection.tsol, 298
+		PUSHPOW2DEC 32
+		AND
+		UFITS 32
 		POP S4
 		.loc ../contracts/SegmintCollection.tsol, 0
 	}
 	IFNOT
-	.loc ../contracts/SegmintCollection.tsol, 322
+	.loc ../contracts/SegmintCollection.tsol, 300
 	DROP
 	PUSHINT 0
 	PUSHCONT {
@@ -1837,15 +1982,15 @@ PUSHCONT {
 		LESSINT 10
 	}
 	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 323
+		.loc ../contracts/SegmintCollection.tsol, 301
 		PUSHINT 0
 		PUSHCONT {
 			DUP
 			LESSINT 10
 		}
 		PUSHCONT {
-			.loc ../contracts/SegmintCollection.tsol, 324
-			PUSH S5
+			.loc ../contracts/SegmintCollection.tsol, 302
+			PUSH S6
 			NEWC
 			STSLICECONST x00
 			SWAP
@@ -1856,9 +2001,9 @@ PUSHCONT {
 			PUSHINT 32
 			DICTUSETB
 			PAIR
-			POP S6
-			.loc ../contracts/SegmintCollection.tsol, 325
-			PUSH S5
+			POP S7
+			.loc ../contracts/SegmintCollection.tsol, 303
+			PUSH S6
 			NEWC
 			STSLICECONST x00
 			SWAP
@@ -1869,9 +2014,9 @@ PUSHCONT {
 			PUSHINT 32
 			DICTUSETB
 			PAIR
-			POP S6
-			.loc ../contracts/SegmintCollection.tsol, 326
-			PUSH S5
+			POP S7
+			.loc ../contracts/SegmintCollection.tsol, 304
+			PUSH S6
 			NEWC
 			STSLICECONST x00
 			SWAP
@@ -1882,14 +2027,14 @@ PUSHCONT {
 			PUSHINT 32
 			DICTUSETB
 			PAIR
-			POP S6
-			.loc ../contracts/SegmintCollection.tsol, 323
+			POP S7
+			.loc ../contracts/SegmintCollection.tsol, 301
 			INC
 			.loc ../contracts/SegmintCollection.tsol, 0
 		}
 		WHILE
 		DROP
-		.loc ../contracts/SegmintCollection.tsol, 322
+		.loc ../contracts/SegmintCollection.tsol, 300
 		INC
 		.loc ../contracts/SegmintCollection.tsol, 0
 	}
@@ -1898,34 +2043,49 @@ PUSHCONT {
 	.loc ../contracts/SegmintCollection.tsol, 0
 }
 PUSHCONT {
-	.loc ../contracts/SegmintCollection.tsol, 313
+	.loc ../contracts/SegmintCollection.tsol, 287
 	BLKPUSH 2, 0
 	ISNULL
 	THROWIF 63
-	.loc ../contracts/SegmintCollection.tsol, 314
+	.loc ../contracts/SegmintCollection.tsol, 288
+	PUSH S2
+	GETGLOB 24
+	PUSHINT 14
+	DICTUGET
+	ZEROSWAPIFNOT
+	PUSHCONT {
+		PLDU 64
+	}
+	IF
+	.loc ../contracts/SegmintCollection.tsol, 289
 	DUP
-	FIRST
+	RSHIFT 32
+	UFITS 32
+	POP S6
+	.loc ../contracts/SegmintCollection.tsol, 290
+	PUSHPOW2DEC 32
+	AND
+	UFITS 32
 	POP S4
-	.loc ../contracts/SegmintCollection.tsol, 315
-	SECOND
+	.loc ../contracts/SegmintCollection.tsol, 291
 	PUSHINT 0
 	NEWDICT
 	PAIR
-	.loc ../contracts/SegmintCollection.tsol, 367
+	.loc ../contracts/SegmintCollection.tsol, 340
 	PUSHINT 0
 	PUSHCONT {
 		DUP
 		LESSINT 10
 	}
 	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 368
+		.loc ../contracts/SegmintCollection.tsol, 341
 		PUSHINT 0
 		PUSHCONT {
 			DUP
 			LESSINT 10
 		}
 		PUSHCONT {
-			.loc ../contracts/SegmintCollection.tsol, 369
+			.loc ../contracts/SegmintCollection.tsol, 342
 			BLKPUSH 2, 2
 			PUSH S5
 			INDEX2 0, 1
@@ -1953,7 +2113,7 @@ PUSHCONT {
 			DICTUSETB
 			PAIR
 			POP S3
-			.loc ../contracts/SegmintCollection.tsol, 370
+			.loc ../contracts/SegmintCollection.tsol, 343
 			BLKPUSH 2, 2
 			PUSH S5
 			INDEX2 1, 1
@@ -1981,7 +2141,7 @@ PUSHCONT {
 			DICTUSETB
 			PAIR
 			POP S3
-			.loc ../contracts/SegmintCollection.tsol, 371
+			.loc ../contracts/SegmintCollection.tsol, 344
 			BLKPUSH 2, 2
 			PUSH S5
 			INDEX2 2, 1
@@ -2009,25 +2169,25 @@ PUSHCONT {
 			DICTUSETB
 			PAIR
 			POP S3
-			.loc ../contracts/SegmintCollection.tsol, 368
+			.loc ../contracts/SegmintCollection.tsol, 341
 			INC
 			.loc ../contracts/SegmintCollection.tsol, 0
 		}
 		WHILE
 		DROP
-		.loc ../contracts/SegmintCollection.tsol, 367
+		.loc ../contracts/SegmintCollection.tsol, 340
 		INC
 		.loc ../contracts/SegmintCollection.tsol, 0
 	}
 	WHILE
 	DROP
-	.loc ../contracts/SegmintCollection.tsol, 374
+	.loc ../contracts/SegmintCollection.tsol, 347
 	NIP
 	.loc ../contracts/SegmintCollection.tsol, 0
-	POP S4
+	POP S5
 }
 IFELSE
-.loc ../contracts/SegmintCollection.tsol, 331
+.loc ../contracts/SegmintCollection.tsol, 308
 DROP2
 GETGLOB 4
 PUSHINT 0
@@ -2048,7 +2208,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 335
+.loc ../contracts/SegmintCollection.tsol, 312
 LDU 32
 GETGLOB 4
 ROT
@@ -2137,7 +2297,7 @@ CALLREF {
 THROW 0
 
 .macro convertTileColorsToPixels_84d5bd54_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 336
+.loc ../contracts/SegmintCollection.tsol, 313
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -2149,21 +2309,21 @@ SETGLOB 4
 PUSHINT 0
 NEWDICT
 PAIR
-.loc ../contracts/SegmintCollection.tsol, 367
+.loc ../contracts/SegmintCollection.tsol, 340
 PUSHINT 0
 PUSHCONT {
 	DUP
 	LESSINT 10
 }
 PUSHCONT {
-	.loc ../contracts/SegmintCollection.tsol, 368
+	.loc ../contracts/SegmintCollection.tsol, 341
 	PUSHINT 0
 	PUSHCONT {
 		DUP
 		LESSINT 10
 	}
 	PUSHCONT {
-		.loc ../contracts/SegmintCollection.tsol, 369
+		.loc ../contracts/SegmintCollection.tsol, 342
 		BLKPUSH 2, 2
 		PUSH S5
 		INDEX2 0, 1
@@ -2191,7 +2351,7 @@ PUSHCONT {
 		DICTUSETB
 		PAIR
 		POP S3
-		.loc ../contracts/SegmintCollection.tsol, 370
+		.loc ../contracts/SegmintCollection.tsol, 343
 		BLKPUSH 2, 2
 		PUSH S5
 		INDEX2 1, 1
@@ -2219,7 +2379,7 @@ PUSHCONT {
 		DICTUSETB
 		PAIR
 		POP S3
-		.loc ../contracts/SegmintCollection.tsol, 371
+		.loc ../contracts/SegmintCollection.tsol, 344
 		BLKPUSH 2, 2
 		PUSH S5
 		INDEX2 2, 1
@@ -2247,23 +2407,23 @@ PUSHCONT {
 		DICTUSETB
 		PAIR
 		POP S3
-		.loc ../contracts/SegmintCollection.tsol, 368
+		.loc ../contracts/SegmintCollection.tsol, 341
 		INC
 		.loc ../contracts/SegmintCollection.tsol, 0
 	}
 	WHILE
 	DROP
-	.loc ../contracts/SegmintCollection.tsol, 367
+	.loc ../contracts/SegmintCollection.tsol, 340
 	INC
 	.loc ../contracts/SegmintCollection.tsol, 0
 }
 WHILE
 DROP
-.loc ../contracts/SegmintCollection.tsol, 374
+.loc ../contracts/SegmintCollection.tsol, 347
 NIP
 .loc ../contracts/SegmintCollection.tsol, 0
 
-.macro getTiles
+.macro getTilesColors
 DROP
 GETGLOB 6
 THROWIFNOT 76
@@ -2272,7 +2432,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 339
+.loc ../contracts/SegmintCollection.tsol, 316
 LDU 32
 GETGLOB 4
 ROT
@@ -2281,7 +2441,7 @@ SETGLOB 4
 ENDS
 .loc ../contracts/SegmintCollection.tsol, 0
 CALLREF {
-	CALL $getTiles_1d3a01c6_internal_macro$
+	CALL $getTilesColors_7d95c89d_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -2294,7 +2454,7 @@ PUSHCONT {
 	NEWC
 	STSLICECONST xc
 	STSLICE
-	PUSHINT 2507809479
+	PUSHINT 3797044609
 	STUR 130
 	STDICT
 	ENDC
@@ -2334,8 +2494,8 @@ CALLREF {
 }
 THROW 0
 
-.macro getTiles_1d3a01c6_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 340
+.macro getTilesColors_7d95c89d_internal_macro
+.loc ../contracts/SegmintCollection.tsol, 317
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -2344,10 +2504,10 @@ SETINDEXQ 1
 PUSHINT 64
 SETINDEXQ 4
 SETGLOB 4
-GETGLOB 27
+GETGLOB 23
 .loc ../contracts/SegmintCollection.tsol, 0
 
-.macro getOnePixelTokenPrice
+.macro getTilesOwners
 DROP
 GETGLOB 6
 THROWIFNOT 76
@@ -2356,7 +2516,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 343
+.loc ../contracts/SegmintCollection.tsol, 320
 LDU 32
 GETGLOB 4
 ROT
@@ -2365,7 +2525,7 @@ SETGLOB 4
 ENDS
 .loc ../contracts/SegmintCollection.tsol, 0
 CALLREF {
-	CALL $getOnePixelTokenPrice_165610ab_internal_macro$
+	CALL $getTilesOwners_29d69ea7_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -2378,9 +2538,9 @@ PUSHCONT {
 	NEWC
 	STSLICECONST xc
 	STSLICE
-	PUSHINT 3426530797
+	PUSHINT 2398067330
 	STUR 130
-	STU 128
+	STDICT
 	ENDC
 	PUSHINT 0
 }
@@ -2406,7 +2566,7 @@ PUSHCONT {
 	GETGLOB 4
 	INDEX 5
 	STUR 32
-	STU 128
+	STDICT
 	ENDC
 	GETGLOB 4
 	INDEX 4
@@ -2418,8 +2578,8 @@ CALLREF {
 }
 THROW 0
 
-.macro getOnePixelTokenPrice_165610ab_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 344
+.macro getTilesOwners_29d69ea7_internal_macro
+.loc ../contracts/SegmintCollection.tsol, 321
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -2431,7 +2591,7 @@ SETGLOB 4
 GETGLOB 24
 .loc ../contracts/SegmintCollection.tsol, 0
 
-.macro nftCodeWithoutSalt
+.macro getData
 DROP
 GETGLOB 6
 THROWIFNOT 76
@@ -2440,7 +2600,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 347
+.loc ../contracts/SegmintCollection.tsol, 324
 LDU 32
 GETGLOB 4
 ROT
@@ -2449,11 +2609,11 @@ SETGLOB 4
 ENDS
 .loc ../contracts/SegmintCollection.tsol, 0
 CALLREF {
-	CALL $nftCodeWithoutSalt_a4d190fa_internal_macro$
+	CALL $getData_3bc5de30_internal_macro$
 }
-OVER
+PUSH S4
 PUSHCONT {
-	PUSH S3
+	PUSH S6
 	CTOS
 	LDU 2
 	LDMSGADDR
@@ -2462,9 +2622,14 @@ PUSHCONT {
 	NEWC
 	STSLICECONST xc
 	STSLICE
-	PUSHINT 2532178777
-	STUR 130
-	STREF
+	PUSHINT 98
+	STZEROES
+	REVERSE 4, 1
+	STSLICECONST xf02be732
+	STU 32
+	STU 32
+	STU 128
+	STI 1
 	ENDC
 	PUSHINT 0
 }
@@ -2485,96 +2650,18 @@ PUSHCONT {
 	SWAP
 	STGRAMS
 	STDICT
-	PUSHINT 106
-	STZEROES
+	PUSHINT 1
+	STUR 106
+	REVERSE 5, 0
+	NEWC
 	GETGLOB 4
 	INDEX 5
 	STUR 32
-	STREF
-	ENDC
-	GETGLOB 4
-	INDEX 4
-}
-IFELSE
-SENDRAWMSG
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro nftCodeWithoutSalt_a4d190fa_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 348
-GETGLOB 4
-PUSHINT 0
-SETINDEXQ 2
-PUSHINT 64
-SETINDEXQ 4
-FALSE
-SETINDEXQ 1
-SETGLOB 4
-GETGLOB 11
-.loc ../contracts/SegmintCollection.tsol, 0
-
-.macro getNftCount
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/SegmintCollection.tsol, 351
-LDU 32
-GETGLOB 4
-ROT
-SETINDEXQ 5
-SETGLOB 4
-ENDS
-.loc ../contracts/SegmintCollection.tsol, 0
-CALLREF {
-	CALL $getNftCount_692f1d12_internal_macro$
-}
-OVER
-PUSHCONT {
-	PUSH S3
-	CTOS
-	LDU 2
-	LDMSGADDR
-	DROP
-	NIP
-	NEWC
-	STSLICECONST xc
-	STSLICE
-	PUSHINT 3163917343
-	STUR 130
 	STU 32
-	ENDC
-	PUSHINT 0
-}
-PUSHCONT {
-	GETGLOB 4
-	DUP
-	INDEX 3
-	OVER
-	THIRD
-	GETGLOB 9
-	ROLL 3
-	SECOND
-	NEWC
-	STSLICECONST x2_
+	STU 32
+	STU 128
 	STI 1
-	STSLICECONST x1_
-	STSLICE
-	SWAP
-	STGRAMS
-	STDICT
-	PUSHINT 106
-	STZEROES
-	GETGLOB 4
-	INDEX 5
-	STUR 32
-	STU 32
+	STBREFR
 	ENDC
 	GETGLOB 4
 	INDEX 4
@@ -2586,8 +2673,8 @@ CALLREF {
 }
 THROW 0
 
-.macro getNftCount_692f1d12_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 352
+.macro getData_3bc5de30_internal_macro
+.loc ../contracts/SegmintCollection.tsol, 325
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -2596,7 +2683,10 @@ SETINDEXQ 1
 PUSHINT 64
 SETINDEXQ 4
 SETGLOB 4
+GETGLOB 25
 GETGLOB 26
+GETGLOB 28
+GETGLOB 22
 .loc ../contracts/SegmintCollection.tsol, 0
 
 .macro getNftIndexCodeHash
@@ -2608,7 +2698,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintCollection.tsol, 355
+.loc ../contracts/SegmintCollection.tsol, 328
 LDU 32
 GETGLOB 4
 ROT
@@ -2679,18 +2769,18 @@ IFREF {
 THROW 0
 
 .macro getNftIndexCodeHash_09eecc38_internal_macro
-.loc ../contracts/SegmintCollection.tsol, 359
+.loc ../contracts/SegmintCollection.tsol, 332
 PUSHREF {
 	.blob x6e6674
 }
 NEWC
 STREF
-.loc ../contracts/SegmintCollection.tsol, 360
+.loc ../contracts/SegmintCollection.tsol, 333
 MYADDR
 STSLICER
-.loc ../contracts/SegmintCollection.tsol, 361
+.loc ../contracts/SegmintCollection.tsol, 334
 STSLICE
-.loc ../contracts/SegmintCollection.tsol, 362
+.loc ../contracts/SegmintCollection.tsol, 335
 GETGLOB 14
 CTOS
 SWAP
@@ -2800,7 +2890,7 @@ CALLREF {
 	}
 	IFELSE
 }
-.loc ../contracts/SegmintCollection.tsol, 363
+.loc ../contracts/SegmintCollection.tsol, 336
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -4316,25 +4406,23 @@ LDREF
 LDU 128
 LDU 128
 LDU 128
+LDMSGADDR
+LDREF
+ENDS
+CTOS
+LDMSGADDR
 LDU 16
-LDMSGADDR
-LDREF
-ENDS
-CTOS
-LDMSGADDR
-LDREF
-ENDS
-CTOS
-LDMSGADDR
-LDREF
-ENDS
-CTOS
-LDMSGADDR
-LDU 128
 LDI 1
+LDDICT
+LDDICT
 LDU 32
-LDDICT
-LDDICT
+LDU 32
+LDU 14
+LDU 128
+LDU 128
+LDREF
+ENDS
+CTOS
 LDU 128
 ENDS
 PUSHINT 0
@@ -4348,10 +4436,10 @@ GETGLOB 6
 GETGLOB 7
 GETGLOB 8
 GETGLOB 9
-PUSHINT 20
+PUSHINT 21
 PUSHINT 10
 BLKSWX
-PUSHINT 30
+PUSHINT 31
 TUPLEVAR
 POP C7
 SETGLOB 3
@@ -4391,15 +4479,6 @@ PUSHCONT {
 	PUSH S20
 	PUSHINT 64
 	DICTUGET
-	ZEROSWAPIFNOT
-	PUSHCONT {
-		PLDU 16
-	}
-	IF
-	PUSHINT 2
-	PUSH S21
-	PUSHINT 64
-	DICTUGET
 	PUSHCONT {
 		PUSHREFSLICE {
 			.blob x8000000000000000000000000000000000000000000000000000000000000000001_
@@ -4409,13 +4488,21 @@ PUSHCONT {
 	PUSHREFSLICE {
 		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 	}
-	BLKPUSH 2, 0
+	PUSHINT 2
+	PUSH S22
+	PUSHINT 64
+	DICTUGET
+	ZEROSWAPIFNOT
+	PUSHCONT {
+		PLDU 16
+	}
+	IF
 	PUSHINT 0
-	BLKPUSH 2, 0
 	NEWDICT
 	DUP
 	PUSHINT 0
-	PUSHINT 30
+	BLKPUSH 5, 0
+	PUSHINT 31
 	TUPLEVAR
 	POP C7
 	PUSHINT 64
@@ -4431,8 +4518,6 @@ PUSHCONT {
 	SETGLOB 17
 	PUSHINT 150000000
 	SETGLOB 18
-	PUSHINT 300000000
-	SETGLOB 29
 }
 IFREFELSE {
 	CALL $c4_to_c7$
@@ -4441,12 +4526,12 @@ IFREFELSE {
 .macro c7_to_c4
 PUSH C7
 FALSE
-PUSHINT 30
-SETINDEXVARQ
 PUSHINT 31
+SETINDEXVARQ
+PUSHINT 32
 UNTUPLEVAR
 DROP
-PUSHINT 30
+PUSHINT 31
 PUSHINT 0
 REVX
 BLKDROP 10
@@ -4460,31 +4545,30 @@ STDICT
 STREF
 STU 128
 STREF
-ROLLREV 16
+PUSHINT 17
+ROLLREVX
 NEWC
 STREF
 STREF
 STU 128
 STU 128
 STU 128
+STSLICE
+ROLLREV 11
+NEWC
+STSLICE
 STU 16
-STSLICE
-ROLLREV 9
-NEWC
-STSLICE
-ROLLREV 8
-NEWC
-STSLICE
-ROLLREV 7
-NEWC
-STSLICE
-STU 128
 STI 1
+STDICT
+STDICT
 STU 32
-STDICT
-STDICT
+STU 32
+STU 14
 STU 128
-STBREFR
+STU 128
+SWAP
+NEWC
+STU 128
 STBREFR
 STBREFR
 STBREFR
@@ -4594,7 +4678,7 @@ CALLREF {
 }
 THROW 60
 
-.macro new_array_line_290_column_35_ast_id_1052
+.macro new_array_line_238_column_39_ast_id_888
 PUSHINT 0
 NEWC
 STU 80
@@ -4614,11 +4698,11 @@ BLKDROP2 2, 1
 
 .macro public_function_selector
 DUP
-PUSHINT 859010224
+PUSHINT 880007004
 LEQ
 IFJMPREF {
 	DUP
-	PUSHINT 263162756
+	PUSHINT 316529011
 	LEQ
 	IFJMPREF {
 		DUP
@@ -4628,16 +4712,10 @@ IFJMPREF {
 			CALL $indexCode$
 		}
 		DUP
-		PUSHINT 134991906
+		PUSHINT 250583682
 		EQUAL
 		IFJMPREF {
-			CALL $changeOneTilePrice$
-		}
-		DUP
-		PUSHINT 239999566
-		EQUAL
-		IFJMPREF {
-			CALL $getTile$
+			CALL $getTilesOwners$
 		}
 		DUP
 		PUSHINT 263162756
@@ -4645,17 +4723,17 @@ IFJMPREF {
 		IFJMPREF {
 			CALL $nftCode$
 		}
-	}
-	DUP
-	PUSHINT 384695129
-	LEQ
-	IFJMPREF {
 		DUP
 		PUSHINT 316529011
 		EQUAL
 		IFJMPREF {
 			CALL $getMintDisabled$
 		}
+	}
+	DUP
+	PUSHINT 618124789
+	LEQ
+	IFJMPREF {
 		DUP
 		PUSHINT 348956614
 		EQUAL
@@ -4663,22 +4741,11 @@ IFJMPREF {
 			CALL $indexCodeHash$
 		}
 		DUP
-		PUSHINT 360325831
+		PUSHINT 502829540
 		EQUAL
 		IFJMPREF {
-			CALL $getTiles$
+			CALL $constructor$
 		}
-		DUP
-		PUSHINT 384695129
-		EQUAL
-		IFJMPREF {
-			CALL $nftCodeWithoutSalt$
-		}
-	}
-	DUP
-	PUSHINT 627893506
-	LEQ
-	IFJMPREF {
 		DUP
 		PUSHINT 561722120
 		EQUAL
@@ -4686,34 +4753,45 @@ IFJMPREF {
 			CALL $changeOwner$
 		}
 		DUP
-		PUSHINT 607439691
-		EQUAL
-		IFJMPREF {
-			CALL $withdraw$
-		}
-		DUP
 		PUSHINT 618124789
 		EQUAL
 		IFJMPREF {
 			CALL $getJson$
 		}
+	}
+	DUP
+	PUSHINT 779496927
+	LEQ
+	IFJMPREF {
 		DUP
 		PUSHINT 627893506
 		EQUAL
 		IFJMPREF {
 			CALL $getNftIndexCodeHash$
 		}
-	}
-	DUP
-	PUSHINT 859010224
-	LEQ
-	IFJMPREF {
+		DUP
+		PUSHINT 712892920
+		EQUAL
+		IFJMPREF {
+			CALL $getTile$
+		}
 		DUP
 		PUSHINT 713856098
 		EQUAL
 		IFJMPREF {
 			CALL $colorifyTile$
 		}
+		DUP
+		PUSHINT 779496927
+		EQUAL
+		IFJMPREF {
+			CALL $claimTiles$
+		}
+	}
+	DUP
+	PUSHINT 880007004
+	LEQ
+	IFJMPREF {
 		DUP
 		PUSHINT 786351675
 		EQUAL
@@ -4732,6 +4810,12 @@ IFJMPREF {
 		IFJMPREF {
 			CALL $convertTileColorsToPixels$
 		}
+		DUP
+		PUSHINT 880007004
+		EQUAL
+		IFJMPREF {
+			CALL $indexBasisCodeHash$
+		}
 	}
 }
 DUP
@@ -4739,15 +4823,9 @@ PUSHINT 2094753589
 LEQ
 IFJMPREF {
 	DUP
-	PUSHINT 1135167824
+	PUSHINT 1211450471
 	LEQ
 	IFJMPREF {
-		DUP
-		PUSHINT 880007004
-		EQUAL
-		IFJMPREF {
-			CALL $indexBasisCodeHash$
-		}
 		DUP
 		PUSHINT 953907334
 		EQUAL
@@ -4755,22 +4833,11 @@ IFJMPREF {
 			CALL $resolveIndexBasis$
 		}
 		DUP
-		PUSHINT 1016433695
+		PUSHINT 1148677576
 		EQUAL
 		IFJMPREF {
-			CALL $getNftCount$
+			CALL $setNftBurningBlocked$
 		}
-		DUP
-		PUSHINT 1135167824
-		EQUAL
-		IFJMPREF {
-			CALL $onWalletDeployed$
-		}
-	}
-	DUP
-	PUSHINT 1383720816
-	LEQ
-	IFJMPREF {
 		DUP
 		PUSHINT 1164590750
 		EQUAL
@@ -4778,28 +4845,22 @@ IFJMPREF {
 			CALL $acceptOwnership$
 		}
 		DUP
-		PUSHINT 1181533261
+		PUSHINT 1211450471
 		EQUAL
 		IFJMPREF {
-			CALL $constructor$
+			CALL $burnNft$
 		}
-		DUP
-		PUSHINT 1279047149
-		EQUAL
-		IFJMPREF {
-			CALL $getOnePixelTokenPrice$
-		}
+	}
+	DUP
+	PUSHINT 1649560961
+	LEQ
+	IFJMPREF {
 		DUP
 		PUSHINT 1383720816
 		EQUAL
 		IFJMPREF {
 			CALL $nftAddress$
 		}
-	}
-	DUP
-	PUSHINT 2091193979
-	LEQ
-	IFJMPREF {
 		DUP
 		PUSHINT 1479945602
 		EQUAL
@@ -4813,10 +4874,27 @@ IFJMPREF {
 			CALL $totalSupply$
 		}
 		DUP
-		PUSHINT 1893244873
+		PUSHINT 1649560961
 		EQUAL
 		IFJMPREF {
-			CALL $onAcceptTokensTransfer$
+			CALL $getTilesColors$
+		}
+	}
+	DUP
+	PUSHINT 2094753589
+	LEQ
+	IFJMPREF {
+		DUP
+		PUSHINT 1692902082
+		EQUAL
+		IFJMPREF {
+			CALL $changeEpoch$
+		}
+		DUP
+		PUSHINT 1881925426
+		EQUAL
+		IFJMPREF {
+			CALL $getData$
 		}
 		DUP
 		PUSHINT 2091193979
@@ -4824,12 +4902,12 @@ IFJMPREF {
 		IFJMPREF {
 			CALL $enableMint$
 		}
-	}
-	DUP
-	PUSHINT 2094753589
-	EQUAL
-	IFJMPREF {
-		CALL $disableMint$
+		DUP
+		PUSHINT 2094753589
+		EQUAL
+		IFJMPREF {
+			CALL $disableMint$
+		}
 	}
 }
 
