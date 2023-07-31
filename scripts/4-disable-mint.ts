@@ -30,7 +30,7 @@ async function main() {
       amount: locklift.utils.toNano(1),
     }),
   )
-  console.log(`Mint enabled at: ${collection.address.toString()}`);
+  console.log(`Mint disabled at: ${collection.address.toString()}`);
 }
 
 main()

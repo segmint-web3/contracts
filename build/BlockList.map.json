@@ -1,0 +1,1642 @@
+{
+  "map": {
+    "00ec31c99f35bcc27083a0e4c8f3c29045f6f669774a67a67683096f289be924": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 4
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 5
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 6
+      },
+      "32": {
+        "filename": "BlockList.code",
+        "line": 7
+      },
+      "48": {
+        "filename": "BlockList.code",
+        "line": 10
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 11
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 12
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 28
+      },
+      "104": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 28
+      },
+      "128": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 29
+      },
+      "144": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 29
+      },
+      "160": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 29
+      },
+      "176": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 29
+      },
+      "200": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 30
+      },
+      "216": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 30
+      },
+      "232": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 30
+      },
+      "240": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 30
+      },
+      "256": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 30
+      },
+      "264": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 30
+      },
+      "288": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 30
+      },
+      "304": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 30
+      },
+      "320": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 31
+      },
+      "368": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 31
+      },
+      "376": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 31
+      },
+      "392": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "408": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "416": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "440": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "448": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "464": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "480": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "488": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "504": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "520": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "536": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 32
+      },
+      "552": {
+        "filename": "BlockList.code",
+        "line": 47
+      },
+      "568": {
+        "filename": "BlockList.code",
+        "line": 50
+      }
+    },
+    "13b75ba78343adb3ff0785020b90326c63cadb03740117ad24d3ab5d7d485519": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 163
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 164
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 165
+      },
+      "48": {
+        "filename": "BlockList.code",
+        "line": 166
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 167
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 168
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 45
+      },
+      "104": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 45
+      },
+      "112": {
+        "filename": "BlockList.code",
+        "line": 175
+      },
+      "128": {
+        "filename": "BlockList.code",
+        "line": 178
+      },
+      "144": {
+        "filename": "BlockList.code",
+        "line": 181
+      }
+    },
+    "1461165ebb584a80209eec0391db667957fe5e8c57b34d6c9f61a6dd61500aab": {
+      "0": {
+        "filename": "<entry-selector>",
+        "line": 1
+      },
+      "8": {
+        "filename": "<entry-selector>",
+        "line": 2
+      },
+      "24": {
+        "filename": "<entry-selector>",
+        "line": 3
+      },
+      "32": {
+        "filename": "<entry-selector>",
+        "line": 4
+      },
+      "48": {
+        "filename": "<entry-selector>",
+        "line": 5
+      },
+      "56": {
+        "filename": "<entry-selector>",
+        "line": 6
+      },
+      "72": {
+        "filename": "<entry-selector>",
+        "line": 7
+      },
+      "88": {
+        "filename": "<entry-selector>",
+        "line": 8
+      },
+      "96": {
+        "filename": "<entry-selector>",
+        "line": 9
+      },
+      "112": {
+        "filename": "<entry-selector>",
+        "line": 10
+      },
+      "128": {
+        "filename": "<entry-selector>",
+        "line": 11
+      }
+    },
+    "14caadca6c2b718b153ec85be324cdebdbca970f6dd2b3993f91ceb6a5fbed31": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 53
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 54
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 55
+      },
+      "48": {
+        "filename": "BlockList.code",
+        "line": 56
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 57
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 58
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 35
+      },
+      "96": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 35
+      },
+      "104": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 35
+      },
+      "112": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 35
+      },
+      "120": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 35
+      },
+      "128": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 35
+      },
+      "136": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 35
+      },
+      "152": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 35
+      },
+      "160": {
+        "filename": "BlockList.code",
+        "line": 72
+      },
+      "176": {
+        "filename": "BlockList.code",
+        "line": 75
+      },
+      "192": {
+        "filename": "BlockList.code",
+        "line": 78
+      }
+    },
+    "3a75562793b51916a5e69c485a8eadc98d73c04c73fba0392143b7cb93860f54": {
+      "0": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "16": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "32": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "48": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "72": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 58
+      },
+      "80": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 59
+      },
+      "96": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "112": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "120": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "144": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "152": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "168": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "184": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "192": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "208": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "224": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      },
+      "240": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 60
+      }
+    },
+    "3ac1e329329ee296507db898473361c5bfc4e026dc6bbdc1643d91019c64b9c7": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 346
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 347
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 348
+      },
+      "32": {
+        "filename": "BlockList.code",
+        "line": 349
+      },
+      "48": {
+        "filename": "BlockList.code",
+        "line": 350
+      },
+      "56": {
+        "filename": "BlockList.code",
+        "line": 351
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 352
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 353
+      },
+      "96": {
+        "filename": "BlockList.code",
+        "line": 354
+      },
+      "112": {
+        "filename": "BlockList.code",
+        "line": 359
+      },
+      "120": {
+        "filename": "BlockList.code",
+        "line": 360
+      },
+      "128": {
+        "filename": "BlockList.code",
+        "line": 361
+      },
+      "136": {
+        "filename": "BlockList.code",
+        "line": 362
+      },
+      "152": {
+        "filename": "BlockList.code",
+        "line": 363
+      },
+      "168": {
+        "filename": "BlockList.code",
+        "line": 364
+      },
+      "184": {
+        "filename": "BlockList.code",
+        "line": 365
+      },
+      "200": {
+        "filename": "BlockList.code",
+        "line": 366
+      },
+      "216": {
+        "filename": "BlockList.code",
+        "line": 367
+      },
+      "232": {
+        "filename": "BlockList.code",
+        "line": 368
+      },
+      "256": {
+        "filename": "BlockList.code",
+        "line": 369
+      },
+      "272": {
+        "filename": "BlockList.code",
+        "line": 370
+      },
+      "280": {
+        "filename": "BlockList.code",
+        "line": 371
+      }
+    },
+    "3ba6f0cba2d30eca4a13c1c07788f69d79ddd4657d69f284444f953c70d3ea3f": {
+      "0": {
+        "filename": "<internal-selector>",
+        "line": 1
+      },
+      "24": {
+        "filename": "<internal-selector>",
+        "line": 2
+      }
+    },
+    "51e3d2c39cd3c539079c044b10aea50eacd111c8af89ffde3517e5e107257a40": {
+      "0": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "16": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "32": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "48": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "72": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 53
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 53
+      },
+      "104": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 53
+      },
+      "120": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 53
+      },
+      "128": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 53
+      },
+      "144": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "160": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "168": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "192": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "200": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "216": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "232": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "240": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "256": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "272": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      },
+      "288": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 54
+      }
+    },
+    "58d171f136d1e9e2f06e9f7c81e7f1d2464a0600e9e620823c96e2747b11bd85": {
+      "0": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "16": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "32": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "48": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "72": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 41
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 41
+      },
+      "112": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 41
+      },
+      "128": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 41
+      },
+      "136": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 41
+      },
+      "152": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "168": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "176": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "200": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "208": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "224": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "240": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "248": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "264": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "280": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      },
+      "296": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 42
+      }
+    },
+    "5eecf889d3eb1313093a902dc1baba9d80c440d7df72376965b5f2a14df2f550": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 445
+      },
+      "16": {
+        "filename": "BlockList.code",
+        "line": 446
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 447
+      },
+      "40": {
+        "filename": "BlockList.code",
+        "line": 448
+      },
+      "56": {
+        "filename": "BlockList.code",
+        "line": 449
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 450
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 453
+      },
+      "96": {
+        "filename": "BlockList.code",
+        "line": 454
+      },
+      "104": {
+        "filename": "BlockList.code",
+        "line": 455
+      },
+      "120": {
+        "filename": "BlockList.code",
+        "line": 458
+      },
+      "136": {
+        "filename": "BlockList.code",
+        "line": 459
+      },
+      "144": {
+        "filename": "BlockList.code",
+        "line": 460
+      },
+      "160": {
+        "filename": "BlockList.code",
+        "line": 461
+      },
+      "176": {
+        "filename": "BlockList.code",
+        "line": 462
+      },
+      "192": {
+        "filename": "BlockList.code",
+        "line": 463
+      },
+      "200": {
+        "filename": "BlockList.code",
+        "line": 464
+      },
+      "216": {
+        "filename": "BlockList.code",
+        "line": 465
+      },
+      "224": {
+        "filename": "BlockList.code",
+        "line": 466
+      },
+      "232": {
+        "filename": "BlockList.code",
+        "line": 467
+      },
+      "240": {
+        "filename": "BlockList.code",
+        "line": 468
+      },
+      "248": {
+        "filename": "BlockList.code",
+        "line": 469
+      },
+      "264": {
+        "filename": "BlockList.code",
+        "line": 470
+      },
+      "272": {
+        "filename": "BlockList.code",
+        "line": 471
+      },
+      "288": {
+        "filename": "BlockList.code",
+        "line": 472
+      },
+      "304": {
+        "filename": "BlockList.code",
+        "line": 473
+      },
+      "320": {
+        "filename": "BlockList.code",
+        "line": 475
+      },
+      "328": {
+        "filename": "BlockList.code",
+        "line": 476
+      },
+      "344": {
+        "filename": "BlockList.code",
+        "line": 477
+      },
+      "352": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "368": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "376": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "384": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "400": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "408": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "424": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "448": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "456": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "496": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "504": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "512": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "528": {
+        "filename": "stdlib.sol",
+        "line": 63
+      },
+      "544": {
+        "filename": "BlockList.code",
+        "line": 479
+      },
+      "560": {
+        "filename": "BlockList.code",
+        "line": 480
+      },
+      "568": {
+        "filename": "BlockList.code",
+        "line": 481
+      },
+      "584": {
+        "filename": "BlockList.code",
+        "line": 484
+      }
+    },
+    "61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 356
+      }
+    },
+    "684f3bd2cd0e62ca801de4055046a5874f3008ac5a2fe56916d1cb82e57462a9": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 341
+      },
+      "16": {
+        "filename": "BlockList.code",
+        "line": 342
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 343
+      },
+      "40": {
+        "filename": "BlockList.code",
+        "line": 344
+      },
+      "56": {
+        "filename": "BlockList.code",
+        "line": 345
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 373
+      }
+    },
+    "7b6c8d95f41185e79cba59f328c7ff9e45e0ca49f5a069236bdbe975bbf9acc7": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 487
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 488
+      },
+      "56": {
+        "filename": "BlockList.code",
+        "line": 489
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 490
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 516
+      },
+      "88": {
+        "filename": "BlockList.code",
+        "line": 517
+      },
+      "136": {
+        "filename": "BlockList.code",
+        "line": 518
+      },
+      "144": {
+        "filename": "BlockList.code",
+        "line": 519
+      }
+    },
+    "858b89df99905fce368e4488120851b73e2ace2c37cdd2f20efd9f6fb4b6e6d3": {
+      "0": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "16": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "32": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "48": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 18
+      },
+      "72": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 36
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 36
+      },
+      "96": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 36
+      },
+      "112": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 36
+      },
+      "120": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 36
+      },
+      "144": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 36
+      },
+      "160": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 36
+      },
+      "176": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "192": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "200": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "224": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "232": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "248": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "264": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "272": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "288": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "304": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      },
+      "320": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 37
+      }
+    },
+    "949d63b7792bcb5f9fb2ba33a1556bd801d895e168e7760a0425cc42756393d9": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 233
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 234
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 235
+      },
+      "48": {
+        "filename": "BlockList.code",
+        "line": 236
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 237
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 238
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 52
+      },
+      "104": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 52
+      },
+      "112": {
+        "filename": "BlockList.code",
+        "line": 245
+      },
+      "128": {
+        "filename": "BlockList.code",
+        "line": 248
+      },
+      "144": {
+        "filename": "BlockList.code",
+        "line": 251
+      }
+    },
+    "981fe98ef225248a2384632336c263fe138ff71e6ec48a5b20a0a03d9758b7b1": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 378
+      },
+      "16": {
+        "filename": "BlockList.code",
+        "line": 379
+      },
+      "32": {
+        "filename": "BlockList.code",
+        "line": 380
+      },
+      "48": {
+        "filename": "BlockList.code",
+        "line": 381
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 382
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 383
+      },
+      "88": {
+        "filename": "BlockList.code",
+        "line": 384
+      },
+      "104": {
+        "filename": "BlockList.code",
+        "line": 385
+      },
+      "120": {
+        "filename": "BlockList.code",
+        "line": 386
+      },
+      "136": {
+        "filename": "BlockList.code",
+        "line": 387
+      },
+      "144": {
+        "filename": "BlockList.code",
+        "line": 388
+      },
+      "160": {
+        "filename": "BlockList.code",
+        "line": 389
+      },
+      "176": {
+        "filename": "BlockList.code",
+        "line": 390
+      },
+      "184": {
+        "filename": "BlockList.code",
+        "line": 391
+      }
+    },
+    "991d32e4364cc61ed0a509f4ad70f4f54794db101a7df77249b07552a45fccaa": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 109
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 110
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 111
+      },
+      "48": {
+        "filename": "BlockList.code",
+        "line": 112
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 113
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 114
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 40
+      },
+      "96": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 40
+      },
+      "104": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 40
+      },
+      "112": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 40
+      },
+      "120": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 40
+      },
+      "128": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 40
+      },
+      "136": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 40
+      },
+      "152": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 40
+      },
+      "160": {
+        "filename": "BlockList.code",
+        "line": 128
+      },
+      "176": {
+        "filename": "BlockList.code",
+        "line": 131
+      },
+      "192": {
+        "filename": "BlockList.code",
+        "line": 134
+      }
+    },
+    "af4aaffb44754537aee62e41e4b0426dad1abd60a590301a1e0d25bbfcb230ec": {
+      "0": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "16": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "32": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "56": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "72": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "96": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "120": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "128": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "136": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "144": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 23
+      },
+      "168": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 46
+      },
+      "176": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 46
+      },
+      "192": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 46
+      },
+      "200": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 46
+      },
+      "216": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 46
+      },
+      "224": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 46
+      },
+      "240": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 46
+      },
+      "256": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 46
+      },
+      "272": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 47
+      },
+      "280": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 47
+      },
+      "288": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 47
+      },
+      "304": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 48
+      },
+      "464": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 48
+      },
+      "472": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 48
+      },
+      "480": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 48
+      },
+      "496": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 48
+      },
+      "504": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 48
+      },
+      "512": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 48
+      },
+      "528": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "544": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "552": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "576": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "584": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "600": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "616": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "624": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "640": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "656": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      },
+      "672": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 49
+      }
+    },
+    "d43658e611bc33118870e3dd203b999c724cadf5de41f34689b4008c02a50608": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 410
+      },
+      "16": {
+        "filename": "BlockList.code",
+        "line": 411
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 412
+      },
+      "40": {
+        "filename": "BlockList.code",
+        "line": 413
+      },
+      "56": {
+        "filename": "BlockList.code",
+        "line": 414
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 415
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 416
+      },
+      "88": {
+        "filename": "BlockList.code",
+        "line": 417
+      },
+      "104": {
+        "filename": "BlockList.code",
+        "line": 418
+      },
+      "120": {
+        "filename": "BlockList.code",
+        "line": 419
+      },
+      "128": {
+        "filename": "BlockList.code",
+        "line": 420
+      },
+      "144": {
+        "filename": "BlockList.code",
+        "line": 421
+      },
+      "168": {
+        "filename": "BlockList.code",
+        "line": 422
+      },
+      "176": {
+        "filename": "BlockList.code",
+        "line": 423
+      },
+      "184": {
+        "filename": "BlockList.code",
+        "line": 424
+      },
+      "200": {
+        "filename": "BlockList.code",
+        "line": 425
+      },
+      "216": {
+        "filename": "BlockList.code",
+        "line": 429
+      },
+      "224": {
+        "filename": "BlockList.code",
+        "line": 430
+      },
+      "248": {
+        "filename": "BlockList.code",
+        "line": 431
+      },
+      "264": {
+        "filename": "BlockList.code",
+        "line": 432
+      },
+      "272": {
+        "filename": "BlockList.code",
+        "line": 433
+      },
+      "288": {
+        "filename": "BlockList.code",
+        "line": 437
+      },
+      "296": {
+        "filename": "BlockList.code",
+        "line": 438
+      },
+      "312": {
+        "filename": "BlockList.code",
+        "line": 441
+      }
+    },
+    "d558e53bf690afc8a76b8887a99a49a52db1bd24bec5da84780ea0e7bc0aad3f": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 355
+      }
+    },
+    "eac6f711aa28a5b5fa8db9f4f5b62916d4a91af410fcc1ed56943b1b8748af98": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 324
+      },
+      "16": {
+        "filename": "BlockList.code",
+        "line": 325
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 326
+      },
+      "40": {
+        "filename": "BlockList.code",
+        "line": 327
+      },
+      "56": {
+        "filename": "BlockList.code",
+        "line": 328
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 329
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 330
+      },
+      "96": {
+        "filename": "BlockList.code",
+        "line": 331
+      },
+      "112": {
+        "filename": "BlockList.code",
+        "line": 332
+      },
+      "128": {
+        "filename": "BlockList.code",
+        "line": 333
+      },
+      "136": {
+        "filename": "BlockList.code",
+        "line": 334
+      },
+      "152": {
+        "filename": "BlockList.code",
+        "line": 335
+      },
+      "168": {
+        "filename": "BlockList.code",
+        "line": 336
+      },
+      "184": {
+        "filename": "BlockList.code",
+        "line": 337
+      },
+      "200": {
+        "filename": "BlockList.code",
+        "line": 338
+      }
+    },
+    "ee0edfe68855f84203ccdff7dba5b210875bae38c3f9f2cb66209a9b46869cdb": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 491
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 492
+      },
+      "56": {
+        "filename": "BlockList.code",
+        "line": 493
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 494
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 497
+      },
+      "88": {
+        "filename": "BlockList.code",
+        "line": 498
+      },
+      "136": {
+        "filename": "BlockList.code",
+        "line": 499
+      },
+      "144": {
+        "filename": "BlockList.code",
+        "line": 500
+      },
+      "160": {
+        "filename": "BlockList.code",
+        "line": 503
+      },
+      "168": {
+        "filename": "BlockList.code",
+        "line": 504
+      },
+      "216": {
+        "filename": "BlockList.code",
+        "line": 505
+      },
+      "224": {
+        "filename": "BlockList.code",
+        "line": 506
+      },
+      "240": {
+        "filename": "BlockList.code",
+        "line": 509
+      },
+      "248": {
+        "filename": "BlockList.code",
+        "line": 510
+      },
+      "296": {
+        "filename": "BlockList.code",
+        "line": 511
+      },
+      "304": {
+        "filename": "BlockList.code",
+        "line": 512
+      }
+    },
+    "f24e1e7aa04d89aad2945816b6e9b921f2b3892da9ba53e2383c148351b96d0c": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 426
+      },
+      "16": {
+        "filename": "BlockList.code",
+        "line": 427
+      }
+    },
+    "fa51af5775a02f983675fc2975d743021a1a4ba1c43568666e4a1eebea9c450b": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 280
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 281
+      },
+      "24": {
+        "filename": "BlockList.code",
+        "line": 282
+      },
+      "48": {
+        "filename": "BlockList.code",
+        "line": 283
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 284
+      },
+      "72": {
+        "filename": "BlockList.code",
+        "line": 285
+      },
+      "88": {
+        "filename": "../contracts/BlockList.tsol",
+        "line": 57
+      },
+      "96": {
+        "filename": "BlockList.code",
+        "line": 291
+      },
+      "112": {
+        "filename": "BlockList.code",
+        "line": 294
+      },
+      "128": {
+        "filename": "BlockList.code",
+        "line": 297
+      }
+    },
+    "ffc3b140631ac6858c8e3a05b35cd2a843b36bac0634841eb4e57fb5f7cb460c": {
+      "0": {
+        "filename": "BlockList.code",
+        "line": 520
+      },
+      "8": {
+        "filename": "BlockList.code",
+        "line": 521
+      },
+      "56": {
+        "filename": "BlockList.code",
+        "line": 522
+      },
+      "64": {
+        "filename": "BlockList.code",
+        "line": 523
+      },
+      "80": {
+        "filename": "BlockList.code",
+        "line": 526
+      },
+      "88": {
+        "filename": "BlockList.code",
+        "line": 527
+      },
+      "136": {
+        "filename": "BlockList.code",
+        "line": 528
+      },
+      "144": {
+        "filename": "BlockList.code",
+        "line": 529
+      }
+    }
+  }
+}

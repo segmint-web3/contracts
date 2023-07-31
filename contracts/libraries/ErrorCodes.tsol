@@ -5,6 +5,7 @@ library ErrorCodes {
     uint16 constant PUBKEY_MUST_BE_NOT_SET        = 1001;
     uint16 constant BAD_NEW_OWNER                 = 1002;
     uint16 constant NOT_COLLECTION                = 1003;
+    uint16 constant NOT_MANAGER                   = 1004;
 
     uint16 constant MINT_DISABLED                 = 1010;
     uint16 constant WRONG_TILE_COORDS             = 1011;

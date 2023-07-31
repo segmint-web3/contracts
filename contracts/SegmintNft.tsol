@@ -1,5 +1,4 @@
 pragma ever-solidity >= 0.64.0;
-pragma ignoreIntOverflow;
 
 import "./interfaces/ISegmintCollection.tsol";
 import "./libraries/MsgFlag.tsol";

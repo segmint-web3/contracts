@@ -1,0 +1,62 @@
+pragma ever-solidity >= 0.64.0;
+
+import "./libraries/MsgFlag.tsol";
+import "./libraries/ErrorCodes.tsol";
+
+// This is contract to store banned NFT id
+// TO hide them on frontend.
+contract BlockList {
+
+    address private static owner_;
+
+    mapping (address => bool) private managers_;
+    mapping (uint32 => bool) private blocked_;
+
+    event NftBlocked(uint32 id);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner_, ErrorCodes.NOT_OWNER);
+        _;
+    }
+
+    modifier onlyManager() {
+        require(managers_[msg.sender] == true, ErrorCodes.NOT_MANAGER);
+        _;
+    }
+
+    constructor() public {
+        require(tvm.pubkey() == 0, ErrorCodes.PUBKEY_MUST_BE_NOT_SET);
+        require(msg.sender == owner_, ErrorCodes.NOT_OWNER);
+        managers_[msg.sender] = true;
+        tvm.rawReserve(0.3 ever, 0);
+        msg.sender.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+    }
+
+    function addManager(address manager) external onlyOwner {
+        managers_[manager] = true;
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS + MsgFlag.IGNORE_ERRORS);
+    }
+
+    function removeManager(address manager) external onlyOwner {
+        delete managers_[manager];
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS + MsgFlag.IGNORE_ERRORS);
+    }
+
+    function addToBanList(uint32 nftId) external onlyManager {
+        blocked_[nftId] = true;
+        tvm.rawReserve(0, 4);
+        emit NftBlocked(nftId);
+        msg.sender.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+    }
+
+    function removeFromBanList(uint32 nftId) external onlyOwner  {
+        delete blocked_[nftId];
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS + MsgFlag.IGNORE_ERRORS);
+    }
+
+    function cleanBanList() external onlyOwner {
+        mapping (uint32 => bool) cleanMapping;
+        blocked_ = cleanMapping;
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS + MsgFlag.IGNORE_ERRORS);
+    }
+}

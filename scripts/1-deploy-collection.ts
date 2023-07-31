@@ -6,7 +6,7 @@ async function main() {
   const collectionMetadata = {
     "type": "Basic Collection",
     "name": "Segmint collection",
-    "description": "Image 1000x1000 pixels. 1 000 000 pixels, 1$ per pixel. Own a piece of web3 history!",
+    "description": "Introducing the unique NFT collection Segmint, an innovative project where advertising meets art and blockchain, creating an exciting world of interactive creativity.",
     "tags": [
       "history"
     ],

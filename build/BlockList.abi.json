@@ -1,0 +1,74 @@
+{
+	"ABI version": 2,
+	"version": "2.3",
+	"header": ["time"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addManager",
+			"inputs": [
+				{"name":"manager","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "removeManager",
+			"inputs": [
+				{"name":"manager","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addToBanList",
+			"inputs": [
+				{"name":"nftId","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "removeFromBanList",
+			"inputs": [
+				{"name":"nftId","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "cleanBanList",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"owner_","type":"address"}
+	],
+	"events": [
+		{
+			"name": "NftBlocked",
+			"inputs": [
+				{"name":"id","type":"uint32"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"owner_","type":"address"},
+		{"name":"managers_","type":"map(address,bool)"},
+		{"name":"blocked_","type":"map(uint32,bool)"}
+	]
+}
