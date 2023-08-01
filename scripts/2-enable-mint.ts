@@ -23,7 +23,6 @@ async function main() {
     throw new Error('Collection not deployed!');
   }
 
-  console.log(ownerWallet.address);
   await locklift.tracing.trace(
     collection.methods.enableMint({answerId: 0}).send({
       from: ownerWallet.address,

@@ -17,7 +17,6 @@ async function main() {
   })
   const blockList = new locklift.provider.Contract(blockListArtifacts.abi, blockListAddress);
 
-
   const collectionArtifacts = await locklift.factory.getContractArtifacts("SegmintCollection");
   const {address: collectionAddress, stateInit: collectionStateInit} = await locklift.provider.getStateInit(collectionArtifacts.abi, {
     workchain: 0,

@@ -194,7 +194,7 @@ describe("Test collection", async function () {
             "coinsToRedrawOneTile" : colorifyOneTilePrice
           }).send({
             from: ownerEverWallet.address,
-            amount: locklift.utils.toNano(100 * parseInt(colorifyOneTilePrice) / 1_000_000_000 + 10),
+            amount: locklift.utils.toNano(100 * parseInt(colorifyOneTilePrice) / 1_000_000_000 + 20),
           })
         )
       }

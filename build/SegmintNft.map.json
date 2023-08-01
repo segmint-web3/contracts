@@ -5104,8 +5104,8 @@
     },
     "61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c": {
       "0": {
-        "filename": "../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Nft.sol",
-        "line": 88
+        "filename": "SegmintNft.code",
+        "line": 2932
       }
     },
     "62a52ab4b51a24e0feb3e3f3c698cf9acb69e5f6ebf857dc38c96587b8118d66": {
