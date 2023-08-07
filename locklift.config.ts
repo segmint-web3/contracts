@@ -81,7 +81,7 @@ const config: LockliftConfig = {
         // Use everdev to generate your phrase
         // !!! Never commit it in your repos !!!
         phrase: PHRASE,
-        amount: 1,
+        amount: 10,
       },
     },
     venom_testnet: {

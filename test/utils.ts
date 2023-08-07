@@ -48,8 +48,8 @@ export async function deployCollectionForOwner(ownerEverWallet: EverWalletAccoun
 }
 export function getRandomTileColors(r: number | undefined, g: number | undefined, b: number | undefined) {
   let pixels = [];
-  for (let y = 0; y < 10; y ++) {
-    for (let x = 0; x < 10; x++) {
+  for (let y = 0; y < 20; y ++) {
+    for (let x = 0; x < 20; x++) {
       pixels.push(r !== undefined ? r : Math.floor(Math.random() * 255))
       pixels.push(g !== undefined ? g : Math.floor(Math.random() * 255))
       pixels.push(b !== undefined ? b : Math.floor(Math.random() * 255))
@@ -60,23 +60,5 @@ export function getRandomTileColors(r: number | undefined, g: number | undefined
 }
 
 function encodePixelsToTileColor(pixels: number[]) {
-  const tileColor = {
-    r: [],
-    b: [],
-    g: []
-  }
-  for (let y = 0; y < 10; y++) {
-    let r = new BN('0', 10);
-    let g = new BN('0', 10);
-    let b = new BN('0', 10);
-    for (let x = 0; x < 10; x++) {
-      r = r.shln(x === 0 ? 0 : 8).or(new BN(pixels[(x * 4 + 0)  + y * 10 * 4].toString(10), 10))
-      g = g.shln( x === 0 ? 0 : 8).or(new BN(pixels[(x * 4 + 1)  + y * 10 * 4].toString(10), 10))
-      b = b.shln( x === 0 ? 0 : 8).or(new BN(pixels[(x * 4 + 2)  + y * 10 * 4].toString(10), 10))
-    }
-    tileColor.r.push(r.toString(10))
-    tileColor.g.push(g.toString(10))
-    tileColor.b.push(b.toString(10))
-  }
-  return tileColor;
+  return Buffer.from(pixels.filter(p => (pixels.indexOf(p) + 1) % 4 !== 0)).toString('base64');
 }

@@ -1,7 +1,7 @@
 {
 	"ABI version": 2,
 	"version": "2.3",
-	"header": ["time"],
+	"header": ["pubkey", "time", "expire"],
 	"functions": [
 		{
 			"name": "constructor",
@@ -13,14 +13,26 @@
 				{"name":"indexDestroyValue","type":"uint128"},
 				{"name":"codeIndex","type":"cell"},
 				{"name":"lockedAmount","type":"uint128"},
-				{"name":"nftPixelsStartX","type":"uint10"},
-				{"name":"nftPixelsStartY","type":"uint10"},
-				{"name":"nftPixelsEndX","type":"uint10"},
-				{"name":"nftPixelsEndY","type":"uint10"},
+				{"name":"nftTileStartX","type":"uint6"},
+				{"name":"nftTileStartY","type":"uint6"},
+				{"name":"nftTileEndX","type":"uint6"},
+				{"name":"nftTileEndY","type":"uint6"},
 				{"name":"description","type":"string"},
 				{"name":"url","type":"string"}
 			],
 			"outputs": [
+			]
+		},
+		{
+			"name": "getInfo",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"id","type":"uint256"},
+				{"name":"owner","type":"address"},
+				{"name":"manager","type":"address"},
+				{"name":"collection","type":"address"}
 			]
 		},
 		{
@@ -44,20 +56,18 @@
 				{"name":"lockedAmount","type":"uint128"},
 				{"name":"description","type":"string"},
 				{"name":"url","type":"string"},
-				{"name":"tilePixelsStartX","type":"uint10"},
-				{"name":"tilePixelsStartY","type":"uint10"},
-				{"name":"tilePixelsEndX","type":"uint10"},
-				{"name":"tilePixelsEndY","type":"uint10"}
+				{"name":"tileStartX","type":"uint6"},
+				{"name":"tileStartY","type":"uint6"},
+				{"name":"tileEndX","type":"uint6"},
+				{"name":"tileEndY","type":"uint6"}
 			]
 		},
 		{
 			"name": "colorify",
 			"inputs": [
-				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tilesToColorify","type":"tuple[]"},
+				{"name":"colors","type":"bytes[]"},
 				{"name":"description","type":"string"},
-				{"name":"url","type":"string"},
-				{"name":"coinsToRedrawOneTile","type":"uint128"},
-				{"name":"sendGasBack","type":"address"}
+				{"name":"url","type":"string"}
 			],
 			"outputs": [
 			]
@@ -87,6 +97,13 @@
 		},
 		{
 			"name": "onBurnError",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "proxyTransferToOwner",
 			"inputs": [
 			],
 			"outputs": [
@@ -149,18 +166,6 @@
 				{"components":[{"name":"value","type":"uint128"},{"name":"payload","type":"cell"}],"name":"callbacks","type":"map(address,tuple)"}
 			],
 			"outputs": [
-			]
-		},
-		{
-			"name": "getInfo",
-			"inputs": [
-				{"name":"answerId","type":"uint32"}
-			],
-			"outputs": [
-				{"name":"id","type":"uint256"},
-				{"name":"owner","type":"address"},
-				{"name":"manager","type":"address"},
-				{"name":"collection","type":"address"}
 			]
 		},
 		{
@@ -231,10 +236,10 @@
 		{"name":"_indexDeployValue","type":"uint128"},
 		{"name":"_indexDestroyValue","type":"uint128"},
 		{"name":"_codeIndex","type":"cell"},
-		{"name":"nftPixelsStartX_","type":"uint10"},
-		{"name":"nftPixelsStartY_","type":"uint10"},
-		{"name":"nftPixelsEndX_","type":"uint10"},
-		{"name":"nftPixelsEndY_","type":"uint10"},
+		{"name":"nftTileStartX_","type":"uint6"},
+		{"name":"nftTileStartY_","type":"uint6"},
+		{"name":"nftTileEndX_","type":"uint6"},
+		{"name":"nftTileEndY_","type":"uint6"},
 		{"name":"remainOnNft_","type":"uint128"},
 		{"name":"lockedAmount_","type":"uint128"},
 		{"name":"description_","type":"string"},

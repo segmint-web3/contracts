@@ -5,8 +5,8 @@ import "../structures/ITile.tsol";
 
 interface ISegmintCollection is ITile {
     event MintDisabledChanged(bool newValue);
-    event TileColorify(uint32 nftId, uint32 nftEpoch, uint10 pixelStartX, uint10 pixelStartY, TileColors tileColors);
-    event NftMinted(uint32 nftId, uint32 nftEpoch, address owner, uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY);
+    event TileColorify(uint32 nftId, uint32 nftEpoch, uint6 tileX, uint6 tileY, bytes colors);
+    event NftMinted(uint32 nftId, uint32 nftEpoch, address owner, uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, bytes[] colors);
     event EpochChanged(uint32 newEpoch, uint128 oneTileClaimPrice);
 
 
@@ -15,10 +15,11 @@ interface ISegmintCollection is ITile {
     function changeEpoch() external responsible returns(uint32, uint128);
     function getMintDisabled() external responsible returns (bool);
 
-    function claimTiles(uint10 pixelStartX, uint10 pixelStartY, uint10 pixelEndX, uint10 pixelEndY, TileColors[] tilesToColorify, string description, string url, uint128 coinsToRedrawOneTile) external;
-    function colorifyTile(uint32 nftId, TileColors tileColors, uint10 tilePixelX, uint10 tilePixelY, address sendGasBack) external;
-    function burnNft(uint32 nftId, uint128 lockedAmount, uint10 tilePixelX, uint10 tilePixelY, uint10 pixelEndX, uint10 pixelEndY) external;
+    function claimTiles(uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, bytes[] tilesToColorify, string description, string url) external;
+    function getTile(uint6 tileX, uint6 tileY) external responsible returns (bytes, uint32, uint32);
 
-    function getTile(uint10 tilePixelX, uint10 tilePixelY) external responsible returns (uint8[], uint32, uint32);
-    function convertTileColorsToPixels(TileColors tileColors) external  responsible returns(uint8[] pixels);
+    function colorifyTiles(uint32 nftId, bytes[] tilesColors, uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, address sendGasBack) external;
+    function burnNft(uint32 nftId, uint128 lockedAmount, uint6 nftTileStartX_, uint6 nftTileStartY_, uint6 nftTileEndX_, uint6 nftTileEndY_) external;
+    function setNftBurningBlocked(uint32 nftId, bool isBlocked, address sendGasBack) external;
+
 }

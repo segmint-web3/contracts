@@ -2,11 +2,13 @@ pragma ever-solidity >= 0.64.0;
 
 import "./libraries/MsgFlag.tsol";
 import "./libraries/ErrorCodes.tsol";
+import "./interfaces/ISegmintCollection.tsol";
 
 // This is contract to store banned NFT id
 // TO hide them on frontend.
 contract BlockList {
 
+    uint16 private static nonce_;
     address private static owner_;
 
     mapping (address => bool) private managers_;
@@ -42,16 +44,16 @@ contract BlockList {
         msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS + MsgFlag.IGNORE_ERRORS);
     }
 
-    function addToBanList(uint32 nftId) external onlyManager {
+    function addToBanList(address collection, uint32 nftId) external onlyManager {
         blocked_[nftId] = true;
         tvm.rawReserve(0, 4);
         emit NftBlocked(nftId);
-        msg.sender.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
+        ISegmintCollection(collection).setNftBurningBlocked(nftId, true, msg.sender);
     }
 
-    function removeFromBanList(uint32 nftId) external onlyOwner  {
+    function removeFromBanList(address collection, uint32 nftId) external onlyOwner  {
         delete blocked_[nftId];
-        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS + MsgFlag.IGNORE_ERRORS);
+        ISegmintCollection(collection).setNftBurningBlocked(nftId, false, msg.sender);
     }
 
     function cleanBanList() external onlyOwner {

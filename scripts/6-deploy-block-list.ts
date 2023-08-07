@@ -1,5 +1,6 @@
 import {EverWalletAccount, HighloadWalletV2, SimpleKeystore} from "everscale-standalone-client";
 import { getRandomTileColors } from "../test/utils";
+import { WalletTypes } from "locklift";
 
 async function main() {
   const signer = (await locklift.keystore.getSigner("0"))!;
@@ -10,16 +11,14 @@ async function main() {
     workchain: 0,
     tvc: blockListArtifacts.tvc,
     initParams: {
+      nonce_: locklift.utils.getRandomNonce(),
       owner_: ownerWallet.address
     }
   })
 
-
   const blockList = new locklift.provider.Contract(blockListArtifacts.abi, blockListAddress);
-
   const tracing = await locklift.tracing.trace(
-    blockList.methods.constructor({
-    }).send({
+    blockList.methods.constructor({}).send({
       from: ownerWallet.address,
       amount: locklift.utils.toNano(1),
       stateInit: blockListStateInit

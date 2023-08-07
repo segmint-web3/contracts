@@ -23,6 +23,14 @@
 			]
 		},
 		{
+			"name": "changeManager",
+			"inputs": [
+				{"name":"newManager","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "disableMint",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
@@ -60,10 +68,20 @@
 			]
 		},
 		{
+			"name": "setTilePrice",
+			"inputs": [
+				{"name":"newCurrentPrice","type":"uint128"},
+				{"name":"newEpochPriceGrow","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "setNftBurningBlocked",
 			"inputs": [
 				{"name":"nftId","type":"uint32"},
-				{"name":"isBlocked","type":"bool"}
+				{"name":"isBlocked","type":"bool"},
+				{"name":"sendGasBack","type":"address"}
 			],
 			"outputs": [
 			]
@@ -71,25 +89,26 @@
 		{
 			"name": "claimTiles",
 			"inputs": [
-				{"name":"pixelStartX","type":"uint10"},
-				{"name":"pixelStartY","type":"uint10"},
-				{"name":"pixelEndX","type":"uint10"},
-				{"name":"pixelEndY","type":"uint10"},
-				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tilesToColorify","type":"tuple[]"},
+				{"name":"tileStartX","type":"uint6"},
+				{"name":"tileStartY","type":"uint6"},
+				{"name":"tileEndX","type":"uint6"},
+				{"name":"tileEndY","type":"uint6"},
+				{"name":"tilesToColorify","type":"bytes[]"},
 				{"name":"description","type":"string"},
-				{"name":"url","type":"string"},
-				{"name":"coinsToRedrawOneTile","type":"uint128"}
+				{"name":"url","type":"string"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "colorifyTile",
+			"name": "colorifyTiles",
 			"inputs": [
 				{"name":"nftId","type":"uint32"},
-				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tileColors","type":"tuple"},
-				{"name":"tilePixelX","type":"uint10"},
-				{"name":"tilePixelY","type":"uint10"},
+				{"name":"tilesColors","type":"bytes[]"},
+				{"name":"tileStartX","type":"uint6"},
+				{"name":"tileStartY","type":"uint6"},
+				{"name":"tileEndX","type":"uint6"},
+				{"name":"tileEndY","type":"uint6"},
 				{"name":"sendGasBack","type":"address"}
 			],
 			"outputs": [
@@ -100,10 +119,10 @@
 			"inputs": [
 				{"name":"nftId","type":"uint32"},
 				{"name":"lockedAmount","type":"uint128"},
-				{"name":"nftPixelStartX","type":"uint10"},
-				{"name":"nftPixelStartY","type":"uint10"},
-				{"name":"nftPixelEndX","type":"uint10"},
-				{"name":"nftPixelEndY","type":"uint10"}
+				{"name":"nftTileStartX_","type":"uint6"},
+				{"name":"nftTileStartY_","type":"uint6"},
+				{"name":"nftTileEndX_","type":"uint6"},
+				{"name":"nftTileEndY_","type":"uint6"}
 			],
 			"outputs": [
 			]
@@ -112,41 +131,13 @@
 			"name": "getTile",
 			"inputs": [
 				{"name":"answerId","type":"uint32"},
-				{"name":"tilePixelX","type":"uint10"},
-				{"name":"tilePixelY","type":"uint10"}
+				{"name":"tileX","type":"uint6"},
+				{"name":"tileY","type":"uint6"}
 			],
 			"outputs": [
-				{"name":"pixels","type":"uint8[]"},
+				{"name":"pixels","type":"bytes"},
 				{"name":"nftId","type":"uint32"},
 				{"name":"epoch","type":"uint32"}
-			]
-		},
-		{
-			"name": "convertTileColorsToPixels",
-			"inputs": [
-				{"name":"answerId","type":"uint32"},
-				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tileColors","type":"tuple"}
-			],
-			"outputs": [
-				{"name":"pixels","type":"uint8[]"}
-			]
-		},
-		{
-			"name": "getTilesColors",
-			"inputs": [
-				{"name":"answerId","type":"uint32"}
-			],
-			"outputs": [
-				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"value0","type":"map(uint14,tuple)"}
-			]
-		},
-		{
-			"name": "getTilesOwners",
-			"inputs": [
-				{"name":"answerId","type":"uint32"}
-			],
-			"outputs": [
-				{"name":"value0","type":"map(uint14,uint64)"}
 			]
 		},
 		{
@@ -157,7 +148,7 @@
 			"outputs": [
 				{"name":"nftCounter","type":"uint32"},
 				{"name":"epoch","type":"uint32"},
-				{"name":"currentEpochPixelTilePrice","type":"uint128"},
+				{"name":"currentEpochTilePrice","type":"uint128"},
 				{"name":"mintDisabled","type":"bool"}
 			]
 		},
@@ -169,6 +160,24 @@
 			],
 			"outputs": [
 				{"name":"codeHash","type":"string"}
+			]
+		},
+		{
+			"name": "getRandomNftFromTheField",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"seed","type":"uint256"}
+			],
+			"outputs": [
+				{"name":"value0","type":"address"}
+			]
+		},
+		{
+			"name": "upgrade",
+			"inputs": [
+				{"name":"newCode","type":"cell"}
+			],
+			"outputs": [
 			]
 		},
 		{
@@ -291,9 +300,9 @@
 			"inputs": [
 				{"name":"nftId","type":"uint32"},
 				{"name":"nftEpoch","type":"uint32"},
-				{"name":"pixelStartX","type":"uint10"},
-				{"name":"pixelStartY","type":"uint10"},
-				{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tileColors","type":"tuple"}
+				{"name":"tileX","type":"uint6"},
+				{"name":"tileY","type":"uint6"},
+				{"name":"colors","type":"bytes"}
 			],
 			"outputs": [
 			]
@@ -304,10 +313,11 @@
 				{"name":"nftId","type":"uint32"},
 				{"name":"nftEpoch","type":"uint32"},
 				{"name":"owner","type":"address"},
-				{"name":"pixelStartX","type":"uint10"},
-				{"name":"pixelStartY","type":"uint10"},
-				{"name":"pixelEndX","type":"uint10"},
-				{"name":"pixelEndY","type":"uint10"}
+				{"name":"tileStartX","type":"uint6"},
+				{"name":"tileStartY","type":"uint6"},
+				{"name":"tileEndX","type":"uint6"},
+				{"name":"tileEndY","type":"uint6"},
+				{"name":"colors","type":"bytes[]"}
 			],
 			"outputs": [
 			]
@@ -361,12 +371,12 @@
 		{"name":"owner_","type":"address"},
 		{"name":"nonce_","type":"uint16"},
 		{"name":"mintDisabled_","type":"bool"},
-		{"components":[{"name":"r","type":"uint80[]"},{"name":"g","type":"uint80[]"},{"name":"b","type":"uint80[]"}],"name":"tiles_","type":"map(uint14,tuple)"},
-		{"name":"tileOwner_","type":"map(uint14,uint64)"},
-		{"name":"nftCounter_","type":"uint32"},
+		{"name":"manager_","type":"address"},
+		{"components":[{"name":"epochWitNftId","type":"uint64"},{"name":"colors","type":"bytes"}],"name":"tiles_","type":"map(uint12,tuple)"},
 		{"name":"currentEpoch_","type":"uint32"},
-		{"name":"currentEpochTilesLeft_","type":"uint14"},
-		{"name":"currentEpochPixelTilePrice_","type":"uint128"},
+		{"name":"currentEpochTilesLeft_","type":"uint12"},
+		{"name":"currentEpochTilePrice_","type":"uint128"},
+		{"name":"prevEpochTilePrice_","type":"uint128"},
 		{"name":"epochTilePriceGrow_","type":"uint128"}
 	]
 }

@@ -1,12 +1,8 @@
 pragma ever-solidity >= 0.64.0;
 
 interface ITile {
-    // 10x10
-    // uint80 - 10 pixels
-    // uint80[10] - 100 pixels
-    struct TileColors {
-        uint80[10] r;
-        uint80[10] g;
-        uint80[10] b;
+    struct Tile {
+        uint64 epochWitNftId;
+        bytes colors;
     }
 }

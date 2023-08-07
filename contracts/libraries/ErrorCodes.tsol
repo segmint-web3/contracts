@@ -16,4 +16,6 @@ library ErrorCodes {
     uint16 constant TILE_NOT_RECLAIMED            = 1016;
     uint16 constant NOT_ENOUGH_GAS                = 1017;
     uint16 constant BURNING_IS_BLOCKED            = 1018;
+    uint16 constant INVALID_COLORS_SIZE           = 1019;
+    uint16 constant INVALID_NEW_PRICE             = 1020;
 }

@@ -29,6 +29,7 @@
 		{
 			"name": "addToBanList",
 			"inputs": [
+				{"name":"collection","type":"address"},
 				{"name":"nftId","type":"uint32"}
 			],
 			"outputs": [
@@ -37,6 +38,7 @@
 		{
 			"name": "removeFromBanList",
 			"inputs": [
+				{"name":"collection","type":"address"},
 				{"name":"nftId","type":"uint32"}
 			],
 			"outputs": [
@@ -51,7 +53,8 @@
 		}
 	],
 	"data": [
-		{"key":1,"name":"owner_","type":"address"}
+		{"key":1,"name":"nonce_","type":"uint16"},
+		{"key":2,"name":"owner_","type":"address"}
 	],
 	"events": [
 		{
@@ -67,6 +70,7 @@
 		{"name":"_pubkey","type":"uint256"},
 		{"name":"_timestamp","type":"uint64"},
 		{"name":"_constructorFlag","type":"bool"},
+		{"name":"nonce_","type":"uint16"},
 		{"name":"owner_","type":"address"},
 		{"name":"managers_","type":"map(address,bool)"},
 		{"name":"blocked_","type":"map(uint32,bool)"}

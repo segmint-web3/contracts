@@ -29,10 +29,10 @@ LDREF
 ENDS
 CTOS
 LDU 128
-LDU 10
-LDU 10
-LDU 10
-LDU 10
+LDU 6
+LDU 6
+LDU 6
+LDU 6
 LDREF
 LDREF
 ENDS
@@ -237,33 +237,33 @@ SETGLOB 10
 CALLREF {
 	CALL $_deployIndex_367ac79d_internal_macro$
 }
-.loc ../contracts/SegmintNft.tsol, 54
+.loc ../contracts/SegmintNft.tsol, 58
 ROLL 5
 SETGLOB 18
-.loc ../contracts/SegmintNft.tsol, 55
+.loc ../contracts/SegmintNft.tsol, 59
 ROLL 4
 SETGLOB 19
-.loc ../contracts/SegmintNft.tsol, 56
+.loc ../contracts/SegmintNft.tsol, 60
 ROLL 3
 SETGLOB 20
-.loc ../contracts/SegmintNft.tsol, 57
+.loc ../contracts/SegmintNft.tsol, 61
 ROT
 SETGLOB 21
-.loc ../contracts/SegmintNft.tsol, 58
+.loc ../contracts/SegmintNft.tsol, 62
 ROLL 3
 SETGLOB 22
-.loc ../contracts/SegmintNft.tsol, 59
+.loc ../contracts/SegmintNft.tsol, 63
 ROT
 SETGLOB 23
-.loc ../contracts/SegmintNft.tsol, 60
+.loc ../contracts/SegmintNft.tsol, 64
 SWAP
 SETGLOB 24
-.loc ../contracts/SegmintNft.tsol, 61
+.loc ../contracts/SegmintNft.tsol, 65
 SETGLOB 25
-.loc ../contracts/SegmintNft.tsol, 62
+.loc ../contracts/SegmintNft.tsol, 66
 FALSE
 SETGLOB 27
-.loc ../contracts/SegmintNft.tsol, 66
+.loc ../contracts/SegmintNft.tsol, 70
 PUSHINT 618124789
 GETGLOB 10
 NEWC
@@ -278,6 +278,122 @@ CALLREF {
 }
 THROW 0
 
+.macro getInfo
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/SegmintNft.tsol, 75
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../contracts/SegmintNft.tsol, 0
+CALLREF {
+	CALL $getInfo_5a9b0b89_internal_macro$
+}
+PUSH S4
+PUSHCONT {
+	PUSH S6
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 1
+	STUR 98
+	REVERSE 5, 0
+	NEWC
+	STSLICECONST x91bf576a
+	STU 256
+	STSLICE
+	ROTREV
+	NEWC
+	STSLICE
+	SWAP
+	NEWC
+	STSLICE
+	STBREFR
+	STBREFR
+	STBREFR
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 1
+	STUR 106
+	REVERSE 5, 0
+	NEWC
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 256
+	STSLICE
+	ROTREV
+	NEWC
+	STSLICE
+	SWAP
+	NEWC
+	STSLICE
+	STBREFR
+	STBREFR
+	STBREFR
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.globl	getInfo_5a9b0b89_internal
+.type	getInfo_5a9b0b89_internal, @function
+CALL $getInfo_5a9b0b89_internal_macro$
+
+.macro getInfo_5a9b0b89_internal_macro
+.loc ../contracts/SegmintNft.tsol, 81
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+GETGLOB 11
+GETGLOB 13
+GETGLOB 14
+GETGLOB 12
+.loc ../contracts/SegmintNft.tsol, 0
+
 .macro getJson
 DROP
 GETGLOB 6
@@ -287,7 +403,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintNft.tsol, 71
+.loc ../contracts/SegmintNft.tsol, 89
 LDU 32
 GETGLOB 4
 ROT
@@ -349,11 +465,15 @@ IFREF {
 }
 THROW 0
 
+.globl	getJson_f703db39_internal
+.type	getJson_f703db39_internal, @function
+CALL $getJson_f703db39_internal_macro$
+
 .macro getJson_f703db39_internal_macro
-.loc ../contracts/SegmintNft.tsol, 72
+.loc ../contracts/SegmintNft.tsol, 90
 TUPLE 0
 NEWC
-PUSHSLICE x5365676d696e74204e667420
+PUSHSLICE x5365676d696e74206f6365616e204e667420
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
@@ -366,7 +486,7 @@ CALLREF {
 CALLREF {
 	CALL $assembleList_macro$
 }
-.loc ../contracts/SegmintNft.tsol, 73
+.loc ../contracts/SegmintNft.tsol, 91
 TUPLE 0
 NEWC
 PUSHSLICE x5069656365206f662063616e76617320782066726f6d20
@@ -374,6 +494,7 @@ CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
 GETGLOB 18
+MULCONST 20
 PUSHINT 0
 BLKPUSH 2, 0
 CALLREF {
@@ -384,6 +505,7 @@ CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
 GETGLOB 20
+MULCONST 20
 PUSHINT 0
 BLKPUSH 2, 0
 CALLREF {
@@ -394,6 +516,7 @@ CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
 GETGLOB 19
+MULCONST 20
 PUSHINT 0
 BLKPUSH 2, 0
 CALLREF {
@@ -404,6 +527,7 @@ CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
 GETGLOB 21
+MULCONST 20
 PUSHINT 0
 BLKPUSH 2, 0
 CALLREF {
@@ -416,11 +540,11 @@ CALLREF {
 CALLREF {
 	CALL $assembleList_macro$
 }
-.loc ../contracts/SegmintNft.tsol, 74
+.loc ../contracts/SegmintNft.tsol, 92
 PUSHREF {
-	.blob x68747470733a2f2f7365676d696e742e6170702f636f6c6c656374696f6e5f6c6f676f2e706e67
+	.blob x68747470733a2f2f7365676d696e742e6170702f636f6c6c656374696f6e5f6c6f676f5f6f6365616e2e706e67
 }
-.loc ../contracts/SegmintNft.tsol, 77
+.loc ../contracts/SegmintNft.tsol, 95
 TUPLE 0
 NEWC
 PUSHSLICE x7b2274797065223a224261736963204e4654222c226e616d65223a22
@@ -477,7 +601,7 @@ CALLREF {
 CALLREF {
 	CALL $assembleList_macro$
 }
-.loc ../contracts/SegmintNft.tsol, 85
+.loc ../contracts/SegmintNft.tsol, 103
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -497,7 +621,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintNft.tsol, 88
+.loc ../contracts/SegmintNft.tsol, 106
 LDU 32
 GETGLOB 4
 ROT
@@ -523,7 +647,7 @@ PUSHCONT {
 	STUR 98
 	REVERSE 11, 0
 	NEWC
-	STSLICECONST x97546256
+	STSLICECONST x86b06573
 	STU 256
 	STSLICE
 	ROLLREV 8
@@ -532,10 +656,10 @@ PUSHCONT {
 	STU 128
 	STREF
 	STREF
-	STU 10
-	STU 10
-	STU 10
-	STU 10
+	STU 6
+	STU 6
+	STU 6
+	STU 6
 	STBREFR
 	STBREFR
 	ENDC
@@ -573,10 +697,10 @@ PUSHCONT {
 	STU 128
 	STREF
 	STREF
-	STU 10
-	STU 10
-	STU 10
-	STU 10
+	STU 6
+	STU 6
+	STU 6
+	STU 6
 	STBREFR
 	STBREFR
 	ENDC
@@ -591,7 +715,7 @@ CALLREF {
 THROW 0
 
 .macro getNftCustomData_6e6ac7f3_internal_macro
-.loc ../contracts/SegmintNft.tsol, 89
+.loc ../contracts/SegmintNft.tsol, 107
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -621,193 +745,80 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintNft.tsol, 92
-OVER
-PUSHCONT {
-	LDU 32
-	LDDICT
-	ROTREV
-	PAIR
-	SWAP
-	LDREF
-	LDREF
-	LDU 128
-	LDREF
-	ENDS
-	CTOS
-}
-PUSHCONT {
-	LDU 32
-	LDDICT
-	ROTREV
-	PAIR
-	SWAP
-	LDREF
-	LDREF
-	LDU 128
-}
-IFELSE
-LDMSGADDR
+.loc ../contracts/SegmintNft.tsol, 110
+LDU 32
+LDDICT
+ROTREV
+PAIR
+SWAP
+LDREF
+LDREF
 ENDS
 .loc ../contracts/SegmintNft.tsol, 0
 CALLREF {
-	CALL $colorify_8249f09d_internal_macro$
+	CALL $colorify_90f45338_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.globl	colorify_8249f09d_internal
-.type	colorify_8249f09d_internal, @function
-CALL $colorify_8249f09d_internal_macro$
+.globl	colorify_90f45338_internal
+.type	colorify_90f45338_internal, @function
+CALL $colorify_90f45338_internal_macro$
 
-.macro colorify_8249f09d_internal_macro
-.loc ../contracts/SegmintNft.tsol, 27
+.macro colorify_90f45338_internal_macro
+.loc ../contracts/SegmintNft.tsol, 31
 GETGLOB 9
 GETGLOB 13
 SDEQ
-GETGLOB 9
-GETGLOB 12
-SDEQ
-OR
 THROWIFNOT 1000
-.loc ../contracts/SegmintNft.tsol, 93
+.loc ../contracts/SegmintNft.tsol, 111
 GETGLOB 22
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/SegmintNft.tsol, 95
-ROLL 3
+.loc ../contracts/SegmintNft.tsol, 112
+SWAP
 SETGLOB 24
-.loc ../contracts/SegmintNft.tsol, 96
-ROT
-SETGLOB 25
-.loc ../contracts/SegmintNft.tsol, 99
-GETGLOB 18
-.loc ../contracts/SegmintNft.tsol, 100
-GETGLOB 19
-.loc ../contracts/SegmintNft.tsol, 105
-ROLL 4
-SECOND
-PUSHINT 0
-NULL
-PUSHCONT {
-	PUSH2 S1, S2
-	PUSHINT 32
-	DICTUGET
-	NULLSWAPIFNOT
-	IFREF {
-		LDU 32
-		LDDICT
-		ROTREV
-		PAIR
-		SWAP
-		LDU 32
-		LDDICT
-		ROTREV
-		PAIR
-		SWAP
-		LDU 32
-		LDDICT
-		ROTREV
-		PAIR
-		SWAP
-		ENDS
-		TRIPLE
-	}
-	DUP
-	POP S2
-	ISNULL
-	NOT
-}
-PUSHCONT {
-	.loc ../contracts/SegmintNft.tsol, 106
-	PUSH3 S5, S3, S4
-	PUSH S3
-	GETGLOB 11
-	UFITS 32
-	PUSH S11
-	GETGLOB 12
-	FALSE
-	NEWC
-	STSLICECONST x6_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	SWAP
-	STGRAMS
-	PUSHINT 1
-	STUR 107
-	ROLLREV 5
-	NEWC
-	STSLICECONST x2a8c9462
-	STU 32
-	SWAP
-	UNTRIPLE
-	REVERSE 4, 0
-	SWAP
-	UNPAIR
-	XCHG S2
-	STU 32
-	STDICT
-	SWAP
-	UNPAIR
-	XCHG S2
-	STU 32
-	STDICT
-	SWAP
-	UNPAIR
-	XCHG S2
-	STU 32
-	STDICT
-	STU 10
-	STU 10
-	STSLICE
-	STBREFR
-	ENDC
-	PUSHINT 1
-	SENDRAWMSG
-	.loc ../contracts/SegmintNft.tsol, 107
-	PUSH S4
-	ADDCONST 10
-	UFITS 10
-	POP S5
-	.loc ../contracts/SegmintNft.tsol, 108
-	PUSH S4
-	GETGLOB 20
-	GEQ
-	PUSHCONT {
-		.loc ../contracts/SegmintNft.tsol, 109
-		GETGLOB 18
-		POP S5
-		.loc ../contracts/SegmintNft.tsol, 110
-		PUSH S3
-		ADDCONST 10
-		UFITS 10
-		POP S4
-		.loc ../contracts/SegmintNft.tsol, 0
-	}
-	IF
-	.loc ../contracts/SegmintNft.tsol, 0
-	OVER
-	INC
-	POP S2
-}
-WHILE
-BLKDROP 5
 .loc ../contracts/SegmintNft.tsol, 113
+SETGLOB 25
+.loc ../contracts/SegmintNft.tsol, 114
+GETGLOB 9
+GETGLOB 21
+GETGLOB 20
+GETGLOB 19
+GETGLOB 18
+ROLL 5
+GETGLOB 11
+UFITS 32
+GETGLOB 12
+FALSE
 NEWC
-STSLICECONST x42_
+STSLICECONST x6_
+STI 1
+STSLICECONST x1_
 STSLICE
-PUSHINT 111
-STZEROES
+PUSHINT 1
+STUR 111
+ROLLREV 7
+NEWC
+STSLICECONST x475f5995
+STU 32
+SWAP
+UNPAIR
+XCHG S2
+STU 32
+STDICT
+STU 6
+STU 6
+STU 6
+STU 6
+STSLICE
+STBREFR
 ENDC
 PUSHPOW2 7
-ADDCONST 2
-UFITS 8
 SENDRAWMSG
 .loc ../contracts/SegmintNft.tsol, 0
-DROP
 
 .macro setBurningBlocked
 DROP
@@ -818,7 +829,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintNft.tsol, 116
+.loc ../contracts/SegmintNft.tsol, 117
 OVER
 PUSHCONT {
 	LDI 1
@@ -842,15 +853,15 @@ CALLREF {
 THROW 0
 
 .macro setBurningBlocked_b9e78cf2_internal_macro
-.loc ../contracts/SegmintNft.tsol, 117
+.loc ../contracts/SegmintNft.tsol, 118
 GETGLOB 9
 GETGLOB 12
 SDEQ
 THROWIFNOT 1003
-.loc ../contracts/SegmintNft.tsol, 118
+.loc ../contracts/SegmintNft.tsol, 119
 SWAP
 SETGLOB 27
-.loc ../contracts/SegmintNft.tsol, 119
+.loc ../contracts/SegmintNft.tsol, 120
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -872,7 +883,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/SegmintNft.tsol, 122
+.loc ../contracts/SegmintNft.tsol, 123
 ENDS
 .loc ../contracts/SegmintNft.tsol, 0
 CALLREF {
@@ -889,14 +900,14 @@ GETGLOB 9
 GETGLOB 14
 SDEQ
 THROWIFNOT 103
-.loc ../contracts/SegmintNft.tsol, 123
+.loc ../contracts/SegmintNft.tsol, 124
 DEPTH
 ADDCONST -2
 PICK
 PUSHINT 300000000
 GEQ
 THROWIFNOT 1017
-.loc ../contracts/SegmintNft.tsol, 124
+.loc ../contracts/SegmintNft.tsol, 125
 GETGLOB 27
 FALSE
 EQUAL
@@ -924,14 +935,14 @@ STSLICECONST x6_
 STI 1
 STSLICECONST x1_
 STSLICE
-PUSHINT 1211450471
+PUSHINT 1219762452
 STUR 143
 STU 32
 STU 128
-STU 10
-STU 10
-STU 10
-STU 10
+STU 6
+STU 6
+STU 6
+STU 6
 ENDC
 PUSHINT 64
 SENDRAWMSG
@@ -1027,12 +1038,47 @@ UFITS 8
 SENDRAWMSG
 .loc ../contracts/SegmintNft.tsol, 0
 
+.macro proxyTransferToOwner
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/SegmintNft.tsol, 144
+ENDS
+.loc ../contracts/SegmintNft.tsol, 0
+CALLREF {
+	CALL $proxyTransferToOwner_a65025de_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro proxyTransferToOwner_a65025de_internal_macro
+.loc ../contracts/SegmintNft.tsol, 146
+GETGLOB 13
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHINT 64
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/SegmintNft.tsol, 0
+
 .globl	_beforeTransfer_63506687_internal
 .type	_beforeTransfer_63506687_internal, @function
 CALL $_beforeTransfer_63506687_internal_macro$
 
 .macro _beforeTransfer_63506687_internal_macro
-.loc ../contracts/SegmintNft.tsol, 149
+.loc ../contracts/SegmintNft.tsol, 154
 CALLREF {
 	CALL $TIP4_3Nft__beforeTransfer_63506687_macro$
 }
@@ -1043,7 +1089,7 @@ CALLREF {
 CALL $_afterTransfer_324f3fbc_internal_macro$
 
 .macro _afterTransfer_324f3fbc_internal_macro
-.loc ../contracts/SegmintNft.tsol, 157
+.loc ../contracts/SegmintNft.tsol, 162
 CALLREF {
 	CALL $TIP4_3Nft__afterTransfer_324f3fbc_macro$
 }
@@ -1054,7 +1100,7 @@ CALLREF {
 CALL $_beforeChangeOwner_181183e6_internal_macro$
 
 .macro _beforeChangeOwner_181183e6_internal_macro
-.loc ../contracts/SegmintNft.tsol, 166
+.loc ../contracts/SegmintNft.tsol, 171
 CALLREF {
 	CALL $TIP4_3Nft__beforeChangeOwner_181183e6_macro$
 }
@@ -1065,7 +1111,7 @@ CALLREF {
 CALL $_afterChangeOwner_25282549_internal_macro$
 
 .macro _afterChangeOwner_25282549_internal_macro
-.loc ../contracts/SegmintNft.tsol, 175
+.loc ../contracts/SegmintNft.tsol, 180
 CALLREF {
 	CALL $TIP4_3Nft__afterChangeOwner_25282549_macro$
 }
@@ -2381,103 +2427,7 @@ IFNOT
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol, 0
 DROP2
 
-.macro getInfo
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol, 249
-LDU 32
-GETGLOB 4
-ROT
-SETINDEXQ 5
-SETGLOB 4
-ENDS
-.loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol, 0
-CALLREF {
-	CALL $getInfo_5a9b0b89_internal_macro$
-}
-PUSH S4
-PUSHCONT {
-	PUSH S6
-	CTOS
-	LDU 2
-	LDMSGADDR
-	DROP
-	NIP
-	NEWC
-	STSLICECONST xc
-	STSLICE
-	PUSHINT 1
-	STUR 98
-	REVERSE 5, 0
-	NEWC
-	STSLICECONST x91bf576a
-	STU 256
-	STSLICE
-	ROTREV
-	NEWC
-	STSLICE
-	SWAP
-	NEWC
-	STSLICE
-	STBREFR
-	STBREFR
-	STBREFR
-	ENDC
-	PUSHINT 0
-}
-PUSHCONT {
-	GETGLOB 4
-	DUP
-	INDEX 3
-	OVER
-	THIRD
-	GETGLOB 9
-	ROLL 3
-	SECOND
-	NEWC
-	STSLICECONST x2_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	SWAP
-	STGRAMS
-	STDICT
-	PUSHINT 1
-	STUR 106
-	REVERSE 5, 0
-	NEWC
-	GETGLOB 4
-	INDEX 5
-	STUR 32
-	STU 256
-	STSLICE
-	ROTREV
-	NEWC
-	STSLICE
-	SWAP
-	NEWC
-	STSLICE
-	STBREFR
-	STBREFR
-	STBREFR
-	ENDC
-	GETGLOB 4
-	INDEX 4
-}
-IFELSE
-SENDRAWMSG
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro getInfo_5a9b0b89_internal_macro
+.macro TIP4_1Nft_getInfo_5a9b0b89_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol, 255
 GETGLOB 4
 PUSHINT 0
@@ -2609,6 +2559,13 @@ GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
 LDU 32
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP6/TIP6.sol, 0
@@ -2710,10 +2667,10 @@ LDMSGADDR
 LDU 128
 LDU 128
 LDREF
-LDU 10
-LDU 10
-LDU 10
-LDU 10
+LDU 6
+LDU 6
+LDU 6
+LDU 6
 LDU 128
 LDREF
 ENDS
@@ -2837,10 +2794,10 @@ STSLICE
 STU 128
 STU 128
 STREF
-STU 10
-STU 10
-STU 10
-STU 10
+STU 6
+STU 6
+STU 6
+STU 6
 STU 128
 ROLLREV 5
 NEWC
@@ -2948,15 +2905,36 @@ PUSHCONT {
 	STSLICE
 	ENDC
 	HASHCU
-	ROT
-	GETGLOB 2
+	SWAP
+	LDU 1 ; signatureSlice hashMsgSlice hasPubkey msgSlice
+	SWAP
+	PUSHCONT {
+		LDU 256 ; signatureSlice hashMsgSlice pubkey msgSlice
+		XCHG S3
+		SWAP
+	}
+	PUSHCONT {
+		XCHG S2
+		GETGLOB 2
+	}
+	IFELSE
 	CHKSIGNU
 	THROWIFNOT 40
 }
-IF
+PUSHCONT {
+	LDU 1 ; hasPubkey msgSlice
+	SWAP
+	THROWIF 58
+}
+IFELSE
 LDU 64 ; timestamp msgSlice
 SWAP
 CALL $replay_protection_macro$
+LDU 32 ; expireAt msgSlice
+SWAP
+NOW ; msgSlice expireAt now
+GREATER ; msgSlice expireAt>now
+THROWIFNOT 57
 LDU 32 ; funcId body
 SWAP
 CALLREF {
@@ -2966,119 +2944,130 @@ THROW 60
 
 .macro public_function_selector
 DUP
-PUSHINT 262791487
+PUSHINT 1525619880
 LEQ
 IFJMPREF {
 	DUP
-	PUSHINT 64331365
-	EQUAL
+	PUSHINT 167179635
+	LEQ
 	IFJMPREF {
-		CALL $indexCode$
-	}
-	DUP
-	PUSHINT 152407530
-	EQUAL
-	IFJMPREF {
-		CALL $changeManager$
-	}
-	DUP
-	PUSHINT 252541034
-	EQUAL
-	IFJMPREF {
-		CALL $burnNft$
-	}
-	DUP
-	PUSHINT 262791487
-	EQUAL
-	IFJMPREF {
-		CALL $onBurnSuccess$
-	}
-}
-DUP
-PUSHINT 348956614
-LEQ
-IFJMPREF {
-	DUP
-	PUSHINT 297752426
-	EQUAL
-	IFJMPREF {
-		CALL $getInfo$
+		DUP
+		PUSHINT 64331365
+		EQUAL
+		IFJMPREF {
+			CALL $indexCode$
+		}
+		DUP
+		PUSHINT 112223603
+		EQUAL
+		IFJMPREF {
+			CALL $getNftCustomData$
+		}
+		DUP
+		PUSHINT 152407530
+		EQUAL
+		IFJMPREF {
+			CALL $changeManager$
+		}
+		DUP
+		PUSHINT 167179635
+		EQUAL
+		IFJMPREF {
+			CALL $colorify$
+		}
 	}
 	DUP
 	PUSHINT 299736722
-	EQUAL
+	LEQ
 	IFJMPREF {
-		CALL $transfer$
+		DUP
+		PUSHINT 252541034
+		EQUAL
+		IFJMPREF {
+			CALL $burnNft$
+		}
+		DUP
+		PUSHINT 262791487
+		EQUAL
+		IFJMPREF {
+			CALL $onBurnSuccess$
+		}
+		DUP
+		PUSHINT 297752426
+		EQUAL
+		IFJMPREF {
+			CALL $getInfo$
+		}
+		DUP
+		PUSHINT 299736722
+		EQUAL
+		IFJMPREF {
+			CALL $transfer$
+		}
 	}
 	DUP
-	PUSHINT 310394048
-	EQUAL
+	PUSHINT 815060403
+	LEQ
 	IFJMPREF {
-		CALL $onBurnError$
+		DUP
+		PUSHINT 310394048
+		EQUAL
+		IFJMPREF {
+			CALL $onBurnError$
+		}
+		DUP
+		PUSHINT 348956614
+		EQUAL
+		IFJMPREF {
+			CALL $indexCodeHash$
+		}
+		DUP
+		PUSHINT 618124789
+		EQUAL
+		IFJMPREF {
+			CALL $getJson$
+		}
+		DUP
+		PUSHINT 815060403
+		EQUAL
+		IFJMPREF {
+			CALL $proxyTransferToOwner$
+		}
 	}
 	DUP
-	PUSHINT 348956614
-	EQUAL
+	PUSHINT 1525619880
+	LEQ
 	IFJMPREF {
-		CALL $indexCodeHash$
-	}
-}
-DUP
-PUSHINT 1359954873
-LEQ
-IFJMPREF {
-	DUP
-	PUSHINT 391406166
-	EQUAL
-	IFJMPREF {
-		CALL $getNftCustomData$
-	}
-	DUP
-	PUSHINT 618124789
-	EQUAL
-	IFJMPREF {
-		CALL $getJson$
-	}
-	DUP
-	PUSHINT 839183401
-	EQUAL
-	IFJMPREF {
-		CALL $supportsInterface$
-	}
-	DUP
-	PUSHINT 1359954873
-	EQUAL
-	IFJMPREF {
-		CALL $constructor$
+		DUP
+		PUSHINT 839183401
+		EQUAL
+		IFJMPREF {
+			CALL $supportsInterface$
+		}
+		DUP
+		PUSHINT 1087349514
+		EQUAL
+		IFJMPREF {
+			CALL $constructor$
+		}
+		DUP
+		PUSHINT 1492477492
+		EQUAL
+		IFJMPREF {
+			CALL $setBurningBlocked$
+		}
+		DUP
+		PUSHINT 1525619880
+		EQUAL
+		IFJMPREF {
+			CALL $resolveIndex$
+		}
 	}
 }
 DUP
 PUSHINT 1904151404
-LEQ
+EQUAL
 IFJMPREF {
-	DUP
-	PUSHINT 1492477492
-	EQUAL
-	IFJMPREF {
-		CALL $setBurningBlocked$
-	}
-	DUP
-	PUSHINT 1525619880
-	EQUAL
-	IFJMPREF {
-		CALL $resolveIndex$
-	}
-	DUP
-	PUSHINT 1579470916
-	EQUAL
-	IFJMPREF {
-		CALL $colorify$
-	}
-	DUP
-	PUSHINT 1904151404
-	EQUAL
-	IFJMPREF {
-		CALL $changeOwner$
-	}
+	CALL $changeOwner$
 }
 

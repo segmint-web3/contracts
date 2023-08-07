@@ -10,28 +10,28 @@ IFREF {
 GETGLOB 6
 THROWIF 51
 ENDS
-.loc ../contracts/BlockList.tsol, 28
+.loc ../contracts/BlockList.tsol, 30
 GETGLOB 2
 THROWIF 1001
-.loc ../contracts/BlockList.tsol, 29
-GETGLOB 9
-GETGLOB 10
-SDEQ
-THROWIFNOT 1000
-.loc ../contracts/BlockList.tsol, 30
+.loc ../contracts/BlockList.tsol, 31
 GETGLOB 9
 GETGLOB 11
+SDEQ
+THROWIFNOT 1000
+.loc ../contracts/BlockList.tsol, 32
+GETGLOB 9
+GETGLOB 12
 NEWC
 STONE
 ROTREV
 PUSHINT 267
 DICTSETB
-SETGLOB 11
-.loc ../contracts/BlockList.tsol, 31
+SETGLOB 12
+.loc ../contracts/BlockList.tsol, 33
 PUSHINT 300000000
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/BlockList.tsol, 32
+.loc ../contracts/BlockList.tsol, 34
 GETGLOB 9
 NEWC
 STSLICECONST x42_
@@ -58,7 +58,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/BlockList.tsol, 35
+.loc ../contracts/BlockList.tsol, 37
 OVER
 PUSHCONT {
 	LDREF
@@ -78,20 +78,20 @@ CALLREF {
 THROW 0
 
 .macro addManager_2d06177a_internal_macro
-.loc ../contracts/BlockList.tsol, 18
+.loc ../contracts/BlockList.tsol, 20
 GETGLOB 9
-GETGLOB 10
+GETGLOB 11
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/BlockList.tsol, 36
-GETGLOB 11
+.loc ../contracts/BlockList.tsol, 38
+GETGLOB 12
 NEWC
 STONE
 ROTREV
 PUSHINT 267
 DICTSETB
-SETGLOB 11
-.loc ../contracts/BlockList.tsol, 37
+SETGLOB 12
+.loc ../contracts/BlockList.tsol, 39
 GETGLOB 9
 NEWC
 STSLICECONST x42_
@@ -114,7 +114,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/BlockList.tsol, 40
+.loc ../contracts/BlockList.tsol, 42
 OVER
 PUSHCONT {
 	LDREF
@@ -134,18 +134,18 @@ CALLREF {
 THROW 0
 
 .macro removeManager_ac18de43_internal_macro
-.loc ../contracts/BlockList.tsol, 18
+.loc ../contracts/BlockList.tsol, 20
 GETGLOB 9
-GETGLOB 10
+GETGLOB 11
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/BlockList.tsol, 41
-GETGLOB 11
+.loc ../contracts/BlockList.tsol, 43
+GETGLOB 12
 PUSHINT 267
 DICTDEL
 DROP
-SETGLOB 11
-.loc ../contracts/BlockList.tsol, 42
+SETGLOB 12
+.loc ../contracts/BlockList.tsol, 44
 GETGLOB 9
 NEWC
 STSLICECONST x42_
@@ -168,22 +168,30 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/BlockList.tsol, 45
+.loc ../contracts/BlockList.tsol, 47
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
 LDU 32
 ENDS
 .loc ../contracts/BlockList.tsol, 0
 CALLREF {
-	CALL $addToBanList_fdc111a6_internal_macro$
+	CALL $addToBanList_450bb3f5_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.macro addToBanList_fdc111a6_internal_macro
-.loc ../contracts/BlockList.tsol, 23
+.macro addToBanList_450bb3f5_internal_macro
+.loc ../contracts/BlockList.tsol, 25
 GETGLOB 9
-GETGLOB 11
+GETGLOB 12
 PUSHINT 267
 DICTGET
 ZEROSWAPIFNOT
@@ -194,20 +202,21 @@ IF
 TRUE
 EQUAL
 THROWIFNOT 1004
-.loc ../contracts/BlockList.tsol, 46
+.loc ../contracts/BlockList.tsol, 48
 DUP
-GETGLOB 12
+GETGLOB 13
 NEWC
 STONE
 ROTREV
 PUSHINT 32
 DICTUSETB
-SETGLOB 12
-.loc ../contracts/BlockList.tsol, 47
+SETGLOB 13
+.loc ../contracts/BlockList.tsol, 49
 PUSHINT 0
 PUSHINT 4
 RAWRESERVE
-.loc ../contracts/BlockList.tsol, 48
+.loc ../contracts/BlockList.tsol, 50
+DUP
 PUSHSLICE xc000000000000000000000000023c213ac
 NEWC
 STSLICE
@@ -215,17 +224,25 @@ STU 32
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../contracts/BlockList.tsol, 49
+.loc ../contracts/BlockList.tsol, 51
 GETGLOB 9
+TRUE
+SWAP2
+SWAP
 NEWC
-STSLICECONST x42_
+STSLICECONST x62_
 STSLICE
-PUSHINT 111
-STZEROES
+PUSHINT 9789369574394656757036770681243717074945
+STUR 135
+ROLLREV 3
+NEWC
+STSLICECONST x4b2fff64
+STU 32
+STI 1
+STSLICE
+STBREFR
 ENDC
-PUSHPOW2 7
-ADDCONST 2
-UFITS 8
+PUSHINT 0
 SENDRAWMSG
 .loc ../contracts/BlockList.tsol, 0
 
@@ -238,41 +255,58 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/BlockList.tsol, 52
+.loc ../contracts/BlockList.tsol, 54
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
 LDU 32
 ENDS
 .loc ../contracts/BlockList.tsol, 0
 CALLREF {
-	CALL $removeFromBanList_48360d0b_internal_macro$
+	CALL $removeFromBanList_f373b2ef_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.macro removeFromBanList_48360d0b_internal_macro
-.loc ../contracts/BlockList.tsol, 18
+.macro removeFromBanList_f373b2ef_internal_macro
+.loc ../contracts/BlockList.tsol, 20
 GETGLOB 9
-GETGLOB 10
+GETGLOB 11
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/BlockList.tsol, 53
-GETGLOB 12
+.loc ../contracts/BlockList.tsol, 55
+DUP
+GETGLOB 13
 PUSHINT 32
 DICTUDEL
 DROP
-SETGLOB 12
-.loc ../contracts/BlockList.tsol, 54
+SETGLOB 13
+.loc ../contracts/BlockList.tsol, 56
 GETGLOB 9
+FALSE
+SWAP2
+SWAP
 NEWC
-STSLICECONST x42_
+STSLICECONST x62_
 STSLICE
-PUSHINT 111
-STZEROES
+PUSHINT 9789369574394656757036770681243717074945
+STUR 135
+ROLLREV 3
+NEWC
+STSLICECONST x4b2fff64
+STU 32
+STI 1
+STSLICE
+STBREFR
 ENDC
-PUSHINT 64
-ADDCONST 2
-UFITS 8
+PUSHINT 0
 SENDRAWMSG
 .loc ../contracts/BlockList.tsol, 0
 
@@ -285,7 +319,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/BlockList.tsol, 57
+.loc ../contracts/BlockList.tsol, 59
 ENDS
 .loc ../contracts/BlockList.tsol, 0
 CALLREF {
@@ -297,16 +331,16 @@ CALLREF {
 THROW 0
 
 .macro cleanBanList_83d95ada_internal_macro
-.loc ../contracts/BlockList.tsol, 18
+.loc ../contracts/BlockList.tsol, 20
 GETGLOB 9
-GETGLOB 10
+GETGLOB 11
 SDEQ
 THROWIFNOT 1000
-.loc ../contracts/BlockList.tsol, 58
-NEWDICT
-.loc ../contracts/BlockList.tsol, 59
-SETGLOB 12
 .loc ../contracts/BlockList.tsol, 60
+NEWDICT
+.loc ../contracts/BlockList.tsol, 61
+SETGLOB 13
+.loc ../contracts/BlockList.tsol, 62
 GETGLOB 9
 NEWC
 STSLICECONST x42_
@@ -327,10 +361,12 @@ LDU 256 ; pubkey c4
 LDU 64 ; pubkey timestamp c4
 LDU 1 ; ctor flag
 NIP
+LDU 16
 LDMSGADDR
 LDDICT
 LDDICT
 ENDS
+SETGLOB 13
 SETGLOB 12
 SETGLOB 11
 SETGLOB 10
@@ -351,6 +387,15 @@ PUSHCONT {
 	OVER
 	PUSHINT 64
 	DICTUGET
+	ZEROSWAPIFNOT
+	PUSHCONT {
+		PLDU 16
+	}
+	IF
+	PUSHINT 2
+	PUSH S2
+	PUSHINT 64
+	DICTUGET
 	PUSHCONT {
 		PUSHREFSLICE {
 			.blob x8000000000000000000000000000000000000000000000000000000000000000001_
@@ -359,6 +404,7 @@ PUSHCONT {
 	IFNOT
 	NEWDICT
 	DUP
+	SETGLOB 13
 	SETGLOB 12
 	SETGLOB 11
 	SETGLOB 10
@@ -375,6 +421,7 @@ IFREFELSE {
 }
 
 .macro c7_to_c4
+GETGLOB 13
 GETGLOB 12
 GETGLOB 11
 GETGLOB 10
@@ -384,6 +431,7 @@ NEWC
 STU 256
 STU 64
 STONE
+STU 16
 STSLICE
 STDICT
 STDICT
@@ -485,7 +533,7 @@ THROW 60
 
 .macro public_function_selector
 DUP
-PUSHINT 1756716863
+PUSHINT 1751851144
 LEQ
 IFJMPREF {
 	DUP
@@ -495,10 +543,10 @@ IFJMPREF {
 		CALL $cleanBanList$
 	}
 	DUP
-	PUSHINT 839385626
+	PUSHINT 1205071544
 	EQUAL
 	IFJMPREF {
-		CALL $removeFromBanList$
+		CALL $addToBanList$
 	}
 	DUP
 	PUSHINT 1544152139
@@ -507,10 +555,10 @@ IFJMPREF {
 		CALL $addManager$
 	}
 	DUP
-	PUSHINT 1756716863
+	PUSHINT 1751851144
 	EQUAL
 	IFJMPREF {
-		CALL $constructor$
+		CALL $removeFromBanList$
 	}
 }
 DUP
@@ -518,10 +566,10 @@ PUSHINT 1848808642
 LEQ
 IFJMPREF {
 	DUP
-	PUSHINT 1834546327
+	PUSHINT 1756716863
 	EQUAL
 	IFJMPREF {
-		CALL $addToBanList$
+		CALL $constructor$
 	}
 	DUP
 	PUSHINT 1848808642

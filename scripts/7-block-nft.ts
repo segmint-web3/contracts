@@ -1,43 +1,25 @@
 import {EverWalletAccount, HighloadWalletV2, SimpleKeystore} from "everscale-standalone-client";
 import { getRandomTileColors } from "../test/utils";
+import { Address } from "locklift";
+import { checkIsDeployed, checkIsOwner } from "./utils";
 
 async function main() {
-  const nftId = '0';
-
   const signer = (await locklift.keystore.getSigner("0"))!;
+
+  const collectionAddress = new Address("0:4b36b511062235e566fc04b1d8349843bc34103ea7be3b8131268838d6155b9d")
+  const blockListAddress = new Address("0:4b36b511062235e566fc04b1d8349843bc34103ea7be3b8131268838d6155b9d")
+  await checkIsDeployed(collectionAddress, locklift.provider);
+  await checkIsDeployed(blockListAddress, locklift.provider);
+
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});
 
-  const blockListArtifacts = await locklift.factory.getContractArtifacts("BlockList");
-  const {address: blockListAddress, stateInit: blockListStateInit} = await locklift.provider.getStateInit(blockListArtifacts.abi, {
-    workchain: 0,
-    tvc: blockListArtifacts.tvc,
-    initParams: {
-      owner_: ownerWallet.address
-    }
-  })
-  const blockList = new locklift.provider.Contract(blockListArtifacts.abi, blockListAddress);
-
-  const collectionArtifacts = await locklift.factory.getContractArtifacts("SegmintCollection");
-  const {address: collectionAddress, stateInit: collectionStateInit} = await locklift.provider.getStateInit(collectionArtifacts.abi, {
-    workchain: 0,
-    tvc: collectionArtifacts.tvc,
-    initParams: {
-      owner_: ownerWallet.address,
-      nonce_: 0
-    }
-  })
-  const collection = new locklift.provider.Contract(collectionArtifacts.abi, collectionAddress);
-
-  await locklift.tracing.trace(
-    collection.methods.setNftBurningBlocked({nftId: nftId, isBlocked: true}).send({
-      from: ownerWallet.address,
-      amount: locklift.utils.toNano(1)
-    })
-  );
+  const collection = locklift.factory.getDeployedContract('SegmintCollection', collectionAddress);
+  const blockList = locklift.factory.getDeployedContract('BlockList', blockListAddress);
 
   await locklift.tracing.trace(
     blockList.methods.addToBanList({
-      nftId: nftId,
+      collection: collectionAddress,
+      nftId: '0',
     }).send({
       from: ownerWallet.address,
       amount: locklift.utils.toNano(1),

@@ -46,14 +46,13 @@ describe("Test collection", async function () {
       // expect(Number(response._state)).to.be.equal(NEW_STATE, "Wrong state");
       const tracing = await locklift.tracing.trace(
         collection.methods.claimTiles({
-          "pixelStartX": 0,
-          "pixelStartY": 0,
-          "pixelEndX": 10,
-          "pixelEndY": 10,
+          "tileStartX": 0,
+          "tileStartY": 0,
+          "tileEndX": 1,
+          "tileEndY": 1,
           "tilesToColorify": [getRandomTileColors()],
           "description": "no",
           "url": "no",
-          "coinsToRedrawOneTile" : colorifyOneTilePrice
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(10),
@@ -76,14 +75,13 @@ describe("Test collection", async function () {
 
       await locklift.tracing.trace(
           collection.methods.claimTiles({
-            "pixelStartX": 0,
-            "pixelStartY": 0,
-            "pixelEndX": 10,
-            "pixelEndY": 10,
+            "tileStartX": 0,
+            "tileStartY": 0,
+            "tileEndX": 1,
+            "tileEndY": 1,
             "tilesToColorify": [getRandomTileColors()],
             "description": `Test mint 0x0`,
             "url": "https://google.com/",
-            "coinsToRedrawOneTile" : colorifyOneTilePrice
           }).send({
             from: ownerEverWallet.address,
             amount: locklift.utils.toNano( 5),
@@ -93,15 +91,15 @@ describe("Test collection", async function () {
 
       let claimed_tile = await collection.methods.getTile({
         answerId: 0,
-        tilePixelX: 0,
-        tilePixelY: 0
+        tileX: 0,
+        tileY: 0
       }).call({responsible: true});
       expect(claimed_tile.nftId).to.be.equal('0');
 
       claimed_tile = await collection.methods.getTile({
         answerId: 0,
-        tilePixelX: 0,
-        tilePixelY: 10
+        tileX: 0,
+        tileY: 1
       }).call({responsible: true});
       expect(claimed_tile.nftId).to.be.equal('4294967295');
     });
@@ -113,14 +111,13 @@ describe("Test collection", async function () {
 
       await locklift.tracing.trace(
         collection.methods.claimTiles({
-          "pixelStartX": 0,
-          "pixelStartY": 0,
-          "pixelEndX": 10,
-          "pixelEndY": 10,
+          "tileStartX": 0,
+          "tileStartY": 0,
+          "tileEndX": 1,
+          "tileEndY": 1,
           "tilesToColorify": [getRandomTileColors()],
           "description": `Test mint 0x0`,
           "url": "https://google.com/",
-          "coinsToRedrawOneTile" : colorifyOneTilePrice
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano( 5),
@@ -129,14 +126,13 @@ describe("Test collection", async function () {
 
       const failedClaimTracing = await locklift.tracing.trace(
         collection.methods.claimTiles({
-          "pixelStartX": 0,
-          "pixelStartY": 0,
-          "pixelEndX": 20,
-          "pixelEndY": 20,
-          "tilesToColorify": [getRandomTileColors(),getRandomTileColors(),getRandomTileColors(),getRandomTileColors()],
+          "tileStartX": 0,
+          "tileStartY": 0,
+          "tileEndX": 2,
+          "tileEndY": 2,
+          "tilesToColorify": [getRandomTileColors(), getRandomTileColors(), getRandomTileColors(), getRandomTileColors()],
           "description": `Test mint 0x0`,
           "url": "https://google.com/",
-          "coinsToRedrawOneTile" : colorifyOneTilePrice
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(20),
@@ -155,43 +151,42 @@ describe("Test collection", async function () {
 
       let claimed_tile = await collection.methods.getTile({
         answerId: 0,
-        tilePixelX: 0,
-        tilePixelY: 0
+        tileX: 0,
+        tileY: 0
       }).call({responsible: true});
       expect(claimed_tile.nftId).to.be.equal('0');
 
       claimed_tile = await collection.methods.getTile({
         answerId: 0,
-        tilePixelX: 0,
-        tilePixelY: 10
+        tileX: 0,
+        tileY: 1
       }).call({responsible: true});
       expect(claimed_tile.nftId).to.be.equal('4294967295');
     });
 
     it("Full collection mint SKIPPED UNCOMMENT TO RUN", async function () {
-      // for gas testing suppose. can take an hour.
+      // for gas testing suppose.
       return;
       await locklift.giver.sendTo(ownerEverWallet.address, locklift.utils.toNano(10000))
       const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
 
       let successfull_mint_tracing;
-      for (let y = 0; y < 100; y++) {
+      for (let y = 0; y < 50; y++) {
         console.log('mint line', y);
 
         let pixels = [];
-        for (let i = 0; i < 100; i++)
+        for (let i = 0; i < 50; i++)
           pixels.push(getRandomTileColors())
 
         successfull_mint_tracing = await locklift.tracing.trace(
           collection.methods.claimTiles({
-            "pixelStartX": 0,
-            "pixelStartY": y * 10,
-            "pixelEndX": 1000,
-            "pixelEndY": y * 10 + 10,
+            "tileStartX": 0,
+            "tileStartY": y,
+            "tileEndX": 50,
+            "tileEndY": y + 1,
             "tilesToColorify": pixels,
             "description": `Test mint 0-1000,${y}-${y+10}`,
             "url": "https://google.com/",
-            "coinsToRedrawOneTile" : colorifyOneTilePrice
           }).send({
             from: ownerEverWallet.address,
             amount: locklift.utils.toNano(100 * parseInt(colorifyOneTilePrice) / 1_000_000_000 + 20),
@@ -199,20 +194,21 @@ describe("Test collection", async function () {
         )
       }
 
+      console.log(collection.address.toString());
+
       let pixels = [];
-      for (let i = 0; i < 100; i++)
+      for (let i = 0; i < 50; i++)
         pixels.push(getRandomTileColors())
 
       successfull_mint_tracing = await locklift.tracing.trace(
         collection.methods.claimTiles({
-          "pixelStartX": 500,
-          "pixelStartY": 0,
-          "pixelEndX": 510,
-          "pixelEndY": 900,
+          "tileStartX": 24,
+          "tileStartY": 0,
+          "tileEndX": 25,
+          "tileEndY": 50,
           "tilesToColorify": pixels,
           "description": `Test mint 0-1000,${990}-${990+10}`,
           "url": "https://google.com/",
-          "coinsToRedrawOneTile" : colorifyOneTilePrice
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(100 * parseInt(colorifyOneTilePrice) / 1_000_000_000 + 10),
@@ -220,14 +216,16 @@ describe("Test collection", async function () {
       )
 
       await successfull_mint_tracing?.traceTree?.beautyPrint();
+      console.log(collection.address.toString());
+
       const {state} = await collection.getFullState();
 
-      for (let x = 0; x < 1000; x += 10) {
-        for (let y = 0; y < 1000; y += 10) {
+      for (let x = 0; x < 50; x ++) {
+        for (let y = 0; y < 50; y ++) {
           const claimed_tile = await collection.methods.getTile({
             answerId: 0,
-            tilePixelX: x,
-            tilePixelY: y
+            tileX: x,
+            tileY: y
           }).call({responsible: true, cachedState: state});
           expect(claimed_tile.nftId).to.not.equal('4294967295');
         }
@@ -243,11 +241,13 @@ describe("Test collection", async function () {
       await locklift.giver.sendTo(nonOwnerEverWallet.address, locklift.utils.toNano(10))
 
       let methods = [
+        {name: 'changeManager', params: {newManager: ownerEverWallet.address.toString()}},
         {name: 'changeOwner', params: {newOwner: ownerEverWallet.address.toString()}},
         {name: 'disableMint', params: {answerId: '0'}},
         {name: 'enableMint',  params: {answerId: '0'}},
         {name: 'changeEpoch',  params: {answerId: '0'}},
-        {name: 'setNftBurningBlocked',  params: {nftId: '0', isBlocked: true}},
+        {name: 'upgrade',  params: {newCode: ''}},
+        {name: 'setTilePrice',  params: {newCurrentPrice: 1, newEpochPriceGrow: 0}},
       ];
 
       for (let method of methods) {
@@ -269,6 +269,30 @@ describe("Test collection", async function () {
         )
         expect(tracing.traceTree).to.have.error(1000);
       }
+
+      let tracing = await locklift.tracing.trace(
+        collection.methods.setNftBurningBlocked({
+          "nftId": "0",
+          "isBlocked": false,
+          "sendGasBack": ownerEverWallet.address
+        }).send({
+          from: nonOwnerEverWallet.address,
+          amount: locklift.utils.toNano(1),
+        }),
+        {
+          allowedCodes: {
+            contracts: {
+              [collection.address.toString()]: {
+                compute: [1004],
+              },
+            },
+          },
+        }
+      );
+
+      // not manager
+      expect(tracing.traceTree).to.have.error(1004);
+
     });
 
     it("Change owner must work correctly", async function () {
@@ -323,6 +347,6 @@ describe("Test collection", async function () {
       let response = await collection.methods.getJson({answerId: 0}).call({responsible: true});
       expect(response.json).to.be.equal(JSON.stringify(metadata()));
     });
-
   });
+
 });
