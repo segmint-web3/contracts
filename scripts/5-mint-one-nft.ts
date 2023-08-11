@@ -13,7 +13,7 @@ async function main() {
   const signer = (await locklift.keystore.getSigner("0"))!;
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});
 
-  const collectionAddress = new Address("0:4b36b511062235e566fc04b1d8349843bc34103ea7be3b8131268838d6155b9d")
+  const collectionAddress = new Address("0:1a98a60471cb91af9f7c47063c2d2a5c4df325b28d53f3b3b2d05bcc5e6b81b8")
   const collection = locklift.factory.getDeployedContract('SegmintCollection', collectionAddress);
   await checkIsDeployed(collectionAddress, locklift.provider);
 
@@ -45,8 +45,8 @@ async function main() {
   // stupid search
   let found = false;
   let tracing;
-  for (let tX = 0; tX < 50 - imageTileWidth; tX++) {
-    for (let tY = 0; tY < 50 - imageTileHeight; tY++) {
+  for (let tX = 0; tX <= 50 - imageTileWidth; tX++) {
+    for (let tY = 0; tY <= 50 - imageTileHeight; tY++) {
       let stopped = false;
       for (let addX = 0; addX < imageTileWidth; addX++) {
         for (let addY = 0; addY < imageTileHeight; addY++) {
@@ -69,7 +69,7 @@ async function main() {
           "tileEndY": tY + imageTileHeight,
           "tilesToColorify": bytesArray,
           "description": image_name,
-          "url": 'https://segmint.app',
+          "url": 'https://google.com',
         }).send({
           from: ownerWallet.address,
           amount: Math.floor( ((imageTileWidth) * (imageTileHeight)) * (parseInt(parsedState.currentEpochTilePrice_) + parseInt(parsedState.epochTilePriceGrow_)) + (MaximumFwdFeeForBigMint + OneNftMintingCost + MaximumClaimGasPrice) * 1_000_000_000).toString(),

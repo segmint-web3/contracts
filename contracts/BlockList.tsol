@@ -48,12 +48,12 @@ contract BlockList {
         blocked_[nftId] = true;
         tvm.rawReserve(0, 4);
         emit NftBlocked(nftId);
-        ISegmintCollection(collection).setNftBurningBlocked(nftId, true, msg.sender);
+        ISegmintCollection(collection).setNftBurningBlocked{value: 0, bounce: false, flag: MsgFlag.ALL_NOT_RESERVED}(nftId, true, msg.sender);
     }
 
     function removeFromBanList(address collection, uint32 nftId) external onlyOwner  {
         delete blocked_[nftId];
-        ISegmintCollection(collection).setNftBurningBlocked(nftId, false, msg.sender);
+        ISegmintCollection(collection).setNftBurningBlocked{value: 0, bounce: false, flag: MsgFlag.REMAINING_GAS}(nftId, false, msg.sender);
     }
 
     function cleanBanList() external onlyOwner {

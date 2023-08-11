@@ -113,11 +113,11 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
 
     function changeEpoch() external override responsible onlyOwner returns(uint32, uint128) {
         _changeEpoch();
-        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false } (currentEpoch_, currentEpochTilePrice_);
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (currentEpoch_, currentEpochTilePrice_);
     }
 
     function setTilePrice(uint128 newCurrentPrice, uint128 newEpochPriceGrow) external onlyOwner {
-        require(newCurrentPrice > 0,   ErrorCodes.INVALID_NEW_PRICE);
+        require(newCurrentPrice > 0, ErrorCodes.INVALID_NEW_PRICE);
         currentEpochTilePrice_ = newCurrentPrice;       // Price per tile
         epochTilePriceGrow_ = newEpochPriceGrow;
         if (prevEpochTilePrice_ > currentEpochTilePrice_) {
@@ -228,7 +228,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
 
     function colorifyTiles(uint32 nftId, bytes[] tilesColors, uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, address sendGasBack) external override {
         require(msg.sender == _resolveNft(nftId), ErrorCodes.WRONG_NFT);
-         tvm.rawReserve(0.01 ever, 4);
+        tvm.rawReserve(0.01 ever, 4);
 
         uint colorifyIndex;
         uint cells; uint bits; uint refs;

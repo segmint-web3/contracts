@@ -13,13 +13,14 @@ async function main() {
   const signer = (await locklift.keystore.getSigner("0"))!;
   const highloadKeys = (await locklift.keystore.getSigner("1"))!;
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});
-  const {account: highloadWallet} = await locklift.factory.accounts.addNewAccount({
-    type: WalletTypes.HighLoadWalletV2,
-    publicKey: highloadKeys.publicKey,
-    value: locklift.utils.toNano(500),
-  })
+  const highloadWallet = ownerWallet;
+  // const {account: highloadWallet} = await locklift.factory.accounts.addNewAccount({
+  //   type: WalletTypes.HighLoadWalletV2,
+  //   publicKey: highloadKeys.publicKey,
+  //   value: locklift.utils.toNano(500),
+  // })
 
-  const collectionAddress = new Address("0:4b36b511062235e566fc04b1d8349843bc34103ea7be3b8131268838d6155b9d")
+  const collectionAddress = new Address("0:e607b54636f6d26b92f52f4c8ad2e013eee4415ef151f0881e275abf79aaebd7")
   const collection = locklift.factory.getDeployedContract('SegmintCollection', collectionAddress);
   await checkIsDeployed(collectionAddress, locklift.provider);
 
@@ -37,8 +38,18 @@ async function main() {
 
   let promises = [];
   let space_occupied = 0;
+  let last_images = [];
   while (true) {
     let image_name = images[Math.floor(images.length * Math.random())];
+    if (last_images.length > 35) {
+      last_images.shift();
+    }
+    if (last_images.indexOf(image_name) !== -1) {
+      console.log('skip', image_name);
+      continue;
+    }
+    last_images.push(image_name);
+
     let data = fs.readFileSync(`${__dirname}/images/${image_name}`);
     let png = PNG.sync.read(data);
     if (png.width % 20 !== 0 || png.height % 20 !== 0) {
@@ -50,12 +61,13 @@ async function main() {
     let imageTileWidth = png.width / 20;
     let imageTileHeight = png.height / 20;
 
+    parsedState.currentEpoch_ = 1;
     // search for good place for this image.
     // stupid search
     let found = false;
     let mintTx;
-    for (let tX = 0; tX < 50 - imageTileWidth; tX++) {
-      for (let tY = 0; tY < 50 - imageTileHeight; tY++) {
+    for (let tX = 0; tX <= 50 - imageTileWidth; tX++) {
+      for (let tY = 0; tY <= 50 - imageTileHeight; tY++) {
         let stopped = false;
         for (let addX = 0; addX < imageTileWidth; addX++) {
           for (let addY = 0; addY < imageTileHeight; addY++) {
@@ -71,14 +83,14 @@ async function main() {
         if (!stopped) {
           found = true;
           console.log('Try to ming', image_name, 'x', tX * 20, 'y', tY * 20);
-          mintTx = collection.methods.claimTiles({
+          mintTx = await collection.methods.claimTiles({
             "tileStartX": tX,
             "tileStartY": tY,
             "tileEndX": tX + imageTileWidth,
             "tileEndY": tY + imageTileHeight,
             "tilesToColorify": bytesArray,
             "description": image_name,
-            "url": 'https://segmint.app',
+            "url": 'https://google.com',
           }).send({
             from: highloadWallet.address,
             amount: Math.floor(((imageTileWidth) * (imageTileHeight)) * (parseInt(parsedState.currentEpochTilePrice_) + parseInt(parsedState.epochTilePriceGrow_)) + (MaximumFwdFeeForBigMint + OneNftMintingCost + MaximumClaimGasPrice) * 1_000_000_000).toString(),
@@ -104,11 +116,11 @@ async function main() {
       }
     } else {
       space_occupied = 0;
-      promises.push(mintTx);
-      if (promises.length >= 50) {
-        console.log('Minting 50 images! Stop to clean up highload wallet');
-        break;
-      }
+      // promises.push(mintTx);
+      // if (promises.length >= 50) {
+      //   console.log('Minting 50 images! Stop to clean up highload wallet');
+      //   break;
+      // }
     }
   }
   await Promise.all(promises);
