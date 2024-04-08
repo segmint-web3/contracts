@@ -2,32 +2,32 @@ import {EverWalletAccount} from "everscale-standalone-client";
 import { WalletTypes } from "locklift";
 
 async function main() {
-  const nonce = 2;
+  const nonce = 0;
   const signer = (await locklift.keystore.getSigner("0"))!;
 
   const collectionMetadata = {
     "type": "Basic Collection",
-    "name": "Segmint desert collection",
+    "name": "Segmint collection",
     "description": "Introducing the unique NFT collection Segmint, an innovative project where advertising meets art and blockchain, creating an exciting world of interactive creativity.",
     "tags": [
       "history"
     ],
     "preview": {
-      "source": "https://segmint.app/collection_logo_desert.png",
+      "source": "https://segmint.app/collection_logo.png",
       "mimetype": "image/png"
     },
     "banner": {
-      "source": "https://segmint.app/collection_banner_desert.png",
+      "source": "https://segmint.app/collection_banner.png",
       "mimetype": "image/png"
     },
     "files": [
       {
-        "source": "https://segmint.app/collection_logo_desert.png",
+        "source": "https://segmint.app/collection_logo.png",
         "mimetype": "image/png"
       }
     ],
-    "external_url": "https://segmint.app/#desert",
-    "links": ["https://segmint.app/#desert"]
+    "external_url": "https://segmint.app/",
+    "links": ["https://segmint.app/"]
   }
 
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});

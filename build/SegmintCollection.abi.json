@@ -23,9 +23,24 @@
 			]
 		},
 		{
+			"name": "acceptOwnership",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "changeManager",
 			"inputs": [
 				{"name":"newManager","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "changeCashier",
+			"inputs": [
+				{"name":"newCashier","type":"address"}
 			],
 			"outputs": [
 			]
@@ -135,7 +150,6 @@
 				{"name":"tileY","type":"uint6"}
 			],
 			"outputs": [
-				{"name":"pixels","type":"bytes"},
 				{"name":"nftId","type":"uint32"},
 				{"name":"epoch","type":"uint32"}
 			]
@@ -163,13 +177,23 @@
 			]
 		},
 		{
-			"name": "getRandomNftFromTheField",
+			"name": "getRandomNftAddressFromTheField",
 			"inputs": [
 				{"name":"answerId","type":"uint32"},
 				{"name":"seed","type":"uint256"}
 			],
 			"outputs": [
 				{"name":"value0","type":"address"}
+			]
+		},
+		{
+			"name": "ping",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"data","type":"cell"}
+			],
+			"outputs": [
+				{"name":"value0","type":"cell"}
 			]
 		},
 		{
@@ -371,8 +395,10 @@
 		{"name":"owner_","type":"address"},
 		{"name":"nonce_","type":"uint16"},
 		{"name":"mintDisabled_","type":"bool"},
+		{"name":"newOwner_","type":"address"},
 		{"name":"manager_","type":"address"},
-		{"components":[{"name":"epochWitNftId","type":"uint64"},{"name":"colors","type":"bytes"}],"name":"tiles_","type":"map(uint12,tuple)"},
+		{"name":"cashier_","type":"address"},
+		{"name":"tiles_","type":"map(uint12,uint64)"},
 		{"name":"currentEpoch_","type":"uint32"},
 		{"name":"currentEpochTilesLeft_","type":"uint12"},
 		{"name":"currentEpochTilePrice_","type":"uint128"},

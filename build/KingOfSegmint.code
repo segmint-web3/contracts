@@ -1,0 +1,798 @@
+.version sol 0.64.0
+
+.macro constructor
+DROP
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+GETGLOB 6
+THROWIF 51
+LDU 256
+LDU 32
+ENDS
+.loc ../contracts/KingOfSegmint.tsol, 43
+GETGLOB 2
+THROWIF 1001
+.loc ../contracts/KingOfSegmint.tsol, 44
+GETGLOB 9
+GETGLOB 10
+SDEQ
+THROWIFNOT 1000
+.loc ../contracts/KingOfSegmint.tsol, 45
+DUP
+PUSHINT 300
+GEQ
+THROWIFNOT 1018
+.loc ../contracts/KingOfSegmint.tsol, 46
+DUP
+PUSHINT 86400
+LEQ
+THROWIFNOT 1018
+.loc ../contracts/KingOfSegmint.tsol, 47
+SWAP
+SETGLOB 13
+.loc ../contracts/KingOfSegmint.tsol, 48
+SETGLOB 14
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro onNftMinted
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/KingOfSegmint.tsol, 51
+OVER
+PUSHCONT {
+	LDU 32
+	LDREF
+	ENDS
+	CTOS
+}
+PUSHCONT {
+	LDU 32
+}
+IFELSE
+LDMSGADDR
+LDU 128
+ENDS
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $onNftMinted_ca44948c_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro onNftMinted_ca44948c_internal_macro
+.loc ../contracts/KingOfSegmint.tsol, 52
+DROP
+PUSHINT 0
+PUSHINT 4
+RAWRESERVE
+.loc ../contracts/KingOfSegmint.tsol, 53
+GETGLOB 9
+GETGLOB 11
+SDEQ
+GETGLOB 15
+NEQINT 3
+AND
+PUSHCONT {
+	.loc ../contracts/KingOfSegmint.tsol, 54
+	PUSHINT 1
+	SETGLOB 15
+	.loc ../contracts/KingOfSegmint.tsol, 55
+	DUP
+	SETGLOB 17
+	.loc ../contracts/KingOfSegmint.tsol, 56
+	OVER
+	SETGLOB 18
+	.loc ../contracts/KingOfSegmint.tsol, 57
+	NOW
+	GETGLOB 14
+	ADD
+	UFITS 32
+	SETGLOB 16
+	.loc ../contracts/KingOfSegmint.tsol, 58
+	GETPARAM 7
+	FIRST
+	BLKPUSH 2, 2
+	PUSHSLICE xc0000000000000000000000000510db266
+	NEWC
+	STSLICE
+	STSLICE
+	STU 32
+	STU 128
+	ENDC
+	PUSHINT 0
+	SENDRAWMSG
+	.loc ../contracts/KingOfSegmint.tsol, 0
+}
+IF
+.loc ../contracts/KingOfSegmint.tsol, 60
+DROP2
+GETGLOB 10
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+SENDRAWMSG
+.loc ../contracts/KingOfSegmint.tsol, 0
+
+.macro finishRound
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/KingOfSegmint.tsol, 63
+ENDS
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $finishRound_547916ea_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.globl	finishRound_547916ea_internal
+.type	finishRound_547916ea_internal, @function
+CALL $finishRound_547916ea_internal_macro$
+
+.macro finishRound_547916ea_internal_macro
+.loc ../contracts/KingOfSegmint.tsol, 78
+GETPARAM 7
+FIRST
+PUSHINT 1000000000
+GREATER
+THROWIFNOT 1015
+.loc ../contracts/KingOfSegmint.tsol, 79
+NOW
+GETGLOB 16
+GREATER
+THROWIFNOT 1019
+.loc ../contracts/KingOfSegmint.tsol, 80
+GETGLOB 15
+EQINT 1
+THROWIFNOT 1019
+.loc ../contracts/KingOfSegmint.tsol, 81
+ACCEPT
+.loc ../contracts/KingOfSegmint.tsol, 82
+PUSHINT 2
+SETGLOB 15
+.loc ../contracts/KingOfSegmint.tsol, 84
+PUSHREF {
+}
+.loc ../contracts/KingOfSegmint.tsol, 85
+GETGLOB 11
+FALSE
+NEWC
+STSLICECONST x6_
+STI 1
+STSLICECONST x1_
+STSLICE
+PUSHINT 52020648486938426652639016262397792805561569767262269422449699
+STUR 207
+STREF
+ENDC
+PUSHINT 1
+SENDRAWMSG
+.loc ../contracts/KingOfSegmint.tsol, 0
+
+.macro onCollectionAnswer
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/KingOfSegmint.tsol, 88
+LDREF
+ENDS
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $onCollectionAnswer_3a3ee049_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.globl	onCollectionAnswer_3a3ee049_internal
+.type	onCollectionAnswer_3a3ee049_internal, @function
+CALL $onCollectionAnswer_3a3ee049_internal_macro$
+
+.macro onCollectionAnswer_3a3ee049_internal_macro
+.loc ../contracts/KingOfSegmint.tsol, 90
+DROP
+GETGLOB 15
+EQINT 2
+THROWIFNOT 1019
+.loc ../contracts/KingOfSegmint.tsol, 91
+GETGLOB 9
+GETGLOB 11
+SDEQ
+THROWIFNOT 1003
+.loc ../contracts/KingOfSegmint.tsol, 92
+ACCEPT
+.loc ../contracts/KingOfSegmint.tsol, 93
+PUSHINT 3
+SETGLOB 15
+.loc ../contracts/KingOfSegmint.tsol, 94
+PUSHINT 100000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/KingOfSegmint.tsol, 95
+GETPARAM 7
+FIRST
+PUSHINT 100000000
+SUB
+UFITS 128
+DUP
+SETGLOB 19
+.loc ../contracts/KingOfSegmint.tsol, 96
+GETGLOB 18
+GETGLOB 17
+PUSHSLICE xc00000000000000000000000002656794a
+NEWC
+STSLICE
+STSLICE
+STU 32
+STU 128
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/KingOfSegmint.tsol, 97
+GETGLOB 17
+NEWC
+STSLICECONST x62_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+SENDRAWMSG
+.loc ../contracts/KingOfSegmint.tsol, 0
+
+.macro withdraw
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/KingOfSegmint.tsol, 100
+ENDS
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $withdraw_3ccfd60b_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro withdraw_3ccfd60b_internal_macro
+.loc ../contracts/KingOfSegmint.tsol, 38
+GETGLOB 9
+GETGLOB 10
+SDEQ
+THROWIFNOT 1000
+.loc ../contracts/KingOfSegmint.tsol, 101
+GETGLOB 15
+EQINT 3
+THROWIFNOT 1019
+.loc ../contracts/KingOfSegmint.tsol, 102
+PUSHINT 100000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/KingOfSegmint.tsol, 103
+GETGLOB 10
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+SENDRAWMSG
+.loc ../contracts/KingOfSegmint.tsol, 0
+
+.macro setNeedOnHoldTime
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/KingOfSegmint.tsol, 106
+LDU 32
+ENDS
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $setNeedOnHoldTime_3240147b_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro setNeedOnHoldTime_3240147b_internal_macro
+.loc ../contracts/KingOfSegmint.tsol, 38
+GETGLOB 9
+GETGLOB 10
+SDEQ
+THROWIFNOT 1000
+.loc ../contracts/KingOfSegmint.tsol, 108
+DUP
+PUSHINT 300
+GEQ
+THROWIFNOT 1018
+.loc ../contracts/KingOfSegmint.tsol, 109
+DUP
+PUSHINT 86400
+LEQ
+THROWIFNOT 1018
+.loc ../contracts/KingOfSegmint.tsol, 110
+SETGLOB 14
+.loc ../contracts/KingOfSegmint.tsol, 111
+GETGLOB 9
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHINT 64
+SENDRAWMSG
+.loc ../contracts/KingOfSegmint.tsol, 0
+
+.macro receive_macro
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $c7_to_c4$
+}
+
+.macro upgrade
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/KingOfSegmint.tsol, 118
+LDREF
+ENDS
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $upgrade_7916ae0d_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro upgrade_7916ae0d_internal_macro
+.loc ../contracts/KingOfSegmint.tsol, 38
+GETGLOB 9
+GETGLOB 10
+SDEQ
+THROWIFNOT 1000
+.loc ../contracts/KingOfSegmint.tsol, 119
+ACCEPT
+.loc ../contracts/KingOfSegmint.tsol, 120
+GETGLOB 19
+GETGLOB 18
+GETGLOB 17
+GETGLOB 16
+GETGLOB 15
+GETGLOB 14
+GETGLOB 12
+GETGLOB 11
+GETGLOB 10
+NEWC
+STSLICE
+ROLLREV 8
+NEWC
+STSLICE
+STU 256
+STU 32
+STU 8
+STU 32
+ROLLREV 3
+NEWC
+STSLICE
+STU 32
+STU 128
+STBREFR
+STBREFR
+ENDC
+.loc ../contracts/KingOfSegmint.tsol, 132
+OVER
+SETCODE
+.loc ../contracts/KingOfSegmint.tsol, 133
+SWAP
+CTOS
+DUP
+PUSHSLICE x8adb35
+SDEQ
+PUSHCONT {
+	PLDREFIDX 1
+	CTOS
+}
+IF
+PLDREF
+CTOS
+BLESS
+POP C3
+.loc ../contracts/KingOfSegmint.tsol, 135
+CALLREF {
+	CALL $:onCodeUpgrade$
+}
+.loc ../contracts/KingOfSegmint.tsol, 0
+
+.internal-alias :onCodeUpgrade, 2
+.internal :onCodeUpgrade
+DROP
+.loc ../contracts/KingOfSegmint.tsol, 0
+CALLREF {
+	CALL $c7_to_c4$
+}
+COMMIT
+THROW 0
+
+.macro c4_to_c7
+PUSHROOT
+CTOS
+LDU 256 ; pubkey c4
+LDU 64 ; pubkey timestamp c4
+LDU 1 ; ctor flag
+NIP
+LDMSGADDR
+LDREF
+ENDS
+CTOS
+LDMSGADDR
+LDU 256
+LDREF
+ENDS
+CTOS
+LDU 256
+LDU 32
+LDU 8
+OVER
+GTINT 3
+THROWIF 73
+LDU 32
+LDMSGADDR
+LDU 32
+LDREF
+ENDS
+CTOS
+LDU 128
+ENDS
+SETGLOB 19
+SETGLOB 18
+SETGLOB 17
+SETGLOB 16
+SETGLOB 15
+SETGLOB 14
+SETGLOB 13
+SETGLOB 12
+SETGLOB 11
+SETGLOB 10
+SETGLOB 3
+SETGLOB 2
+
+.macro c4_to_c7_with_init_storage
+PUSHROOT
+CTOS
+SBITS
+GTINT 1
+PUSHCONT {
+	PUSHINT 0
+	PUSHROOT
+	CTOS
+	PLDDICT ; D
+	PUSHINT 1
+	OVER
+	PUSHINT 64
+	DICTUGET
+	PUSHCONT {
+		PUSHREFSLICE {
+			.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+		}
+	}
+	IFNOT
+	PUSHINT 2
+	PUSH S2
+	PUSHINT 64
+	DICTUGET
+	PUSHCONT {
+		PUSHREFSLICE {
+			.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+		}
+	}
+	IFNOT
+	PUSHINT 3
+	PUSH S3
+	PUSHINT 64
+	DICTUGET
+	ZEROSWAPIFNOT
+	PUSHCONT {
+		PLDU 256
+	}
+	IF
+	PUSHINT 0
+	BLKPUSH 3, 0
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+	PUSHINT 0
+	DUP
+	SETGLOB 19
+	SETGLOB 18
+	SETGLOB 17
+	SETGLOB 16
+	SETGLOB 15
+	SETGLOB 14
+	SETGLOB 13
+	SETGLOB 12
+	SETGLOB 11
+	SETGLOB 10
+	PUSHINT 64
+	DICTUGET
+	THROWIFNOT 61
+	PLDU 256
+	SETGLOB 2
+	PUSHINT 0 ; timestamp
+	SETGLOB 3
+}
+IFREFELSE {
+	CALL $c4_to_c7$
+}
+
+.macro c7_to_c4
+GETGLOB 19
+GETGLOB 18
+GETGLOB 17
+GETGLOB 16
+GETGLOB 15
+GETGLOB 14
+GETGLOB 13
+GETGLOB 12
+GETGLOB 11
+GETGLOB 10
+GETGLOB 3
+GETGLOB 2
+NEWC
+STU 256
+STU 64
+STONE
+STSLICE
+ROLLREV 9
+NEWC
+STSLICE
+STU 256
+ROLLREV 7
+NEWC
+STU 256
+STU 32
+STU 8
+STU 32
+STSLICE
+STU 32
+SWAP
+NEWC
+STU 128
+STBREFR
+STBREFR
+STBREFR
+ENDC
+POPROOT
+
+.macro upd_only_time_in_c4
+PUSHROOT
+CTOS
+LDU 256
+LDU 64
+NIP
+GETGLOB 3
+ROT
+NEWC
+STU 256
+STU 64
+STSLICE
+ENDC
+POPROOT
+
+.internal-alias :main_internal, 0
+.internal :main_internal
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSH S2
+CTOS
+LDU 4 ; bounced tail
+LDMSGADDR ; bounced src tail
+DROP
+SETGLOB 9
+MODPOW2 1
+IFRET
+OVER
+SEMPTY ; isEmpty
+IFJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+OVER
+LDUQ 32  ; [funcId] body' ok
+THROWIFNOT 60
+OVER
+IFNOTJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.internal-alias :main_external, -1
+.internal :main_external
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+SETGLOB 9
+OVER
+CALLREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+LDU 1 ; haveSign msgSlice
+SWAP
+PUSHCONT {
+	PUSHPOW2 9
+	LDSLICEX
+	DUP
+	MYADDR
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	HASHCU
+	ROT
+	GETGLOB 2
+	CHKSIGNU
+	THROWIFNOT 40
+}
+IF
+LDU 64 ; timestamp msgSlice
+SWAP
+CALL $replay_protection_macro$
+LDU 32 ; funcId body
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.macro endTime_
+DROP
+ENDS
+CALLREF {
+	CALL $c4_to_c7$
+}
+GETGLOB 16
+OVER
+PUSHCONT {
+	PUSHSLICE xc0000000000000000000000000935ad51c
+	NEWC
+	STSLICE
+	STU 32
+	ENDC
+	PUSHINT 0
+	SENDRAWMSG
+}
+IF
+THROW 0
+
+.macro public_function_selector
+DUP
+PUSHINT 800354827
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 324719900
+	EQUAL
+	IFJMPREF {
+		CALL $endTime_$
+	}
+	DUP
+	PUSHINT 388172858
+	EQUAL
+	IFJMPREF {
+		CALL $upgrade$
+	}
+	DUP
+	PUSHINT 453038515
+	EQUAL
+	IFJMPREF {
+		CALL $setNeedOnHoldTime$
+	}
+	DUP
+	PUSHINT 800354827
+	EQUAL
+	IFJMPREF {
+		CALL $withdraw$
+	}
+}
+DUP
+PUSHINT 1196019321
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 829350225
+	EQUAL
+	IFJMPREF {
+		CALL $finishRound$
+	}
+	DUP
+	PUSHINT 839471976
+	EQUAL
+	IFJMPREF {
+		CALL $onNftMinted$
+	}
+	DUP
+	PUSHINT 962606115
+	EQUAL
+	IFJMPREF {
+		CALL $onCollectionAnswer$
+	}
+	DUP
+	PUSHINT 1196019321
+	EQUAL
+	IFJMPREF {
+		CALL $constructor$
+	}
+}
+

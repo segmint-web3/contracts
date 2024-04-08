@@ -1,0 +1,114 @@
+{
+	"ABI version": 2,
+	"version": "2.3",
+	"header": ["time"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"roundNumber","type":"uint256"},
+				{"name":"needToHoldTime","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onNftMinted",
+			"inputs": [
+				{"name":"nftId","type":"uint32"},
+				{"name":"owner","type":"address"},
+				{"name":"lockedAmount","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "finishRound",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onCollectionAnswer",
+			"inputs": [
+				{"name":"data","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "withdraw",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setNeedOnHoldTime",
+			"inputs": [
+				{"name":"needToHoldTime","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "upgrade",
+			"inputs": [
+				{"name":"newCode","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "endTime_",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"endTime_","type":"uint32"}
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"owner_","type":"address"},
+		{"key":2,"name":"segmintCollection_","type":"address"},
+		{"key":3,"name":"nonce_","type":"uint256"}
+	],
+	"events": [
+		{
+			"name": "NewKing",
+			"inputs": [
+				{"name":"value0","type":"address"},
+				{"name":"value1","type":"uint32"},
+				{"name":"value2","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "Winner",
+			"inputs": [
+				{"name":"value0","type":"address"},
+				{"name":"value1","type":"uint32"},
+				{"name":"value2","type":"uint128"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"owner_","type":"address"},
+		{"name":"segmintCollection_","type":"address"},
+		{"name":"nonce_","type":"uint256"},
+		{"name":"roundNumber_","type":"uint256"},
+		{"name":"needToHoldTime_","type":"uint32"},
+		{"name":"status_","type":"uint8"},
+		{"name":"endTime_","type":"uint32"},
+		{"name":"king_","type":"address"},
+		{"name":"kingNftId_","type":"uint32"},
+		{"name":"winningAmount_","type":"uint128"}
+	]
+}

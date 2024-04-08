@@ -1,0 +1,2389 @@
+{
+  "map": {
+    "0314cad5fa587fde8aa0bb68891f76d02f3233a7ad039fc5d9e7ebb2477379ca": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 387
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 388
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 389
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 390
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 391
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 392
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 118
+      },
+      "96": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 118
+      },
+      "104": {
+        "filename": "KingOfSegmint.code",
+        "line": 399
+      },
+      "120": {
+        "filename": "KingOfSegmint.code",
+        "line": 402
+      },
+      "136": {
+        "filename": "KingOfSegmint.code",
+        "line": 405
+      }
+    },
+    "14dcdc30bb39f9b7a3e3199c3f56a6b01602b53fbdf0f55175cebad74ce10a9c": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 740
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 741
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 742
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 743
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 769
+      },
+      "88": {
+        "filename": "KingOfSegmint.code",
+        "line": 770
+      },
+      "136": {
+        "filename": "KingOfSegmint.code",
+        "line": 771
+      },
+      "144": {
+        "filename": "KingOfSegmint.code",
+        "line": 772
+      }
+    },
+    "19a600d82ba217f9fdd25f9f2f6d1a88eb5bb43e0e268964627d22054853208f": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 525
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 526
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 527
+      },
+      "32": {
+        "filename": "KingOfSegmint.code",
+        "line": 528
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 529
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 530
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 531
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 532
+      },
+      "96": {
+        "filename": "KingOfSegmint.code",
+        "line": 533
+      },
+      "112": {
+        "filename": "KingOfSegmint.code",
+        "line": 538
+      },
+      "120": {
+        "filename": "KingOfSegmint.code",
+        "line": 539
+      },
+      "128": {
+        "filename": "KingOfSegmint.code",
+        "line": 540
+      },
+      "136": {
+        "filename": "KingOfSegmint.code",
+        "line": 541
+      },
+      "152": {
+        "filename": "KingOfSegmint.code",
+        "line": 542
+      },
+      "168": {
+        "filename": "KingOfSegmint.code",
+        "line": 543
+      },
+      "184": {
+        "filename": "KingOfSegmint.code",
+        "line": 548
+      },
+      "192": {
+        "filename": "KingOfSegmint.code",
+        "line": 549
+      },
+      "200": {
+        "filename": "KingOfSegmint.code",
+        "line": 550
+      },
+      "208": {
+        "filename": "KingOfSegmint.code",
+        "line": 551
+      },
+      "224": {
+        "filename": "KingOfSegmint.code",
+        "line": 552
+      },
+      "240": {
+        "filename": "KingOfSegmint.code",
+        "line": 553
+      },
+      "256": {
+        "filename": "KingOfSegmint.code",
+        "line": 554
+      },
+      "264": {
+        "filename": "KingOfSegmint.code",
+        "line": 555
+      },
+      "288": {
+        "filename": "KingOfSegmint.code",
+        "line": 557
+      },
+      "296": {
+        "filename": "KingOfSegmint.code",
+        "line": 558
+      },
+      "304": {
+        "filename": "KingOfSegmint.code",
+        "line": 559
+      },
+      "320": {
+        "filename": "KingOfSegmint.code",
+        "line": 560
+      },
+      "328": {
+        "filename": "KingOfSegmint.code",
+        "line": 563
+      },
+      "336": {
+        "filename": "KingOfSegmint.code",
+        "line": 564
+      },
+      "344": {
+        "filename": "KingOfSegmint.code",
+        "line": 565
+      },
+      "360": {
+        "filename": "KingOfSegmint.code",
+        "line": 566
+      },
+      "376": {
+        "filename": "KingOfSegmint.code",
+        "line": 567
+      },
+      "392": {
+        "filename": "KingOfSegmint.code",
+        "line": 568
+      },
+      "408": {
+        "filename": "KingOfSegmint.code",
+        "line": 569
+      },
+      "424": {
+        "filename": "KingOfSegmint.code",
+        "line": 570
+      },
+      "440": {
+        "filename": "KingOfSegmint.code",
+        "line": 571
+      },
+      "456": {
+        "filename": "KingOfSegmint.code",
+        "line": 572
+      },
+      "472": {
+        "filename": "KingOfSegmint.code",
+        "line": 573
+      },
+      "488": {
+        "filename": "KingOfSegmint.code",
+        "line": 574
+      },
+      "504": {
+        "filename": "KingOfSegmint.code",
+        "line": 575
+      },
+      "520": {
+        "filename": "KingOfSegmint.code",
+        "line": 576
+      },
+      "536": {
+        "filename": "KingOfSegmint.code",
+        "line": 577
+      },
+      "552": {
+        "filename": "KingOfSegmint.code",
+        "line": 578
+      },
+      "576": {
+        "filename": "KingOfSegmint.code",
+        "line": 579
+      },
+      "592": {
+        "filename": "KingOfSegmint.code",
+        "line": 580
+      },
+      "600": {
+        "filename": "KingOfSegmint.code",
+        "line": 581
+      }
+    },
+    "31fc825234e0b44c5ece70889c4dffcaa728fd82f37db964f514a33bf928cb0c": {
+      "4": {
+        "filename": "KingOfSegmint.code",
+        "line": 468
+      },
+      "12": {
+        "filename": "KingOfSegmint.code",
+        "line": 470
+      },
+      "28": {
+        "filename": "KingOfSegmint.code",
+        "line": 473
+      },
+      "44": {
+        "filename": "KingOfSegmint.code",
+        "line": 474
+      }
+    },
+    "3390c2b6113851f80f3d7ad06648832eb6914f790976c0d91705e400c53a4aa3": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 773
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 774
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 775
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 776
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 779
+      },
+      "88": {
+        "filename": "KingOfSegmint.code",
+        "line": 780
+      },
+      "136": {
+        "filename": "KingOfSegmint.code",
+        "line": 781
+      },
+      "144": {
+        "filename": "KingOfSegmint.code",
+        "line": 782
+      },
+      "160": {
+        "filename": "KingOfSegmint.code",
+        "line": 785
+      },
+      "168": {
+        "filename": "KingOfSegmint.code",
+        "line": 786
+      },
+      "216": {
+        "filename": "KingOfSegmint.code",
+        "line": 787
+      },
+      "224": {
+        "filename": "KingOfSegmint.code",
+        "line": 788
+      },
+      "240": {
+        "filename": "KingOfSegmint.code",
+        "line": 791
+      },
+      "248": {
+        "filename": "KingOfSegmint.code",
+        "line": 792
+      },
+      "296": {
+        "filename": "KingOfSegmint.code",
+        "line": 793
+      },
+      "304": {
+        "filename": "KingOfSegmint.code",
+        "line": 794
+      }
+    },
+    "340d766605d2525a4dfdcdb13583322ccf52142c4980049bdb6033408a9afc84": {
+      "0": {
+        "filename": "<internal-selector>",
+        "line": 1
+      },
+      "24": {
+        "filename": "<internal-selector>",
+        "line": 2
+      }
+    },
+    "48ae6feabca30dec2022c856be6060012c29b3b0bb12be98bbf7fe8f23b5a266": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 136
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 137
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 138
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 139
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 140
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 141
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 63
+      },
+      "96": {
+        "filename": "KingOfSegmint.code",
+        "line": 147
+      },
+      "112": {
+        "filename": "KingOfSegmint.code",
+        "line": 150
+      },
+      "128": {
+        "filename": "KingOfSegmint.code",
+        "line": 153
+      }
+    },
+    "50c5972d6063b0838d0f1e3d2277f12131a7e86eaa64c172ca67011911aedc52": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 588
+      },
+      "16": {
+        "filename": "KingOfSegmint.code",
+        "line": 589
+      },
+      "32": {
+        "filename": "KingOfSegmint.code",
+        "line": 590
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 591
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 592
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 593
+      },
+      "96": {
+        "filename": "KingOfSegmint.code",
+        "line": 594
+      },
+      "112": {
+        "filename": "KingOfSegmint.code",
+        "line": 595
+      },
+      "128": {
+        "filename": "KingOfSegmint.code",
+        "line": 596
+      },
+      "144": {
+        "filename": "KingOfSegmint.code",
+        "line": 597
+      },
+      "160": {
+        "filename": "KingOfSegmint.code",
+        "line": 598
+      },
+      "176": {
+        "filename": "KingOfSegmint.code",
+        "line": 599
+      },
+      "192": {
+        "filename": "KingOfSegmint.code",
+        "line": 600
+      },
+      "200": {
+        "filename": "KingOfSegmint.code",
+        "line": 601
+      },
+      "216": {
+        "filename": "KingOfSegmint.code",
+        "line": 602
+      },
+      "232": {
+        "filename": "KingOfSegmint.code",
+        "line": 603
+      },
+      "248": {
+        "filename": "KingOfSegmint.code",
+        "line": 604
+      },
+      "256": {
+        "filename": "KingOfSegmint.code",
+        "line": 605
+      },
+      "272": {
+        "filename": "KingOfSegmint.code",
+        "line": 606
+      },
+      "280": {
+        "filename": "KingOfSegmint.code",
+        "line": 607
+      },
+      "288": {
+        "filename": "KingOfSegmint.code",
+        "line": 608
+      },
+      "304": {
+        "filename": "KingOfSegmint.code",
+        "line": 609
+      },
+      "320": {
+        "filename": "KingOfSegmint.code",
+        "line": 610
+      },
+      "328": {
+        "filename": "KingOfSegmint.code",
+        "line": 611
+      },
+      "344": {
+        "filename": "KingOfSegmint.code",
+        "line": 612
+      },
+      "360": {
+        "filename": "KingOfSegmint.code",
+        "line": 613
+      },
+      "376": {
+        "filename": "KingOfSegmint.code",
+        "line": 614
+      },
+      "392": {
+        "filename": "KingOfSegmint.code",
+        "line": 615
+      },
+      "400": {
+        "filename": "KingOfSegmint.code",
+        "line": 616
+      },
+      "416": {
+        "filename": "KingOfSegmint.code",
+        "line": 617
+      },
+      "424": {
+        "filename": "KingOfSegmint.code",
+        "line": 618
+      },
+      "432": {
+        "filename": "KingOfSegmint.code",
+        "line": 619
+      },
+      "448": {
+        "filename": "KingOfSegmint.code",
+        "line": 620
+      },
+      "456": {
+        "filename": "KingOfSegmint.code",
+        "line": 621
+      },
+      "464": {
+        "filename": "KingOfSegmint.code",
+        "line": 622
+      },
+      "472": {
+        "filename": "KingOfSegmint.code",
+        "line": 623
+      },
+      "480": {
+        "filename": "KingOfSegmint.code",
+        "line": 624
+      }
+    },
+    "61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 535
+      }
+    },
+    "634ed763e52bd509cf7b12661e44c85b7e419df49ea98b162c268e2650229c9e": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 678
+      },
+      "16": {
+        "filename": "KingOfSegmint.code",
+        "line": 679
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 680
+      },
+      "40": {
+        "filename": "KingOfSegmint.code",
+        "line": 681
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 682
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 683
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 686
+      },
+      "96": {
+        "filename": "KingOfSegmint.code",
+        "line": 687
+      },
+      "104": {
+        "filename": "KingOfSegmint.code",
+        "line": 688
+      },
+      "120": {
+        "filename": "KingOfSegmint.code",
+        "line": 691
+      },
+      "136": {
+        "filename": "KingOfSegmint.code",
+        "line": 692
+      },
+      "144": {
+        "filename": "KingOfSegmint.code",
+        "line": 693
+      },
+      "160": {
+        "filename": "KingOfSegmint.code",
+        "line": 694
+      },
+      "176": {
+        "filename": "KingOfSegmint.code",
+        "line": 695
+      },
+      "192": {
+        "filename": "KingOfSegmint.code",
+        "line": 696
+      },
+      "200": {
+        "filename": "KingOfSegmint.code",
+        "line": 697
+      },
+      "216": {
+        "filename": "KingOfSegmint.code",
+        "line": 698
+      },
+      "224": {
+        "filename": "KingOfSegmint.code",
+        "line": 699
+      },
+      "232": {
+        "filename": "KingOfSegmint.code",
+        "line": 700
+      },
+      "240": {
+        "filename": "KingOfSegmint.code",
+        "line": 701
+      },
+      "248": {
+        "filename": "KingOfSegmint.code",
+        "line": 702
+      },
+      "264": {
+        "filename": "KingOfSegmint.code",
+        "line": 703
+      },
+      "272": {
+        "filename": "KingOfSegmint.code",
+        "line": 704
+      },
+      "288": {
+        "filename": "KingOfSegmint.code",
+        "line": 705
+      },
+      "304": {
+        "filename": "KingOfSegmint.code",
+        "line": 706
+      },
+      "320": {
+        "filename": "KingOfSegmint.code",
+        "line": 708
+      },
+      "328": {
+        "filename": "KingOfSegmint.code",
+        "line": 709
+      },
+      "344": {
+        "filename": "KingOfSegmint.code",
+        "line": 710
+      },
+      "352": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "368": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "376": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "384": {
+        "filename": "stdlib.sol",
+        "line": 61
+      },
+      "400": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "408": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "424": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "448": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "456": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "496": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "504": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "512": {
+        "filename": "stdlib.sol",
+        "line": 62
+      },
+      "528": {
+        "filename": "stdlib.sol",
+        "line": 63
+      },
+      "544": {
+        "filename": "KingOfSegmint.code",
+        "line": 712
+      },
+      "560": {
+        "filename": "KingOfSegmint.code",
+        "line": 713
+      },
+      "568": {
+        "filename": "KingOfSegmint.code",
+        "line": 714
+      },
+      "584": {
+        "filename": "KingOfSegmint.code",
+        "line": 717
+      }
+    },
+    "67a1f38912b7f1b25bb1280ab700f6f10af033f27bbd281d09b5ec2b223ed06e": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 744
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 745
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 746
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 747
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 750
+      },
+      "88": {
+        "filename": "KingOfSegmint.code",
+        "line": 751
+      },
+      "136": {
+        "filename": "KingOfSegmint.code",
+        "line": 752
+      },
+      "144": {
+        "filename": "KingOfSegmint.code",
+        "line": 753
+      },
+      "160": {
+        "filename": "KingOfSegmint.code",
+        "line": 756
+      },
+      "168": {
+        "filename": "KingOfSegmint.code",
+        "line": 757
+      },
+      "216": {
+        "filename": "KingOfSegmint.code",
+        "line": 758
+      },
+      "224": {
+        "filename": "KingOfSegmint.code",
+        "line": 759
+      },
+      "240": {
+        "filename": "KingOfSegmint.code",
+        "line": 762
+      },
+      "248": {
+        "filename": "KingOfSegmint.code",
+        "line": 763
+      },
+      "296": {
+        "filename": "KingOfSegmint.code",
+        "line": 764
+      },
+      "304": {
+        "filename": "KingOfSegmint.code",
+        "line": 765
+      }
+    },
+    "6ffaf48047054ca57f21023856801661b7d5283670aa4a581336486cd977a13c": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 323
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 324
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 325
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 326
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 327
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 328
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 106
+      },
+      "104": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 106
+      },
+      "112": {
+        "filename": "KingOfSegmint.code",
+        "line": 335
+      },
+      "128": {
+        "filename": "KingOfSegmint.code",
+        "line": 338
+      },
+      "144": {
+        "filename": "KingOfSegmint.code",
+        "line": 341
+      }
+    },
+    "757ef430836047bd718c6b53d65ff75b32af9cae18400abe909f35ff34a5af0e": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 720
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 721
+      },
+      "16": {
+        "filename": "KingOfSegmint.code",
+        "line": 722
+      },
+      "32": {
+        "filename": "KingOfSegmint.code",
+        "line": 725
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 726
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 727
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 728
+      },
+      "232": {
+        "filename": "KingOfSegmint.code",
+        "line": 729
+      },
+      "240": {
+        "filename": "KingOfSegmint.code",
+        "line": 730
+      },
+      "248": {
+        "filename": "KingOfSegmint.code",
+        "line": 731
+      },
+      "264": {
+        "filename": "KingOfSegmint.code",
+        "line": 732
+      },
+      "272": {
+        "filename": "KingOfSegmint.code",
+        "line": 733
+      },
+      "280": {
+        "filename": "KingOfSegmint.code",
+        "line": 734
+      },
+      "296": {
+        "filename": "KingOfSegmint.code",
+        "line": 736
+      },
+      "304": {
+        "filename": "KingOfSegmint.code",
+        "line": 737
+      }
+    },
+    "7db4445b3e1d00fad1f986340a8d2c898aa506e39be17d0a8ea13618f34af1e6": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 45
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 46
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 47
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 48
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 49
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 50
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "96": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "104": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "120": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "128": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "136": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "144": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "152": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "168": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "176": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "192": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "208": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 51
+      },
+      "216": {
+        "filename": "KingOfSegmint.code",
+        "line": 69
+      },
+      "232": {
+        "filename": "KingOfSegmint.code",
+        "line": 72
+      },
+      "248": {
+        "filename": "KingOfSegmint.code",
+        "line": 75
+      }
+    },
+    "8158fb3534cd31dd1821fd17aa76aaf2ff7e37869360c30e9dfac32b51188061": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 200
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 201
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 202
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 203
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 204
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 205
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 88
+      },
+      "96": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 88
+      },
+      "104": {
+        "filename": "KingOfSegmint.code",
+        "line": 212
+      },
+      "120": {
+        "filename": "KingOfSegmint.code",
+        "line": 215
+      },
+      "136": {
+        "filename": "KingOfSegmint.code",
+        "line": 218
+      }
+    },
+    "84f69bd55d598e81ff41ef2cb5ad0276e613e4f1d029676ec1fc665ae91b7b6d": {
+      "0": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "16": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "32": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "48": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "72": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 108
+      },
+      "80": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 108
+      },
+      "104": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 108
+      },
+      "112": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 108
+      },
+      "136": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 109
+      },
+      "144": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 109
+      },
+      "176": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 109
+      },
+      "184": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 109
+      },
+      "208": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 110
+      },
+      "224": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      },
+      "240": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      },
+      "248": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      },
+      "272": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      },
+      "280": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      },
+      "296": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      },
+      "312": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      },
+      "320": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      },
+      "336": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 111
+      }
+    },
+    "8bfd27379bc5484ff1f024903ed38086b15e44c839a16d037ff7335f71b912c6": {
+      "0": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "16": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "32": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "48": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "72": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 119
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "104": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "120": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "136": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "152": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "168": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "184": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "200": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "216": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "232": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "240": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "248": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "264": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "272": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "280": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "296": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "312": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "328": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "344": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "360": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "368": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "376": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "392": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "408": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "416": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "424": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 120
+      },
+      "432": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 132
+      },
+      "440": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 132
+      },
+      "456": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "464": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "472": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "480": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "520": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "536": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "544": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "560": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "568": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "576": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "592": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "600": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "616": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 133
+      },
+      "632": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 135
+      }
+    },
+    "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7": {},
+    "a86a576e1e2f3344d4a33131e46518089d123c42054b87104b970c4de0310007": {
+      "0": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 78
+      },
+      "16": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 78
+      },
+      "32": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 78
+      },
+      "80": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 78
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 78
+      },
+      "112": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 79
+      },
+      "128": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 79
+      },
+      "144": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 79
+      },
+      "152": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 79
+      },
+      "176": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 80
+      },
+      "192": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 80
+      },
+      "208": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 80
+      },
+      "232": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 81
+      },
+      "248": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 82
+      },
+      "256": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 82
+      },
+      "272": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 84
+      },
+      "280": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "296": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "304": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "312": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "336": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "352": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "376": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "384": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "608": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "632": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "640": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "648": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      },
+      "656": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 85
+      }
+    },
+    "aad71bbf1848d38ed6c2eea40221e8957b44eebc95e467b9fa5d3c75fc82a3bc": {
+      "0": {
+        "filename": "<entry-selector>",
+        "line": 1
+      },
+      "8": {
+        "filename": "<entry-selector>",
+        "line": 2
+      },
+      "24": {
+        "filename": "<entry-selector>",
+        "line": 3
+      },
+      "32": {
+        "filename": "<entry-selector>",
+        "line": 4
+      },
+      "48": {
+        "filename": "<entry-selector>",
+        "line": 5
+      },
+      "56": {
+        "filename": "<entry-selector>",
+        "line": 6
+      },
+      "72": {
+        "filename": "<entry-selector>",
+        "line": 7
+      },
+      "88": {
+        "filename": "<entry-selector>",
+        "line": 8
+      },
+      "96": {
+        "filename": "<entry-selector>",
+        "line": 9
+      },
+      "112": {
+        "filename": "<entry-selector>",
+        "line": 10
+      },
+      "128": {
+        "filename": "<entry-selector>",
+        "line": 11
+      }
+    },
+    "b861d34b35c7eb624e96e571c9b5d1de8108218e35ba063c112e659bf966b077": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 520
+      },
+      "16": {
+        "filename": "KingOfSegmint.code",
+        "line": 521
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 522
+      },
+      "40": {
+        "filename": "KingOfSegmint.code",
+        "line": 523
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 524
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 583
+      }
+    },
+    "cb6641298f88b29ea9be37876ba65b4bb0d829d16ac12f1c075a7960489df9a1": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 4
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 5
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 6
+      },
+      "32": {
+        "filename": "KingOfSegmint.code",
+        "line": 7
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 10
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 11
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 12
+      },
+      "96": {
+        "filename": "KingOfSegmint.code",
+        "line": 13
+      },
+      "112": {
+        "filename": "KingOfSegmint.code",
+        "line": 14
+      },
+      "120": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 43
+      },
+      "136": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 43
+      },
+      "160": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 44
+      },
+      "176": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 44
+      },
+      "192": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 44
+      },
+      "208": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 44
+      },
+      "232": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 45
+      },
+      "240": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 45
+      },
+      "264": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 45
+      },
+      "272": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 45
+      },
+      "296": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 46
+      },
+      "304": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 46
+      },
+      "336": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 46
+      },
+      "344": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 46
+      },
+      "368": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 47
+      },
+      "376": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 47
+      },
+      "392": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 48
+      },
+      "408": {
+        "filename": "KingOfSegmint.code",
+        "line": 39
+      },
+      "424": {
+        "filename": "KingOfSegmint.code",
+        "line": 42
+      }
+    },
+    "cbb1723b5c89929a6a40fe71b0731144c0293733fbb6a12ca4bdb76fba863a4e": {
+      "0": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 90
+      },
+      "8": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 90
+      },
+      "24": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 90
+      },
+      "40": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 90
+      },
+      "64": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 91
+      },
+      "80": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 91
+      },
+      "96": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 91
+      },
+      "112": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 91
+      },
+      "136": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 92
+      },
+      "152": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 93
+      },
+      "160": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 93
+      },
+      "176": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 94
+      },
+      "224": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 94
+      },
+      "232": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 94
+      },
+      "248": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 95
+      },
+      "264": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 95
+      },
+      "280": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 95
+      },
+      "328": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 95
+      },
+      "336": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 95
+      },
+      "352": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 95
+      },
+      "360": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 95
+      },
+      "376": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "392": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "408": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "568": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "576": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "584": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "592": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "608": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "624": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "632": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "640": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 96
+      },
+      "656": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      },
+      "672": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      },
+      "680": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      },
+      "704": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      },
+      "712": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      },
+      "728": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      },
+      "744": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      },
+      "752": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      },
+      "768": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 97
+      }
+    },
+    "d224c0c152fbbac571b68e73d49026bbaf9b9dfbcbce0a7c9beb877f75a55931": {
+      "0": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "16": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "32": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "48": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 38
+      },
+      "72": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 101
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 101
+      },
+      "104": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 101
+      },
+      "128": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 102
+      },
+      "176": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 102
+      },
+      "184": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 102
+      },
+      "200": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      },
+      "216": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      },
+      "224": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      },
+      "248": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      },
+      "256": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      },
+      "272": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      },
+      "288": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      },
+      "296": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      },
+      "312": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 103
+      }
+    },
+    "d35169ebf9c658a2393924edbce8ea0dde169292c93472bb8ba0dca026482e84": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 643
+      },
+      "16": {
+        "filename": "KingOfSegmint.code",
+        "line": 644
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 645
+      },
+      "40": {
+        "filename": "KingOfSegmint.code",
+        "line": 646
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 647
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 648
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 649
+      },
+      "88": {
+        "filename": "KingOfSegmint.code",
+        "line": 650
+      },
+      "104": {
+        "filename": "KingOfSegmint.code",
+        "line": 651
+      },
+      "120": {
+        "filename": "KingOfSegmint.code",
+        "line": 652
+      },
+      "128": {
+        "filename": "KingOfSegmint.code",
+        "line": 653
+      },
+      "144": {
+        "filename": "KingOfSegmint.code",
+        "line": 654
+      },
+      "168": {
+        "filename": "KingOfSegmint.code",
+        "line": 655
+      },
+      "176": {
+        "filename": "KingOfSegmint.code",
+        "line": 656
+      },
+      "184": {
+        "filename": "KingOfSegmint.code",
+        "line": 657
+      },
+      "200": {
+        "filename": "KingOfSegmint.code",
+        "line": 658
+      },
+      "216": {
+        "filename": "KingOfSegmint.code",
+        "line": 662
+      },
+      "224": {
+        "filename": "KingOfSegmint.code",
+        "line": 663
+      },
+      "248": {
+        "filename": "KingOfSegmint.code",
+        "line": 664
+      },
+      "264": {
+        "filename": "KingOfSegmint.code",
+        "line": 665
+      },
+      "272": {
+        "filename": "KingOfSegmint.code",
+        "line": 666
+      },
+      "288": {
+        "filename": "KingOfSegmint.code",
+        "line": 670
+      },
+      "296": {
+        "filename": "KingOfSegmint.code",
+        "line": 671
+      },
+      "312": {
+        "filename": "KingOfSegmint.code",
+        "line": 674
+      }
+    },
+    "d558e53bf690afc8a76b8887a99a49a52db1bd24bec5da84780ea0e7bc0aad3f": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 534
+      }
+    },
+    "dc1e60e9f464739ab101b40e7502b1f80499a3e48e84fa94a2955bb740399e3e": {
+      "0": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 52
+      },
+      "8": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 52
+      },
+      "16": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 52
+      },
+      "24": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 52
+      },
+      "40": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 53
+      },
+      "56": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 53
+      },
+      "72": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 53
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 53
+      },
+      "104": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 53
+      },
+      "120": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 53
+      },
+      "128": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 53
+      },
+      "144": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 54
+      },
+      "152": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 54
+      },
+      "168": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 55
+      },
+      "176": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 55
+      },
+      "192": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 56
+      },
+      "200": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 56
+      },
+      "216": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 57
+      },
+      "232": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 57
+      },
+      "248": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 57
+      },
+      "256": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 57
+      },
+      "272": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 57
+      },
+      "288": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "304": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "320": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "336": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "496": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "504": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "512": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "520": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "536": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "552": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "560": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "568": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 58
+      },
+      "584": {
+        "filename": "KingOfSegmint.code",
+        "line": 121
+      },
+      "592": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "600": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "616": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "624": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "648": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "656": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "672": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "688": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "696": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      },
+      "712": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 60
+      }
+    },
+    "e072ace02dac4e1d9b17d6e52c8d0d70f807d605caf690e9335223a9e4df5589": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 477
+      },
+      "16": {
+        "filename": "KingOfSegmint.code",
+        "line": 478
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 479
+      },
+      "40": {
+        "filename": "KingOfSegmint.code",
+        "line": 480
+      },
+      "56": {
+        "filename": "KingOfSegmint.code",
+        "line": 481
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 482
+      },
+      "80": {
+        "filename": "KingOfSegmint.code",
+        "line": 483
+      },
+      "96": {
+        "filename": "KingOfSegmint.code",
+        "line": 484
+      },
+      "104": {
+        "filename": "KingOfSegmint.code",
+        "line": 485
+      },
+      "112": {
+        "filename": "KingOfSegmint.code",
+        "line": 486
+      },
+      "120": {
+        "filename": "KingOfSegmint.code",
+        "line": 487
+      },
+      "136": {
+        "filename": "KingOfSegmint.code",
+        "line": 488
+      },
+      "152": {
+        "filename": "KingOfSegmint.code",
+        "line": 489
+      },
+      "160": {
+        "filename": "KingOfSegmint.code",
+        "line": 490
+      },
+      "168": {
+        "filename": "KingOfSegmint.code",
+        "line": 491
+      },
+      "176": {
+        "filename": "KingOfSegmint.code",
+        "line": 492
+      },
+      "192": {
+        "filename": "KingOfSegmint.code",
+        "line": 493
+      },
+      "208": {
+        "filename": "KingOfSegmint.code",
+        "line": 494
+      },
+      "224": {
+        "filename": "KingOfSegmint.code",
+        "line": 495
+      },
+      "232": {
+        "filename": "KingOfSegmint.code",
+        "line": 496
+      },
+      "248": {
+        "filename": "KingOfSegmint.code",
+        "line": 497
+      },
+      "272": {
+        "filename": "KingOfSegmint.code",
+        "line": 498
+      },
+      "288": {
+        "filename": "KingOfSegmint.code",
+        "line": 499
+      },
+      "304": {
+        "filename": "KingOfSegmint.code",
+        "line": 500
+      },
+      "320": {
+        "filename": "KingOfSegmint.code",
+        "line": 501
+      },
+      "328": {
+        "filename": "KingOfSegmint.code",
+        "line": 502
+      },
+      "336": {
+        "filename": "KingOfSegmint.code",
+        "line": 503
+      },
+      "344": {
+        "filename": "KingOfSegmint.code",
+        "line": 504
+      },
+      "360": {
+        "filename": "KingOfSegmint.code",
+        "line": 505
+      },
+      "368": {
+        "filename": "KingOfSegmint.code",
+        "line": 506
+      },
+      "384": {
+        "filename": "KingOfSegmint.code",
+        "line": 507
+      },
+      "400": {
+        "filename": "KingOfSegmint.code",
+        "line": 508
+      },
+      "416": {
+        "filename": "KingOfSegmint.code",
+        "line": 509
+      },
+      "432": {
+        "filename": "KingOfSegmint.code",
+        "line": 510
+      },
+      "448": {
+        "filename": "KingOfSegmint.code",
+        "line": 511
+      },
+      "464": {
+        "filename": "KingOfSegmint.code",
+        "line": 512
+      },
+      "480": {
+        "filename": "KingOfSegmint.code",
+        "line": 513
+      },
+      "496": {
+        "filename": "KingOfSegmint.code",
+        "line": 514
+      },
+      "512": {
+        "filename": "KingOfSegmint.code",
+        "line": 515
+      },
+      "528": {
+        "filename": "KingOfSegmint.code",
+        "line": 516
+      },
+      "544": {
+        "filename": "KingOfSegmint.code",
+        "line": 517
+      }
+    },
+    "e6eb9257af820e5b40c9ac3e0d0f0ff28cf8304180e5568500652512936ff2a1": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 277
+      },
+      "8": {
+        "filename": "KingOfSegmint.code",
+        "line": 278
+      },
+      "24": {
+        "filename": "KingOfSegmint.code",
+        "line": 279
+      },
+      "48": {
+        "filename": "KingOfSegmint.code",
+        "line": 280
+      },
+      "64": {
+        "filename": "KingOfSegmint.code",
+        "line": 281
+      },
+      "72": {
+        "filename": "KingOfSegmint.code",
+        "line": 282
+      },
+      "88": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 100
+      },
+      "96": {
+        "filename": "KingOfSegmint.code",
+        "line": 288
+      },
+      "112": {
+        "filename": "KingOfSegmint.code",
+        "line": 291
+      },
+      "128": {
+        "filename": "KingOfSegmint.code",
+        "line": 294
+      }
+    },
+    "e8a4cba9a2a029706ac409a42d7b8c21033070de1bcf76babac94a2d788d7da2": {
+      "0": {
+        "filename": "../contracts/KingOfSegmint.tsol",
+        "line": 135
+      }
+    },
+    "f24e1e7aa04d89aad2945816b6e9b921f2b3892da9ba53e2383c148351b96d0c": {
+      "0": {
+        "filename": "KingOfSegmint.code",
+        "line": 659
+      },
+      "16": {
+        "filename": "KingOfSegmint.code",
+        "line": 660
+      }
+    }
+  }
+}

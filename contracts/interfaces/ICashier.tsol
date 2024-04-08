@@ -1,0 +1,6 @@
+pragma ever-solidity >= 0.64.0;
+
+
+interface ICashier {
+    function onNftMinted(uint32 nftId, address owner, uint128 lockedAmount) external;
+}

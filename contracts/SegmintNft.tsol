@@ -7,18 +7,18 @@ pragma AbiHeader pubkey;
 import "./interfaces/ISegmintCollection.tsol";
 import "./libraries/MsgFlag.tsol";
 import "./libraries/ErrorCodes.tsol";
-import "./structures/ITile.tsol";
 
 import '@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Nft.sol';
 import '@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Nft.sol';
 import '@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Nft.sol';
 
-contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
+contract SegmintNft is TIP4_1Nft, TIP4_3Nft {
 
     uint6 nftTileStartX_;
     uint6 nftTileStartY_;
     uint6 nftTileEndX_;
     uint6 nftTileEndY_;
+    bytes[] colors_;
     uint128 remainOnNft_;
     uint128 lockedAmount_;
 
@@ -44,6 +44,7 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         uint6 nftTileStartY,
         uint6 nftTileEndX,
         uint6 nftTileEndY,
+        bytes[] colors,
         string description,
         string url
     ) TIP4_1Nft(
@@ -59,6 +60,7 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         nftTileStartY_ = nftTileStartY;
         nftTileEndX_ = nftTileEndX;
         nftTileEndY_ = nftTileEndY;
+        colors_ = colors;
         remainOnNft_ = remainOnNft;
         lockedAmount_ = lockedAmount;
         description_ = description;
@@ -78,7 +80,7 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         address manager,
         address collection)
     {
-        return {value: 0, flag: 64, bounce: false} (
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (
             _id,
             _owner,
             _manager,
@@ -87,9 +89,9 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
     }
 
     function getJson() public view responsible returns (string json) {
-        string name = format("Segmint ocean Nft {}", _id);
+        string name = format("Segmint Nft {}", _id);
         string description = format("Piece of canvas x from {} to {}, y from {} to {} pixels", uint256(nftTileStartX_) * 20, uint256(nftTileEndX_) * 20, uint256(nftTileStartY_) * 20, uint256(nftTileEndY_) * 20);
-        string source = "https://segmint.app/collection_logo_ocean.png";
+        string source = format("https://segmint.app/nft/{}.png", _id);
         string external_url = "https://segmint.app/";
 
         json = format(
@@ -103,14 +105,15 @@ contract SegmintNft is TIP4_1Nft, TIP4_3Nft, ITile {
         return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} json;
     }
 
-    function getNftCustomData() external responsible returns (uint256 id, address owner, address collection, uint128 lockedAmount, string description, string url, uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY) {
-        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (_id, _owner, _collection, lockedAmount_, description_, url_, nftTileStartX_, nftTileStartY_, nftTileEndX_, nftTileEndY_);
+    function getNftCustomData() external responsible returns (uint256 id, address owner, address collection, uint128 lockedAmount, string description, string url, uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, bytes[] colors) {
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} (_id, _owner, _collection, lockedAmount_, description_, url_, nftTileStartX_, nftTileStartY_, nftTileEndX_, nftTileEndY_, colors);
     }
 
     function colorify(bytes[] colors, string description, string url) public onlyOwner {
         tvm.rawReserve(remainOnNft_, 0);
         description_ = description;
         url_ = url;
+        colors_ = colors;
         ISegmintCollection(_collection).colorifyTiles{flag: MsgFlag.ALL_NOT_RESERVED, bounce: false, value: 0}(uint32(_id), colors, nftTileStartX_, nftTileStartY_, nftTileEndX_, nftTileEndY_ , msg.sender);
     }
 

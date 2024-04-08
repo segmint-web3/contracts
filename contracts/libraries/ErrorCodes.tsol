@@ -10,12 +10,11 @@ library ErrorCodes {
     uint16 constant MINT_DISABLED                 = 1010;
     uint16 constant WRONG_TILE_COORDS             = 1011;
     uint16 constant WRONG_NFT                     = 1012;
-    uint16 constant NFT_NOT_OWNER                 = 1013;
-    uint16 constant TILE_ALREADY_TAKEN            = 1014;
-    uint16 constant BURN_IN_PROGRESS              = 1015;
-    uint16 constant TILE_NOT_RECLAIMED            = 1016;
-    uint16 constant NOT_ENOUGH_GAS                = 1017;
-    uint16 constant BURNING_IS_BLOCKED            = 1018;
-    uint16 constant INVALID_COLORS_SIZE           = 1019;
-    uint16 constant INVALID_NEW_PRICE             = 1020;
+    uint16 constant TILE_ALREADY_TAKEN            = 1013;
+    uint16 constant BURN_IN_PROGRESS              = 1014;
+    uint16 constant NOT_ENOUGH_GAS                = 1015;
+    uint16 constant BURNING_IS_BLOCKED            = 1016;
+    uint16 constant INVALID_NEW_PRICE             = 1017;
+    uint16 constant INVALID_NEW_HOLD_TIME         = 1018;
+    uint16 constant INVALID_STATUS                = 1019;
 }

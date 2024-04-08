@@ -15,13 +15,14 @@
     "bn.js": "^5.2.1",
     "chai": "^4.3.7",
     "dotenv": "^16.0.3",
-    "everscale-standalone-client": "^2.1.19",
-    "locklift": "^2.7.3",
+    "everscale-standalone-client": "^2.1.21",
+    "locklift": "^2.7.4",
     "prettier": "^2.8.8",
     "ts-mocha": "^10.0.0",
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@broxus/locklift-verifier": "^1.0.5",
     "@itgold/everscale-tip": "^1.1.4",
     "pngjs": "^7.0.0"
   }

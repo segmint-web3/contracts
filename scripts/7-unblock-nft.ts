@@ -13,20 +13,20 @@ async function main() {
 
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});
 
-  const collection = locklift.factory.getDeployedContract('SegmintCollection', collectionAddress);
+  // const collection = locklift.factory.getDeployedContract('SegmintCollection', collectionAddress);
   const blockList = locklift.factory.getDeployedContract('BlockList', blockListAddress);
 
   await locklift.tracing.trace(
-    blockList.methods.addToBanList({
+    blockList.methods.removeFromBanList({
       collection: collectionAddress,
-      nftId: '0',
+      nftId: '151305',
     }).send({
       from: ownerWallet.address,
       amount: locklift.utils.toNano(1),
     })
   );
 
-  console.log(`Nft banned`);
+  console.log(`Nft unbanned`);
 }
 
 main()

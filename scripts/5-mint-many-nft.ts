@@ -20,11 +20,12 @@ async function main() {
   //   value: locklift.utils.toNano(500),
   // })
 
-  const collectionAddress = new Address("0:e607b54636f6d26b92f52f4c8ad2e013eee4415ef151f0881e275abf79aaebd7")
+  const collectionAddress = new Address("0:f3806c25134f5642489693be9d7bb8d2770619e99f558d81c031b77e5faf9f83")
   const collection = locklift.factory.getDeployedContract('SegmintCollection', collectionAddress);
   await checkIsDeployed(collectionAddress, locklift.provider);
 
   const {state: cachedState} = await collection.getFullState();
+
   if (!cachedState) {
     throw new Error('Collection not deployed!');
   }
@@ -41,14 +42,15 @@ async function main() {
   let last_images = [];
   while (true) {
     let image_name = images[Math.floor(images.length * Math.random())];
-    if (last_images.length > 35) {
+    if (last_images.length > 20) {
       last_images.shift();
     }
     if (last_images.indexOf(image_name) !== -1) {
       console.log('skip', image_name);
       continue;
     }
-    last_images.push(image_name);
+    if (!image_name.startsWith('maze'))
+      last_images.push(image_name);
 
     let data = fs.readFileSync(`${__dirname}/images/${image_name}`);
     let png = PNG.sync.read(data);
@@ -61,7 +63,6 @@ async function main() {
     let imageTileWidth = png.width / 20;
     let imageTileHeight = png.height / 20;
 
-    parsedState.currentEpoch_ = 1;
     // search for good place for this image.
     // stupid search
     let found = false;
@@ -83,7 +84,7 @@ async function main() {
         if (!stopped) {
           found = true;
           console.log('Try to ming', image_name, 'x', tX * 20, 'y', tY * 20);
-          mintTx = await collection.methods.claimTiles({
+          mintTx = collection.methods.claimTiles({
             "tileStartX": tX,
             "tileStartY": tY,
             "tileEndX": tX + imageTileWidth,
@@ -101,6 +102,7 @@ async function main() {
               field[index].claimedInEpoch = parseInt(parsedState.currentEpoch_);
             }
           }
+          await new Promise(resolve => setTimeout(resolve, 5000));
           break;
         }
       }
@@ -110,7 +112,7 @@ async function main() {
     }
     if (!mintTx) {
       space_occupied++
-      if (space_occupied > 10) {
+      if (space_occupied > 300) {
         console.log('All space occupied!')
         break;
       }
@@ -123,7 +125,7 @@ async function main() {
       // }
     }
   }
-  await Promise.all(promises);
+  // await Promise.all(promises);
   let balance = await locklift.provider.getBalance(highloadWallet.address);
   await locklift.provider.sendMessage(
     {

@@ -13,7 +13,7 @@ async function main() {
   const signer = (await locklift.keystore.getSigner("0"))!;
   const ownerWallet = await EverWalletAccount.fromPubkey({publicKey: signer.publicKey, workchain: 0});
 
-  const collectionAddress = new Address("0:1a98a60471cb91af9f7c47063c2d2a5c4df325b28d53f3b3b2d05bcc5e6b81b8")
+  const collectionAddress = new Address("0:f3806c25134f5642489693be9d7bb8d2770619e99f558d81c031b77e5faf9f83")
   const collection = locklift.factory.getDeployedContract('SegmintCollection', collectionAddress);
   await checkIsDeployed(collectionAddress, locklift.provider);
 

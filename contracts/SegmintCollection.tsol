@@ -1,28 +1,31 @@
 pragma ever-solidity >= 0.64.0;
 
-import '@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol';
-import '@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol';
-
-import "./structures/ITile.tsol";
+import "./interfaces/ICashier.tsol";
 import "./interfaces/ISegmintCollection.tsol";
+import "./interfaces/IPing.tsol";
 
-import "./libraries/MsgFlag.tsol";
 import "./libraries/ErrorCodes.tsol";
+import "./libraries/MsgFlag.tsol";
+
 import './SegmintNft.tsol';
+import '@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol';
+import '@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol';
 
 
-contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmintCollection {
+contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ISegmintCollection, IPing {
 
     address private static owner_;
     uint16 private static nonce_;
     bool private mintDisabled_;
 
-    address manager_;
+    address private newOwner_;
+    address private manager_;
+    address private cashier_;
 
     // x = 0..50, y = 0.50 (50 pieces by 20 pixes - 1000x1000)
-    // uint7 - 128 - x coord << 7
-    // uint7 - 128 - y coord
-    mapping (uint12 => Tile) private tiles_;
+    // key is uint12 (x coord << 6 | y coord)
+    // value is uint64 - nftId << 32 | nftEpoch
+    mapping (uint12 => uint64) private tiles_;
 
     uint32 private currentEpoch_;                 // Num of current epoch
     uint12 private currentEpochTilesLeft_;        // How many tiles left to mint before new epoch is started
@@ -30,7 +33,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
     uint128 private prevEpochTilePrice_;
     uint128 private epochTilePriceGrow_;
 
-    uint128 constant remainOnNft_ = 0.3 ever;
+    uint128 constant remainOnNft_ = 0.4 ever;
 
     event MintDisabledChanged(bool newValue);
 
@@ -53,7 +56,11 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
     ) public {
         require(msg.sender == owner_, ErrorCodes.NOT_OWNER);
         require(tvm.pubkey() == 0, ErrorCodes.PUBKEY_MUST_BE_NOT_SET);
-        tvm.rawReserve(1 ever, 0);
+        tvm.rawReserve(0.3 ever, 0);
+
+        // rewrite tip4_3 constants
+         _indexDeployValue = 0.05 ever;
+         _indexDestroyValue = 0.05 ever;
 
         TvmBuilder salt;
         salt.store(address(this));
@@ -61,11 +68,14 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
 
         mintDisabled_ = true;
         currentEpoch_ = 1;
-        currentEpochTilePrice_ = 0.1 ever;
+        currentEpochTilePrice_ = 0.02 ever;
         prevEpochTilePrice_ = 0;
         epochTilePriceGrow_ = 0.001 ever;
         currentEpochTilesLeft_ = 2500;
         manager_ = owner_;
+        cashier_ = owner_;
+
+        emit EpochChanged(currentEpoch_, currentEpochTilePrice_);
         msg.sender.transfer(0, false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
     }
 
@@ -86,12 +96,23 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
 
     function changeOwner(address newOwner) external onlyOwner {
         require(newOwner.value != 0, ErrorCodes.BAD_NEW_OWNER);
-        owner_ = newOwner;
+        newOwner_ = newOwner;
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
+    }
+
+    function acceptOwnership() external {
+        require(newOwner_.value != 0 && newOwner_ == msg.sender, ErrorCodes.NOT_OWNER);
+        owner_ = newOwner_;
         msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
     }
 
     function changeManager(address newManager) external onlyOwner {
         manager_ = newManager;
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
+    }
+
+    function changeCashier(address newCashier) external onlyOwner {
+        cashier_ = newCashier;
         msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
     }
 
@@ -155,9 +176,6 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         _totalSupply += 1;
         uint64 nftIdWithEpoch = (uint64(nftId) << 32) | currentEpoch_;
 
-        uint colorifyIndex;
-        uint cells; uint bits; uint refs;
-
         for (uint12 tileX = tileStartX; tileX < tileEndX; tileX++) {
             uint12 shiftedX = tileX << 6;
             for (uint6 tileY = tileStartY; tileY < tileEndY; tileY++) {
@@ -165,14 +183,9 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
                 // we already checked is this index free in _validateClaim
                 uint12 index = shiftedX | tileY;
 
-                bytes colors = tilesToColorify[colorifyIndex];
-                (cells, bits, refs) = colors.dataSize(10);
-                require(bits <= 9600, ErrorCodes.INVALID_COLORS_SIZE);
-                colorifyIndex++;
-
-                optional(Tile) oPrevTile = tiles_.getSet(index, Tile(nftIdWithEpoch, colors));
+                optional(uint64) oPrevTile = tiles_.getSet(index, nftIdWithEpoch);
                 if (oPrevTile.hasValue()) {
-                    require(oPrevTile.get().epochWitNftId & 4294967295 < currentEpoch_, ErrorCodes.TILE_ALREADY_TAKEN);
+                    require(oPrevTile.get() & 4294967295 < currentEpoch_, ErrorCodes.TILE_ALREADY_TAKEN);
                 }
             }
         }
@@ -185,17 +198,19 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         // + 0.05 venom for maximum forward fee = 1 ever
         require(msg.value > currentPrice + 1 ever);
 
-        // We reverse on contract 0.05 venom for payment storage + diff between prev epoch price and current epoch price
-        // for rebate
-        tvm.rawReserve(0.05 ever + prevPrice, 4);
+        // We reverse on contract 0.01 venom for payment storage + prev epoch price for rebate to prev owner
+        tvm.rawReserve(0.01 ever + prevPrice, 4);
         emit NftMinted(nftId, currentEpoch_, msg.sender, tileStartX, tileStartY, tileEndX, tileEndY, tilesToColorify);
 
         // generate next epoch
         currentEpochTilesLeft_ -= tilesCount;
-        // if less then 15% left start new epoch.
-        if (currentEpochTilesLeft_ < 500) {
+        // if less then 30% left start new epoch.
+        if (currentEpochTilesLeft_ < 800) {
             _changeEpoch();
         }
+
+        // 0.1 ever is our additional commission
+        ICashier(cashier_).onNftMinted{value: currentPrice - prevPrice + 0.1 ever, flag: MsgFlag.SENDER_PAYS_FEES, bounce: false}(nftId, msg.sender, currentPrice);
 
         TvmCell stateNft = _buildNftState(_codeNft, uint256(nftId));
         address nftAddr = new SegmintNft{
@@ -204,11 +219,11 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
                     varInit: {_id: nftId},
                     code: _codeNft
                 }),
-                value: 0.7 ever + currentPrice - prevPrice,
-                flag: MsgFlag.SENDER_PAYS_FEES
+                value: 0,
+                flag: MsgFlag.ALL_NOT_RESERVED
         } (
             msg.sender,
-            owner_,
+            msg.sender,
             remainOnNft_,
             _indexDeployValue,
             _indexDestroyValue,
@@ -218,38 +233,29 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
             tileStartY,
             tileEndX,
             tileEndY,
+            tilesToColorify,
             description,
             url
         );
-
-        // return the change
-        msg.sender.transfer( 0,  false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
     }
 
     function colorifyTiles(uint32 nftId, bytes[] tilesColors, uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, address sendGasBack) external override {
         require(msg.sender == _resolveNft(nftId), ErrorCodes.WRONG_NFT);
-        tvm.rawReserve(0.01 ever, 4);
+        // for storage :-)
+        tvm.rawReserve(0.001 ever, 4);
 
         uint colorifyIndex;
-        uint cells; uint bits; uint refs;
-
         for (uint6 tileX = tileStartX; tileX < tileEndX; tileX++) {
             uint12 shiftedX = uint12(tileX) << 6;
             for (uint6 tileY = tileStartY; tileY < tileEndY; tileY++) {
                 uint12 index = shiftedX | tileY;
-                Tile prevTile = tiles_[index];
-                uint32 ownedByNftId = uint32(prevTile.epochWitNftId >> 32);
+                uint64 prevTile = tiles_[index];
+                uint32 ownedByNftId = uint32(prevTile >> 32);
                 if (ownedByNftId == nftId) {
-                    uint32 nftEpoch = uint32(prevTile.epochWitNftId & 4294967295);
-                    bytes colors = tilesColors[colorifyIndex];
-                    (cells, bits, refs) = colors.dataSize(10);
-                    if (bits <= 9600) {
-                        colorifyIndex++;
-                        prevTile.colors = colors;
-                        tiles_[index] = prevTile;
-                        emit TileColorify(nftId, nftEpoch, tileX, tileY, colors);
-                    }
+                    uint32 nftEpoch = uint32(prevTile & 4294967295);
+                    emit TileColorify(nftId, nftEpoch, tileX, tileY, tilesColors[colorifyIndex]);
                 }
+                colorifyIndex++;
             }
         }
         sendGasBack.transfer( 0,  false, MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS);
@@ -262,8 +268,8 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         for (uint6 tileX = nftTileStartX_; tileX < nftTileEndX_; tileX++) {
             uint12 shiftedX = uint12(tileX) << 6;
             for (uint6 tileY = nftTileStartY_; tileY < nftTileEndY_; tileY++) {
-                Tile prevOwnerInfo = tiles_[shiftedX | tileY];
-                uint32 ownedByNftId = uint32(prevOwnerInfo.epochWitNftId >> 32);
+                uint64 previewNftIdAndEpoch = tiles_[shiftedX | tileY];
+                uint32 ownedByNftId = uint32(previewNftIdAndEpoch >> 32);
                 if (ownedByNftId == nftId) {
                     shouldCancel = true;
                 }
@@ -277,20 +283,19 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         }
     }
 
-    function getTile(uint6 tileX, uint6 tileY) external override responsible returns (bytes pixels, uint32 nftId, uint32 epoch) {
+    function getTile(uint6 tileX, uint6 tileY) external override responsible returns (uint32 nftId, uint32 epoch) {
         // 2 ** 32
         nftId = uint32(4294967295);
         uint12 index = (uint12(tileX) << 6) | uint12(tileY);
 
-        optional(Tile) oNftOwnerData = tiles_.fetch(index);
+        optional(uint64) oNftOwnerData = tiles_.fetch(index);
         if (oNftOwnerData.hasValue()) {
-            Tile tile = oNftOwnerData.get();
-            pixels = tile.colors;
-            nftId = uint32(tile.epochWitNftId >> 32);
-            epoch = uint32(tile.epochWitNftId & 4294967295);
+            uint64 epochWitNftId = oNftOwnerData.get();
+            nftId = uint32(epochWitNftId >> 32);
+            epoch = uint32(epochWitNftId & 4294967295);
         }
 
-        return{value: 0, bounce: false, flag: 64} (pixels, nftId, epoch);
+        return{value: 0, bounce: false, flag: MsgFlag.REMAINING_GAS} (nftId, epoch);
     }
 
     function getData() external responsible returns(uint32 nftCounter, uint32 epoch, uint128 currentEpochTilePrice, bool mintDisabled) {
@@ -308,7 +313,7 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         return{value: 0, bounce: false, flag: 64} format("{:064x}", tvm.hash(code));
     }
 
-    function getRandomNftFromTheField(uint256 seed) external responsible returns(address) {
+    function getRandomNftAddressFromTheField(uint256 seed) external override responsible returns(address) {
         // This is the method for possible future prize draws
         // Work only if field is full.
         rnd.setSeed(seed);
@@ -316,10 +321,14 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
         uint6 y = rnd.next(uint6(50));
 
         uint12 coord = (uint12(x) << 6) | y;
-        Tile tile = tiles_[coord];
-        uint32 nftId = uint32(tile.epochWitNftId >> 32);
+        uint64 epochWitNftId = tiles_[coord];
+        uint32 nftId = uint32(epochWitNftId >> 32);
 
         return{value: 0, bounce: false, flag: MsgFlag.REMAINING_GAS} _resolveNft(nftId);
+    }
+
+    function ping(TvmCell data) responsible external override returns (TvmCell) {
+        return {value: 0, flag: MsgFlag.REMAINING_GAS, bounce: false} data;
     }
 
     function _changeEpoch() private inline {
@@ -347,7 +356,9 @@ contract SegmintCollection is TIP4_2Collection, TIP4_3Collection, ITile, ISegmin
             owner_,
             nonce_,
             mintDisabled_,
+            newOwner_,
             manager_,
+            cashier_,
             tiles_,
             currentEpoch_,
             currentEpochTilesLeft_,

@@ -17,6 +17,7 @@
 				{"name":"nftTileStartY","type":"uint6"},
 				{"name":"nftTileEndX","type":"uint6"},
 				{"name":"nftTileEndY","type":"uint6"},
+				{"name":"colors","type":"bytes[]"},
 				{"name":"description","type":"string"},
 				{"name":"url","type":"string"}
 			],
@@ -59,7 +60,8 @@
 				{"name":"tileStartX","type":"uint6"},
 				{"name":"tileStartY","type":"uint6"},
 				{"name":"tileEndX","type":"uint6"},
-				{"name":"tileEndY","type":"uint6"}
+				{"name":"tileEndY","type":"uint6"},
+				{"name":"colors","type":"bytes[]"}
 			]
 		},
 		{
@@ -240,6 +242,7 @@
 		{"name":"nftTileStartY_","type":"uint6"},
 		{"name":"nftTileEndX_","type":"uint6"},
 		{"name":"nftTileEndY_","type":"uint6"},
+		{"name":"colors_","type":"bytes[]"},
 		{"name":"remainOnNft_","type":"uint128"},
 		{"name":"lockedAmount_","type":"uint128"},
 		{"name":"description_","type":"string"},

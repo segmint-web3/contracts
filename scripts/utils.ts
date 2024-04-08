@@ -42,7 +42,7 @@ export function parseTilesToField(parsed_mapping: [string, {epochWitNftId: strin
 
   for (let elem of parsed_mapping) {
     let blockchainIndex = new BN(elem[0]);
-    let nftIdEpochId = new BN(elem[1].epochWitNftId);
+    let nftIdEpochId = new BN(elem[1]);
     let epoch = nftIdEpochId.and(maxNftIdBN).toNumber();
 
     let x = blockchainIndex.shrn(6).toNumber();

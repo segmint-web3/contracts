@@ -1,6 +1,7 @@
 import { LockliftConfig } from "locklift";
 import { FactorySource } from "./build/factorySource";
 import dotenv from "dotenv"
+import "@broxus/locklift-verifier";
 
 dotenv.config()
 
@@ -30,6 +31,12 @@ const config: LockliftConfig = {
   },
   linker: {
     version: "0.16.5"
+  },
+  verifier: {
+    verifierVersion: "latest",
+    apiKey: process.env.VERIFIER_API_KEY,
+    secretKey: process.env.VERIFIER_SECRET_KEY,
+    license: "MIT"
   },
   networks: {
     local: {
@@ -61,21 +68,16 @@ const config: LockliftConfig = {
     test: {
       connection: {
         id: 1,
-        type: "graphql",
+        type: "jrpc",
         group: "dev",
         data: {
-          endpoints: [DEV_NET_NETWORK_ENDPOINT],
-          latencyDetectionInterval: 1000,
-          local: false,
+          endpoint: DEV_NET_NETWORK_ENDPOINT,
         },
       },
       giver: {
         address: GIVER_ADDRESS,
         phrase: PHRASE,
         accountId: 0
-      },
-      tracing: {
-        endpoint: DEV_NET_NETWORK_ENDPOINT,
       },
       keys: {
         // Use everdev to generate your phrase
@@ -98,9 +100,9 @@ const config: LockliftConfig = {
         phrase: PHRASE,
         accountId: 0
       },
-      tracing: {
-        endpoint: VENOM_TESTNET_TRACE_ENDPOINT,
-      },
+      // tracing: {
+      //   endpoint: VENOM_TESTNET_TRACE_ENDPOINT,
+      // },
       keys: {
         // Use everdev to generate your phrase
         // !!! Never commit it in your repos !!!

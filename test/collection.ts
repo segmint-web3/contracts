@@ -74,19 +74,19 @@ describe("Test collection", async function () {
       const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), true);
 
       await locklift.tracing.trace(
-          collection.methods.claimTiles({
-            "tileStartX": 0,
-            "tileStartY": 0,
-            "tileEndX": 1,
-            "tileEndY": 1,
-            "tilesToColorify": [getRandomTileColors()],
-            "description": `Test mint 0x0`,
-            "url": "https://google.com/",
-          }).send({
-            from: ownerEverWallet.address,
-            amount: locklift.utils.toNano( 5),
-          })
-        )
+        collection.methods.claimTiles({
+          "tileStartX": 0,
+          "tileStartY": 0,
+          "tileEndX": 1,
+          "tileEndY": 1,
+          "tilesToColorify": [getRandomTileColors()],
+          "description": `Test mint 0x0`,
+          "url": "https://google.com/",
+        }).send({
+          from: ownerEverWallet.address,
+          amount: locklift.utils.toNano( 5),
+        })
+      )
 
 
       let claimed_tile = await collection.methods.getTile({
@@ -141,13 +141,13 @@ describe("Test collection", async function () {
           allowedCodes: {
             contracts: {
               [collection.address.toString()]: {
-                compute: [1014],
+                compute: [1013],
               },
             },
           },
         }
       )
-      expect(await failedClaimTracing.traceTree?.getAllErrors()[0].code === 1014).to.be.true;
+      expect(await failedClaimTracing.traceTree?.getAllErrors()[0].code === 1013).to.be.true;
 
       let claimed_tile = await collection.methods.getTile({
         answerId: 0,
@@ -202,10 +202,10 @@ describe("Test collection", async function () {
 
       successfull_mint_tracing = await locklift.tracing.trace(
         collection.methods.claimTiles({
-          "tileStartX": 24,
-          "tileStartY": 0,
-          "tileEndX": 25,
-          "tileEndY": 50,
+          "tileStartX": 0,
+          "tileStartY": 24,
+          "tileEndX": 50,
+          "tileEndY": 25,
           "tilesToColorify": pixels,
           "description": `Test mint 0-1000,${990}-${990+10}`,
           "url": "https://google.com/",
@@ -242,7 +242,9 @@ describe("Test collection", async function () {
 
       let methods = [
         {name: 'changeManager', params: {newManager: ownerEverWallet.address.toString()}},
+        {name: 'changeCashier', params: {newCashier: ownerEverWallet.address.toString()}},
         {name: 'changeOwner', params: {newOwner: ownerEverWallet.address.toString()}},
+        {name: 'acceptOwnership', params: {}},
         {name: 'disableMint', params: {answerId: '0'}},
         {name: 'enableMint',  params: {answerId: '0'}},
         {name: 'changeEpoch',  params: {answerId: '0'}},
@@ -292,16 +294,51 @@ describe("Test collection", async function () {
 
       // not manager
       expect(tracing.traceTree).to.have.error(1004);
-
     });
 
     it("Change owner must work correctly", async function () {
       const collection = await deployCollectionForOwner(ownerEverWallet, locklift.utils.getRandomNonce(), false);
       const newOwnerKeypair = SimpleKeystore.generateKeyPair();
       await locklift.keystore.addKeyPair(newOwnerKeypair);
+
       const newOwnerEverWallet = await EverWalletAccount.fromPubkey({publicKey: newOwnerKeypair.publicKey});
       await locklift.factory.accounts.storage.addAccount(newOwnerEverWallet);
       await locklift.giver.sendTo(newOwnerEverWallet.address, locklift.utils.toNano(10))
+
+      // enableMint from not owner account must throw error
+      let tracing = await locklift.tracing.trace(
+        collection.methods.enableMint({answerId: 0}).send({
+          from: newOwnerEverWallet.address,
+          amount: locklift.utils.toNano(1),
+        }),
+        {
+          allowedCodes: {
+            contracts: {
+              [collection.address.toString()]: {
+                compute: [1000],
+              },
+            },
+          },
+        }
+      )
+      expect(tracing.traceTree).to.have.error(1000);
+
+      // acceptOwnership from not newOwner_ account must throw error
+      tracing = await locklift.tracing.trace(
+        collection.methods.acceptOwnership({}).send({
+          from: newOwnerEverWallet.address,
+          amount: locklift.utils.toNano(1),
+        }),
+        {
+          allowedCodes: {
+            contracts: {
+              [collection.address.toString()]: {
+                compute: [1000],
+              },
+            },
+          },
+        })
+      expect(tracing.traceTree).to.have.error(1000);
 
       await locklift.tracing.trace(
         collection.methods.changeOwner({
@@ -309,8 +346,14 @@ describe("Test collection", async function () {
         }).send({
           from: ownerEverWallet.address,
           amount: locklift.utils.toNano(1),
-        })
+        }),
       )
+
+      tracing = await locklift.tracing.trace(
+        collection.methods.acceptOwnership({}).send({
+          from: newOwnerEverWallet.address,
+          amount: locklift.utils.toNano(1),
+        }))
 
       await locklift.tracing.trace(
         collection.methods.enableMint({answerId: 0}).send({
@@ -348,5 +391,4 @@ describe("Test collection", async function () {
       expect(response.json).to.be.equal(JSON.stringify(metadata()));
     });
   });
-
 });

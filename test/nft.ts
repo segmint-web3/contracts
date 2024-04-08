@@ -84,7 +84,7 @@ describe("Test nft", async function () {
 
     it ("Get nft json", async function() {
       const {json} = await nft.methods.getJson({answerId: 0}).call({responsible: true});
-      expect(json).to.be.equal('{"type":"Basic NFT","name":"Segmint Nft 0","description":"Piece of canvas x from 0 to 20, y from 0 to 20 pixels","preview":{"source":"https://segmint.app/collection_logo.png","mimetype":"image/png"},"files":[{"source":"https://segmint.app/collection_logo.png","mimetype":"image/png"}],"external_url":"https://segmint.app/"}');
+      expect(json).to.be.equal('{"type":"Basic NFT","name":"Segmint Nft 0","description":"Piece of canvas x from 0 to 20, y from 0 to 20 pixels","preview":{"source":"https://segmint.app/nft/0.png","mimetype":"image/png"},"files":[{"source":"https://segmint.app/nft/0.png","mimetype":"image/png"}],"external_url":"https://segmint.app/"}');
     })
 
     it("Only manager must be able to transfer nft", async function () {
@@ -294,7 +294,7 @@ describe("Test nft", async function () {
         allowedCodes: {
           contracts: {
             [nft.address.toString()]: {
-              compute: [1018],
+              compute: [1016],
             },
           },
         },

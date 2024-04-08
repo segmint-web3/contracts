@@ -1,0 +1,139 @@
+pragma ever-solidity >= 0.64.0;
+
+import "./interfaces/ICashier.tsol";
+import "./interfaces/IPing.tsol";
+import "./libraries/ErrorCodes.tsol";
+import "./libraries/MsgFlag.tsol";
+
+contract KingOfSegmint is ICashier {
+
+    enum Status {
+        WaitingForStart,
+        RoundInProgress,
+        WaitingForClosing,
+        Finished
+    }
+
+    address private static owner_;
+    address private static segmintCollection_;
+    uint static nonce_;
+
+    uint private roundNumber_;
+
+    uint32 private needToHoldTime_;
+    Status private status_;
+    uint32 public endTime_;
+    address private king_;
+    uint32 private kingNftId_;
+
+    uint128 winningAmount_;
+
+    // new king, king nft_id, pot
+    event NewKing(address, uint32, uint128);
+
+    // winner address, winner nft_id, winner venoms
+    event Winner(address, uint32, uint128);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner_, ErrorCodes.NOT_OWNER);
+        _;
+    }
+
+    constructor(uint roundNumber, uint32 needToHoldTime) public {
+        require(tvm.pubkey() == 0, ErrorCodes.PUBKEY_MUST_BE_NOT_SET);
+        require(msg.sender == owner_, ErrorCodes.NOT_OWNER);
+        require(needToHoldTime >= 60  * 5, ErrorCodes.INVALID_NEW_HOLD_TIME);
+        require(needToHoldTime <= 60  * 60 * 24, ErrorCodes.INVALID_NEW_HOLD_TIME);
+        roundNumber_ = roundNumber;
+        needToHoldTime_ = needToHoldTime;
+    }
+
+    function onNftMinted(uint32 nftId, address owner, uint128 lockedAmount) override external {
+        tvm.rawReserve(0 ever, 4);
+        if (msg.sender == segmintCollection_ && status_ != Status.Finished) {
+            status_ = Status.RoundInProgress;
+            king_ = owner;
+            kingNftId_ = nftId;
+            endTime_ = now + needToHoldTime_;
+            emit NewKing(owner, nftId, address(this).balance);
+        }
+        owner_.transfer(0, false, MsgFlag.ALL_NOT_RESERVED);
+    }
+
+    function finishRound() public {
+        // After the round time expires, users are not allowed to end the round directly.
+        // Instead, someone must call the finishRound function with an external message.
+        // This will be automatically done by the frontend and bots.
+
+        // When finishRound is called, the game contract sends an internal message to COLLECTION
+        // And after he receive an answer round will be finished.@autho
+
+        // But if someone just claimed NFT after endTime_ but before this contract will receive an answer from collection
+        // Round will not be finished
+
+        // This serves as a form of DDOS protection. If the blockchain shard hosting COLLECTION contract is spammed,
+        // a "claim" transaction can still be sent from another shard. Due to LT ORDERING guarantees,
+        // this "claim" transaction will be processed before PING and round will not be finished in DDOS situation
+
+        require(address(this).balance > 1 ever, ErrorCodes.NOT_ENOUGH_GAS);
+        require(now > endTime_, ErrorCodes.INVALID_STATUS);
+        require(status_ == Status.RoundInProgress, ErrorCodes.INVALID_STATUS);
+        tvm.accept();
+        status_ = Status.WaitingForClosing;
+
+        TvmCell empty;
+        IPing(segmintCollection_).ping{value: 0.2 ever, flag: MsgFlag.SENDER_PAYS_FEES, bounce: false, callback: onCollectionAnswer}(empty);
+    }
+
+    function onCollectionAnswer(TvmCell data) public {
+        // after we receive pong from collection just finish the round
+        require(status_ == Status.WaitingForClosing, ErrorCodes.INVALID_STATUS);
+        require(msg.sender == segmintCollection_, ErrorCodes.NOT_COLLECTION);
+        tvm.accept();
+        status_ = Status.Finished;
+        tvm.rawReserve(0.1 ever, 0);
+        winningAmount_ = address(this).balance - 0.1 ever;
+        emit Winner(king_, kingNftId_, winningAmount_);
+        king_.transfer(0, true, MsgFlag.ALL_NOT_RESERVED);
+    }
+
+    function withdraw() external onlyOwner  {
+        require(status_ == Status.Finished, ErrorCodes.INVALID_STATUS);
+        tvm.rawReserve(0.1 ever, 0);
+        owner_.transfer(0, false, MsgFlag.ALL_NOT_RESERVED);
+    }
+
+    function setNeedOnHoldTime(uint32 needToHoldTime) external onlyOwner {
+        // To adjust time between rounds
+        require(needToHoldTime >= 60  * 5, ErrorCodes.INVALID_NEW_HOLD_TIME);
+        require(needToHoldTime <= 60  * 60 * 24, ErrorCodes.INVALID_NEW_HOLD_TIME);
+        needToHoldTime_ = needToHoldTime;
+        msg.sender.transfer(0, false, MsgFlag.REMAINING_GAS);
+    }
+
+    receive() external {
+        // just accept any coins
+    }
+
+    function upgrade(TvmCell newCode) external onlyOwner {
+        tvm.accept();
+        TvmCell data = abi.encode(
+            owner_,
+            segmintCollection_,
+            nonce_,
+            needToHoldTime_,
+            status_,
+            endTime_,
+            king_,
+            kingNftId_,
+            winningAmount_
+        );
+
+        tvm.setcode(newCode);
+        tvm.setCurrentCode(newCode);
+
+        onCodeUpgrade(data);
+    }
+
+    function onCodeUpgrade(TvmCell data) private {}
+}

@@ -1,14 +1,11 @@
 pragma ever-solidity >= 0.64.0;
 
-import "../structures/ITile.tsol";
 
-
-interface ISegmintCollection is ITile {
+interface ISegmintCollection {
     event MintDisabledChanged(bool newValue);
     event TileColorify(uint32 nftId, uint32 nftEpoch, uint6 tileX, uint6 tileY, bytes colors);
     event NftMinted(uint32 nftId, uint32 nftEpoch, address owner, uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, bytes[] colors);
     event EpochChanged(uint32 newEpoch, uint128 oneTileClaimPrice);
-
 
     function disableMint() external responsible returns(bool);
     function enableMint() external responsible returns(bool);
@@ -16,10 +13,11 @@ interface ISegmintCollection is ITile {
     function getMintDisabled() external responsible returns (bool);
 
     function claimTiles(uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, bytes[] tilesToColorify, string description, string url) external;
-    function getTile(uint6 tileX, uint6 tileY) external responsible returns (bytes, uint32, uint32);
+    function getTile(uint6 tileX, uint6 tileY) external responsible returns (uint32, uint32);
 
     function colorifyTiles(uint32 nftId, bytes[] tilesColors, uint6 tileStartX, uint6 tileStartY, uint6 tileEndX, uint6 tileEndY, address sendGasBack) external;
     function burnNft(uint32 nftId, uint128 lockedAmount, uint6 nftTileStartX_, uint6 nftTileStartY_, uint6 nftTileEndX_, uint6 nftTileEndY_) external;
     function setNftBurningBlocked(uint32 nftId, bool isBlocked, address sendGasBack) external;
 
+    function getRandomNftAddressFromTheField(uint256 seed) external responsible returns(address);
 }
